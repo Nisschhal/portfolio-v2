@@ -1,27 +1,33 @@
-import type { Config } from "tailwindcss"
+// import type { Config } from "tailwindcss"
 
-const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    screens: {
-      sm: "375px",
-      md: "768px",
-      lg: "1200px",
-    },
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1rem",
-        md: "2rem",
-      },
-    },
-    extend: {},
-  },
-  plugins: [],
-}
-export default config
+// const config: Config = {
+//   content: [
+//     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./sections/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+//     "app/**/*.{js,ts,jsx,tsx,mdx}",
+//   ],
+//   theme: {
+//     screens: {
+//       sm: "375px",
+//       md: "768px",
+//       lg: "1200px",
+//     },
+//     container: {
+//       center: true,
+//       padding: {
+//         DEFAULT: "1rem",
+//         md: "2rem",
+//       },
+//     },
+//     extend: {
+//       fontFamily: {
+//         sans: ["var(--font-sans)", "sans-serif"],
+//         serif: ["var(--font-serif)", "serif"],
+//         mono: ["var(--font-mono)", "monospace"],
+//       },
+//     },
+//   },
+//   plugins: [],
+// }
+// export default config
