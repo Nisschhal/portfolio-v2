@@ -1,12 +1,12 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./sections/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  //   content: [
+  //     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+  //     "./sections/**/*.{js,ts,jsx,tsx,mdx}",
+  //     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  //     "app/**/*.{js,ts,jsx,tsx,mdx}",
+  //   ],
   theme: {
     screens: {
       sm: "375px",
@@ -20,13 +20,13 @@ const config: Config = {
         md: "2rem",
       },
     },
-    // extend: {
-    //   fontFamily: {
-    //     sans: ["var(--font-sans)", "sans-serif"],
-    //     serif: ["var(--font-serif)", "serif"],
-    //     mono: ["var(--font-mono)", "monospace"],
-    //   },
-    // },
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+    },
   },
   plugins: [],
 }
