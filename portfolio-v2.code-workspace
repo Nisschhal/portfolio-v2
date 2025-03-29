@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Downloads/frontend-tribe-single-page-dev-portfolio-resource-bundle/starter-template/src/assets"
+		},
+		{
+			"path": "../../Downloads/frontend-tribe-single-page-dev-portfolio-resource-bundle/starter-template/src/components"
+		},
+		{
+			"path": "../../Downloads/frontend-tribe-single-page-dev-portfolio-resource-bundle/starter-template/src/sections"
+		}
+	],
+	"settings": {}
+}
