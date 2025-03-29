@@ -2,6 +2,9 @@ import memojiImage from "@/assets/images/memoji-computer.png"
 import Image from "next/image"
 import ArrowDown from "@/assets/icons/arrow-down.svg"
 import grainImage from "@/assets/images/grain.jpg"
+import StarIcon from "@/assets/icons/star.svg"
+import SparkleIcon from "@/assets/icons/sparkle.svg"
+import HeroOrbit from "@/components/HeroOrbit"
 
 export const HeroSection = () => {
   return (
@@ -17,6 +20,35 @@ export const HeroSection = () => {
       <div className="size-[860px] hero-ring"></div>
       <div className="size-[1060px] hero-ring"></div>
       <div className="size-[1260px] hero-ring"></div>
+
+      {/* Stars Container */}
+      <div>
+        <HeroOrbit size={800} rotate={-72}>
+          <StarIcon className="size-28 text-emerald-300" />
+        </HeroOrbit>
+        <HeroOrbit size={600} rotate={20}>
+          <StarIcon className="size-12 text-emerald-300" />
+        </HeroOrbit>
+        <HeroOrbit size={620} rotate={95}>
+          <StarIcon className="size-8 text-emerald-300" />
+        </HeroOrbit>
+      </div>
+
+      {/* Sparkle Container */}
+      <div>
+        <HeroOrbit size={450} rotate={-8}>
+          <SparkleIcon className="size-6 text-emerald-300/30" />
+        </HeroOrbit>
+        <HeroOrbit size={500} rotate={75}>
+          <SparkleIcon className="size-6 text-emerald-300/30" />
+        </HeroOrbit>
+        <HeroOrbit size={480} rotate={172}>
+          <SparkleIcon className="size-6 text-emerald-300/30" />
+        </HeroOrbit>
+        <HeroOrbit size={700} rotate={140}>
+          <SparkleIcon className="size-12 text-emerald-300/30" />
+        </HeroOrbit>
+      </div>
 
       {/* Container */}
       <div className="container">
@@ -46,8 +78,10 @@ export const HeroSection = () => {
             I design and develop seamless, high-performing user interfaces
             tailored to your needs. Whether you&apos;re a startup, agency, or
             enterprise, my goal is to turn your ideas into exceptional digital
-            experiences that drive results.
-            <span> 🚀 Let&apos;s bring your vision to life.</span>
+            experiences that drive results and conversions. <br />
+            <span className="italic">
+              🚀 Let&apos;s bring your vision to life.
+            </span>
           </p>
         </div>
         {/* CTA */}
