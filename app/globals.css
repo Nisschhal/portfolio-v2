@@ -28,6 +28,7 @@ body {
 
 @layer base {
   .nav-item {
+    /* text/70 hover:text/100 */
     @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
   }
 }
