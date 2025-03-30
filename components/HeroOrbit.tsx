@@ -23,7 +23,7 @@ const HeroOrbit = ({
         <div
           className=" inline-flex "
           style={{
-            transform: `rotate(-${rotate}deg)`,
+            transform: `rotate(${rotate * -1}deg)`,
           }}
         >
           {/* handle single star */}
