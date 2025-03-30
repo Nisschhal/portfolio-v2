@@ -33,6 +33,6 @@ body {
   }
   .hero-ring {
     /* Circle inset shadow */
-    @apply absolute inset-0 border top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
+    @apply absolute inset-0  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
   }
 }
