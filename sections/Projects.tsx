@@ -46,77 +46,94 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-32">
+    <section className="pb-16 lg:py-24">
       <div className="container">
         {/* flex to only select the text content */}
         <div className="flex justify-center">
           {/* Feature Title */}
-          <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent">
+          <p className=" uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent">
             Real-world Results
           </p>
         </div>
-
-        <h2 className="text-3xl font-serif text-center mt-6">
+        {/* 3xl md:5x */}
+        <h2 className="text-3xl md:text-5xl font-serif text-center mt-6">
           Featured Projects
         </h2>
-        <p className="text-center  text-white/60 mt-4">
-          See how I have transformed concepts into engaging digitial
-          experiences.
+        {/* text-normal md:text-xl */}
+        <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">
+          See how I transformed concepts into engaging digitial experiences.
         </p>
 
-        <div className="flex flex-col mt-10 gap-16">
+        <div className="flex flex-col mt-10 gap-16 md:mt-20">
           {portfolioProjects.map((project) => (
             <div
               key={project.title}
               className="rounded-3xl relative z-0
               bg-gray-800
-              overflow-hidden px-8 pt-8 outline-2 outline-white/20"
+              overflow-hidden px-8 pt-8 md:px-10 md:pt-12 lg:px-20 lg:pt-16 outline-2 outline-white/20"
             >
-              <div
-                className="absolute inset-0 -z-10 opacity-5"
-                style={{
-                  backgroundImage: `url(${grainImage.src})`,
-                }}
-              />
-              <div className="text-sm tracking-widest inline-flex gap-2 bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent">
-                <span className="font-semibold uppercase ">
-                  {project.company}
-                </span>
-                <span>&bull;</span>
-                <span className="font-semibold uppercase">{project.year}</span>
-              </div>
+              {/* lg:grid lg:grid-cols-2 */}
+              <div className="lg:grid lg:grid-cols-2 lg:gap-16">
+                {/* lg:Left Column */}
+                <div className="lg:pb-16">
+                  {/* Background noise image */}
+                  <div
+                    className="absolute inset-0 -z-10 opacity-5"
+                    style={{
+                      backgroundImage: `url(${grainImage.src})`,
+                    }}
+                  />
 
-              {/* Project Title */}
-              <h3 className=" font-serif text-2xl mt-2">{project.title}</h3>
-
-              {/* Seperator */}
-              <hr className="border border-white/10 mt-4" />
-
-              {/* Project Results */}
-              <ul className="mt-4 flex flex-col gap-4">
-                {project.results.map((result) => (
-                  <li
-                    key={result.title}
-                    className="text-sm text-white/50 flex gap-2 items-center"
-                  >
-                    <span>
-                      <CheckCircle className="inline-block size-5" />
+                  {/* Project Company * year */}
+                  <div className="text-sm tracking-widest inline-flex gap-2 bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent">
+                    <span className="font-semibold uppercase ">
+                      {project.company}
                     </span>
-                    {result.title}
-                  </li>
-                ))}
-              </ul>
-              <a href={project.link}>
-                <button className="inline-flex gap-2  bg-white text-gray-950 h-12 w-full items-center justify-center rounded-xl font-semibold mt-8">
-                  <span> View Live Site</span>
-                  <UpRightArrow className="size-4" />
-                </button>
-              </a>
-              <Image
-                src={project.image}
-                alt={project.title}
-                className="mt-8 -mb-4"
-              />
+                    <span>&bull;</span>
+                    <span className="font-semibold uppercase">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  {/* Project Title */}
+                  <h3 className=" font-serif text-2xl md:text-4xl mt-2 md:mt-5">
+                    {project.title}
+                  </h3>
+
+                  {/* Seperator */}
+                  <hr className="border border-white/10 mt-4 md:mt-4.5" />
+
+                  {/* Project Results */}
+                  <ul className="mt-4 md:mt-6 flex flex-col gap-4">
+                    {project.results.map((result) => (
+                      <li
+                        key={result.title}
+                        className="text-sm md:text-base text-white/50 flex gap-2 items-center"
+                      >
+                        <span>
+                          <CheckCircle className="inline-block size-5 md:size-6" />
+                        </span>
+                        {result.title}
+                      </li>
+                    ))}
+                  </ul>
+                  <a href={project.link}>
+                    <button className="inline-flex gap-2  bg-white text-gray-950 h-12 w-full md:w-auto md:px-6 items-center justify-center rounded-xl font-semibold mt-8 md:mt-10">
+                      <span> View Live Site</span>
+                      <UpRightArrow className="size-4" />
+                    </button>
+                  </a>
+                </div>
+
+                {/* Lg: Right column */}
+                <div className="relative  ">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    className="mt-8 -mb-4 md:-mb-2 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none lg:object-cover"
+                  />
+                </div>
+              </div>
             </div>
           ))}
         </div>
