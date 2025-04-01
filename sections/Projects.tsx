@@ -5,6 +5,8 @@ import Image from "next/image"
 import CheckCircle from "@/assets/icons/check-circle.svg"
 import UpRightArrow from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
+import SectionHeader from "@/components/SectionHeader"
+import Card from "@/components/Card"
 const portfolioProjects = [
   {
     company: "Acme Corp",
@@ -48,42 +50,30 @@ export const ProjectsSection = () => {
   return (
     <section className="pb-16 lg:py-24">
       <div className="container">
-        {/* flex to only select the text content */}
-        <div className="flex justify-center">
-          {/* Feature Title */}
-          <p className=" uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent">
-            Real-world Results
-          </p>
-        </div>
-        {/* 3xl md:5x */}
-        <h2 className="text-3xl md:text-5xl font-serif text-center mt-6">
-          Featured Projects
-        </h2>
-        {/* text-normal md:text-xl */}
-        <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">
-          See how I transformed concepts into engaging digitial experiences.
-        </p>
-
+        {/* Section Header */}
+        <SectionHeader
+          eyebrow="Real-world Results"
+          title="Featured Projects"
+          description="See how I transformed concepts into engaging digitial experiences."
+        />
+        {/* Section Content */}
         <div className="flex flex-col mt-10 gap-16 md:mt-20">
           {portfolioProjects.map((project) => (
-            <div
+            <Card
               key={project.title}
-              className="rounded-3xl relative z-0
-              bg-gray-800
-              overflow-hidden px-8 pt-8 md:px-10 md:pt-12 lg:px-20 lg:pt-16 outline-2 outline-white/20"
+              className="px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16 "
             >
+              {/* Background noise image */}
+              <div
+                className="absolute inset-0 -z-10 opacity-5"
+                style={{
+                  backgroundImage: `url(${grainImage.src})`,
+                }}
+              />
               {/* lg:grid lg:grid-cols-2 */}
               <div className="lg:grid lg:grid-cols-2 lg:gap-16">
                 {/* lg:Left Column */}
                 <div className="lg:pb-16">
-                  {/* Background noise image */}
-                  <div
-                    className="absolute inset-0 -z-10 opacity-5"
-                    style={{
-                      backgroundImage: `url(${grainImage.src})`,
-                    }}
-                  />
-
                   {/* Project Company * year */}
                   <div className="text-sm tracking-widest inline-flex gap-2 bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent">
                     <span className="font-semibold uppercase ">
@@ -134,7 +124,7 @@ export const ProjectsSection = () => {
                   />
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

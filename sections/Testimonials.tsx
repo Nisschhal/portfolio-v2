@@ -1,8 +1,11 @@
-import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
-import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png";
-import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
-import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png";
-import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
+import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png"
+import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png"
+import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png"
+import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png"
+import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png"
+import Card from "@/components/Card"
+import SectionHeader from "@/components/SectionHeader"
+import Image from "next/image"
 
 const testimonials = [
   {
@@ -35,8 +38,55 @@ const testimonials = [
     text: "Alex's work on our website has been nothing short of exceptional. He's a talented developer who is also a great communicator. We highly recommend him.",
     avatar: memojiAvatar5,
   },
-];
+]
 
 export const TestimonialsSection = () => {
-  return <div>Testimonials Section</div>;
-};
+  return (
+    <section className="py-16 lg:py-24">
+      <div className="container">
+        {/* Section Header */}
+        <SectionHeader
+          eyebrow="Happy Clients"
+          title="What Clients Say  about Me"
+          description="Don't just take my word for it - see what others have to say about my work."
+        />
+        {/* Section Content */}
+        <div className="flex mt-16 lg:mt-24 overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex gap-8 flex-none">
+            {testimonials.map((testimonial) => (
+              <Card
+                key={testimonial.name}
+                className="max-w-xs md:max-w-md  md:p-8  "
+              >
+                {/* Testimonial Author */}
+                <div className="flex items-center gap-4">
+                  {/* Avatar */}
+                  <div className="flex items-center justify-center size-14 bg-gray-700 rounded-full flex-shrink-0">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className=""
+                    />
+                  </div>
+
+                  {/* Name & Position */}
+                  <div className="">
+                    <p className=" font-semibold">{testimonial.name}</p>
+                    <p className="text-sm text-white/40">
+                      {testimonial.position}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Testimonial */}
+                <p className="text-sm md:text-base mt-4 md:mt-6">
+                  {testimonial.text}
+                </p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
