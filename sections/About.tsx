@@ -25,7 +25,7 @@ import CardHeader from "@/components/CardHeader"
 import Toolbox from "@/components/Toolbox"
 const toolBoxItems = [
   { title: "JavaScript", iconType: JavaScript },
-  { title: "HTML", iconType: HTMLIcon },
+  { title: "HTML5", iconType: HTMLIcon },
   { title: "CSS3", iconType: CssIcon },
   { title: "TypeScript", iconType: JavaScript },
   { title: "React", iconType: ReactIcon },
@@ -65,7 +65,7 @@ export const AboutSection = () => {
           description="Learn more about who I am and what I do, and what I bring to the table."
         />
 
-        <div className="mt-20">
+        <div className="mt-20 flex flex-col gap-8">
           {/* Book Card */}
           <Card className="h-80 ">
             {/* Card Header */}
@@ -79,7 +79,7 @@ export const AboutSection = () => {
             </div>
           </Card>
           {/* Tool Card */}
-          <Card className="p-0 pb-6">
+          <Card className="p-0 h-80">
             {/* Card Header */}
             <CardHeader
               title="My ToolKits"
@@ -87,12 +87,12 @@ export const AboutSection = () => {
               className="px-8 pt-8"
             />
             {/* Card Content */}
-            <div className="mt-8 ">
+            <div className=" ">
               {/* Tools */}
-              <Toolbox items={toolBoxItems} />
+              <Toolbox items={toolBoxItems} className="mt-6" />
               <Toolbox
                 items={toolBoxItems}
-                className="mt-8"
+                className="mt-6"
                 itemWrapperClassName="-translate-x-1/2"
               />
             </div>
@@ -107,8 +107,13 @@ export const AboutSection = () => {
             {/* Hobbies */}
             <div>
               {hobbies.map((hobby) => (
-                <div key={hobby.title}>
-                  <span>{hobby.title}</span>
+                <div
+                  key={hobby.title}
+                  className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full  py-1.5"
+                >
+                  <span className="font-medium text-gray-950">
+                    {hobby.title}
+                  </span>
                   <span>{hobby.emoji}</span>
                 </div>
               ))}

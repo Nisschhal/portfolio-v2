@@ -16,16 +16,21 @@ const Toolbox = ({
   return (
     <div
       className={twMerge(
-        "flex  px-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
+        "flex  [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
         className
       )}
     >
-      <div className={twMerge("flex flex-none gap-6", itemWrapperClassName)}>
+      <div
+        className={twMerge(
+          "flex flex-none gap-6 pr-6 py-0.5",
+          itemWrapperClassName
+        )}
+      >
         {items.map((item) => (
           <div
             key={item.title}
             className={twMerge(
-              "inline-flex gap-2 items-center px-3 py-2 outline outline-white/20 rounded-lg"
+              "inline-flex gap-4 items-center px-3 py-2 outline-2 outline-white/20 rounded-lg"
             )}
           >
             <TechIcon iconComponent={item.iconType} />
