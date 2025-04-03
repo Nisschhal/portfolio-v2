@@ -1,3 +1,4 @@
+import { TracingBeam } from "@/components/ui/tracing-beam"
 import { AboutSection } from "@/sections/About"
 import { ContactSection } from "@/sections/Contact"
 import { Footer } from "@/sections/Footer"
@@ -10,8 +11,6 @@ import { TestimonialsSection } from "@/sections/Testimonials"
 export default function Home() {
   return (
     <div>
-      <Header />
-
       <HeroSection />
 
       <ProjectsSection />

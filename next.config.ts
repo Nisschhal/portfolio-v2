@@ -1,6 +1,17 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  // image patterns
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.aceternity.com",
+      },
+    ],
+    // domains: ["assets.aceternity.com"],
+  },
   /* config options here */
   webpack(config) {
     // Grab the existing rule that handles SVG imports
