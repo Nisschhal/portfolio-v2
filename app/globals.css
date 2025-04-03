@@ -32,6 +32,17 @@
       transform: translateX(-50%);
     }
   }
+
+  --animate-move-right: move-right 1s linear infinite;
+
+  @keyframes move-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,7 +1,9 @@
+"use client"
 import Card from "@/components/Card"
 import SectionHeader from "@/components/SectionHeader"
 import StarIcon from "@/assets/icons/star.svg"
 import Image from "next/image"
+import { motion } from "framer-motion"
 // Icons
 import JavaScript from "@/assets/icons/square-js.svg"
 import HTMLIcon from "@/assets/icons/html5.svg"
@@ -25,6 +27,7 @@ import TechIcon from "@/components/TechIcon"
 import CardHeader from "@/components/CardHeader"
 import Toolbox from "@/components/Toolbox"
 import { map } from "motion/react-client"
+import { useRef } from "react"
 const toolBoxItems = [
   { title: "JavaScript", iconType: JavaScript },
   { title: "HTML5", iconType: HTMLIcon },
@@ -51,6 +54,7 @@ const hobbies = [
 ]
 
 export const AboutSection = () => {
+  const constraintRef = useRef(null)
   return (
     <section className="py-16 lg:py-24">
       <div className="container">
@@ -86,11 +90,15 @@ export const AboutSection = () => {
               {/* Card Content */}
               <div className=" ">
                 {/* Tools */}
-                <Toolbox items={toolBoxItems} className="mt-6" />
                 <Toolbox
                   items={toolBoxItems}
                   className="mt-6"
-                  itemWrapperClassName="-translate-x-1/2"
+                  itemWrapperClassName="animate-move-left [animation-duration:30s]"
+                />
+                <Toolbox
+                  items={toolBoxItems}
+                  className="mt-6"
+                  itemWrapperClassName=" animate-move-right [animation-duration:30s]"
                 />
               </div>
             </Card>
@@ -106,9 +114,9 @@ export const AboutSection = () => {
               />
 
               {/* Hobbies */}
-              <div className="relative flex-1 ">
+              <div className="relative flex-1 " ref={constraintRef}>
                 {hobbies.map((hobby) => (
-                  <div
+                  <motion.div
                     key={hobby.title}
                     className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full  py-1.5"
                     style={{
@@ -116,6 +124,8 @@ export const AboutSection = () => {
                       left: hobby.left,
                       top: hobby.top,
                     }}
+                    drag
+                    dragConstraints={constraintRef}
                   >
                     <div className="flex-none space-x-2">
                       <span className="font-medium text-gray-950">
@@ -123,7 +133,7 @@ export const AboutSection = () => {
                       </span>
                       <span>{hobby.emoji}</span>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </Card>
@@ -149,4 +159,7 @@ export const AboutSection = () => {
       </div>
     </section>
   )
+}
+function ref(arg0: null) {
+  throw new Error("Function not implemented.")
 }
