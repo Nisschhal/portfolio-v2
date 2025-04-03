@@ -11,6 +11,27 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-serif);
+
+  /* animation large ping */
+  --animate-large-ping: large-ping 1s ease-in-out infinite;
+  @keyframes large-ping {
+    57%,
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  --animate-spin: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

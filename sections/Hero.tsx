@@ -25,42 +25,106 @@ export const HeroSection = () => {
 
         {/* Stars Container */}
         <>
-          <HeroOrbit size={830} rotate={-65}>
-            <StarIcon className="size-28 text-emerald-300" />
+          <HeroOrbit
+            size={620}
+            rotate={95}
+            shouldOrbit
+            orbitDuration={30}
+            shouldSpin
+          >
+            <StarIcon className="size-8 text-emerald-300" />
           </HeroOrbit>
-          <HeroOrbit size={600} rotate={20}>
+          <HeroOrbit
+            size={600}
+            rotate={20}
+            shouldOrbit
+            shouldSpin
+            orbitDuration={30}
+          >
             <StarIcon className="size-12 text-emerald-300" />
           </HeroOrbit>
-          <HeroOrbit size={620} rotate={95}>
-            <StarIcon className="size-8 text-emerald-300" />
+          <HeroOrbit
+            size={830}
+            rotate={-65}
+            shouldOrbit
+            shouldSpin
+            orbitDuration={30}
+          >
+            <StarIcon className="size-28 text-emerald-300" />
           </HeroOrbit>
 
           {/* Sparkles Container */}
           <>
-            <HeroOrbit size={460} rotate={-8}>
+            <HeroOrbit
+              size={460}
+              rotate={-8}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={40}
+              spinDuration={6}
+            >
               <SparkleIcon className="size-8 text-emerald-300/20" />
             </HeroOrbit>
-            <HeroOrbit size={460} rotate={75}>
+            <HeroOrbit
+              size={460}
+              rotate={75}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={40}
+              spinDuration={6}
+            >
               <SparkleIcon className="size-5 text-emerald-300/20" />
             </HeroOrbit>
-            <HeroOrbit size={560} rotate={188}>
+            <HeroOrbit
+              size={560}
+              rotate={188}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={40}
+              spinDuration={6}
+            >
               <SparkleIcon className="size-10 text-emerald-300/20" />
             </HeroOrbit>
-            <HeroOrbit size={700} rotate={140}>
+            <HeroOrbit
+              size={700}
+              rotate={140}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={40}
+              spinDuration={6}
+            >
               <SparkleIcon className="size-14 text-emerald-300/20" />
             </HeroOrbit>
           </>
 
           {/* Dots Container */}
           <>
-            <HeroOrbit size={740} rotate={84}>
+            <HeroOrbit
+              size={540}
+              rotate={-36}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={60}
+            >
+              <div className="size-2 rounded-full bg-emerald-300/20" />
+            </HeroOrbit>
+            <HeroOrbit
+              size={680}
+              rotate={0}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={60}
+            >
+              <div className="size-2 rounded-full bg-emerald-300/20" />
+            </HeroOrbit>
+            <HeroOrbit
+              size={740}
+              rotate={84}
+              shouldOrbit
+              shouldSpin
+              orbitDuration={60}
+            >
               <div className="size-3 rounded-full bg-emerald-300/20" />
-            </HeroOrbit>
-            <HeroOrbit size={540} rotate={-36}>
-              <div className="size-2 rounded-full bg-emerald-300/20" />
-            </HeroOrbit>
-            <HeroOrbit size={680} rotate={0}>
-              <div className="size-2 rounded-full bg-emerald-300/20" />
             </HeroOrbit>
           </>
         </>
@@ -80,7 +144,9 @@ export const HeroSection = () => {
           {/* Availability */}
           <div className=" inline-flex items-center bg-gray-950 px-4 py-1.5 border border-gray-800 text-sm font-semibold gap-4 rounded-lg">
             {/* ping */}
-            <div className="bg-green-500 rounded-full size-2.5"></div>
+            <div className="bg-green-500 rounded-full size-2.5  relative">
+              <div className="absolute inset-0 bg-green-500 rounded-full size-2.5 animate-large-ping" />
+            </div>
             <div className=" ">Available for new projects</div>
           </div>
         </div>
