@@ -22,14 +22,14 @@
     }
   }
 
-  --animate-spin: spin 2s linear infinite;
+  --animate-move-left: move-left 1s linear infinite;
 
-  @keyframes spin {
+  @keyframes move-left {
     0% {
-      transform: rotate(0deg);
+      transform: translateX(0%);
     }
     100% {
-      transform: rotate(360deg);
+      transform: translateX(-50%);
     }
   }
 }

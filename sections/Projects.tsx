@@ -59,6 +59,8 @@ export const ProjectsSection = () => {
         {/* Section Content */}
         <div className="flex flex-col mt-10 gap-16 md:mt-20">
           {portfolioProjects.map((project, projectIndex) => (
+            // Card will stack untill scroll of project section is complete as sticky will only work upto the scroll last and then it moves up and no longer sticky in last card
+
             <Card
               key={project.title}
               className="px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16 sticky "
