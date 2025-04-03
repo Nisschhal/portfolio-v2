@@ -12,7 +12,9 @@ export const ContactSection = () => {
             className="absolute inset-0 opacity-5 pointer-events-none "
             style={{ backgroundImage: `url(${grainImage.src})` }}
           />
+          {/* Responsive Div col md:row */}
           <div className="flex flex-col items-center md:flex-row gap-8 md:gap-16">
+            {/* Heading */}
             <div>
               <h2 className="font-serif text-2xl md:text-3xl md:flex-1">
                 Let's create something amazing together
