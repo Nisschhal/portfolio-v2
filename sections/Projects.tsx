@@ -58,10 +58,13 @@ export const ProjectsSection = () => {
         />
         {/* Section Content */}
         <div className="flex flex-col mt-10 gap-16 md:mt-20">
-          {portfolioProjects.map((project) => (
+          {portfolioProjects.map((project, projectIndex) => (
             <Card
               key={project.title}
-              className="px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16 "
+              className="px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16 sticky "
+              style={{
+                top: `calc(64px + ${projectIndex * 50}px)`,
+              }}
             >
               {/* Background noise image */}
               <div

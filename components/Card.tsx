@@ -1,17 +1,20 @@
-import React, { PropsWithChildren } from "react"
+import React, { ComponentPropsWithRef, PropsWithChildren } from "react"
 import grainImage from "@/assets/images/grain.jpg"
 import { twMerge } from "tailwind-merge"
 
+// ComponentPropsWithRef is used to pass the default style for dynamic props to the Card component
 const Card = ({
   children,
   className,
-}: PropsWithChildren<{ className?: string }>) => {
+  ...other
+}: ComponentPropsWithRef<"div">) => {
   return (
     <div
       className={twMerge(
         "bg-gray-800 rounded-3xl relative z-0 after:z-10 after:content-[''] after:absolute after:inset-0 after:outline-2 after:-outline-offset-2 after:rounded-3xl after:outline-white/20 overflow-hidden p-6 after:pointer-events-none",
         className
       )}
+      {...other}
     >
       {/* <div
       className="rounded-3xl relative z-0
