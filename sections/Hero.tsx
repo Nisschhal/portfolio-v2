@@ -15,10 +15,10 @@ export const HeroSection = () => {
       {/* Mask Background with linear-gradient */}
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_82%,transparent)]">
         {/* Background Noise */}
-        <div
+        {/* <div
           className="absolute inset-0 -z-30 opacity-5  "
           style={{ backgroundImage: `url(${grainImage.src})` }}
-        ></div>
+        ></div> */}
 
         {/* Background Rounded Circle */}
         <div className="size-[660px] hero-ring"></div>

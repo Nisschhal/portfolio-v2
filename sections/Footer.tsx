@@ -9,7 +9,7 @@ export const Footer = () => {
   return (
     <footer className="relative -z-10 overflow-hidden">
       {/* Gradient Effect */}
-      <div className="-z-10 absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/35  [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)]"></div>
+      <div className="-z-10 absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/35 dark:bg-gray-300/35 [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)]"></div>
 
       {/* Content */}
       <div className="container z-0">

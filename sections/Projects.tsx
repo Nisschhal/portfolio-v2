@@ -1,3 +1,4 @@
+"use client"
 import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png"
 import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png"
 import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png"
@@ -7,6 +8,7 @@ import UpRightArrow from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
 import SectionHeader from "@/components/SectionHeader"
 import Card from "@/components/Card"
+import { useScroll } from "motion/react"
 const portfolioProjects = [
   {
     company: "Acme Corp",
@@ -47,6 +49,10 @@ const portfolioProjects = [
 ]
 
 export const ProjectsSection = () => {
+  const { scrollY } = useScroll()
+
+  // const
+
   return (
     <section className="pb-16 lg:py-24">
       <div className="container">

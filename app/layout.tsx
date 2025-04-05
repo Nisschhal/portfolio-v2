@@ -4,9 +4,9 @@ import "./globals.css"
 import { ShootingStars } from "@/components/ui/shotting-star"
 import { StarsBackground } from "@/components/ui/star-background"
 import { ThemeProvider } from "@/components/theme-provider"
+import grainImage from "@/assets/images/grain.jpg"
 import { Header } from "@/sections/Header"
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
-
 const calistoga = Calistoga({
   subsets: ["latin"],
   variable: "--font-serif",
@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${calistoga.variable} bg-gray-900 font-sans text-white antialiased`}
+        className={`${inter.variable} ${calistoga.variable} bg-gray-900 dark:bg-black font-sans text-white antialiased relative z-100`}
       >
         <ThemeProvider
           attribute="class"
@@ -34,11 +34,18 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
 
           {/* Star Effect */}
         </ThemeProvider>
         <div className="fixed inset-0 pointer-events-none">
+          <div
+            className="fixed inset-0 -z-100 opacity-5"
+            style={{
+              backgroundImage: `url(${grainImage.src})`,
+            }}
+          />
           <ShootingStars />
           <StarsBackground />
         </div>

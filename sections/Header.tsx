@@ -29,11 +29,11 @@ const navItems = [
 ]
 export const Header = () => {
   // check if /blog is in url
-  const isBlog = usePathname().includes("blog")
+  // const isBlog = usePathname().includes("blog")
 
   return (
     <div className="flex justify-center items-center fixed  top-3 z-10 w-full ">
-      <div className="min-w-3xl  mx-auto flex items-center justify-center relative">
+      <div className="min-w-md md:min-w-lg lg:min-w-3xl  mx-auto flex items-center justify-center relative">
         <nav className="flex gap-1 p-0.5 rounded-full border border-white/15 bg-white/10 backdrop-blur  ">
           <a href="/" className="nav-item">
             Home
@@ -55,11 +55,10 @@ export const Header = () => {
             Contact
           </a>
         </nav>
-        {isBlog && (
-          <div className="absolute right-0">
-            <ModeToggle />
-          </div>
-        )}
+
+        <div className="absolute right-0">
+          <ModeToggle />
+        </div>
       </div>
     </div>
   )
