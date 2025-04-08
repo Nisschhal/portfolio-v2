@@ -171,7 +171,7 @@ const TiptapEditor = () => {
           )}
         </div>
       </div>
-      <nav className="w-full md:w-64 sticky top-4 self-start bg-gray-100 p-4 rounded-md">
+      {/* <nav className="w-full md:w-64 sticky top-4 self-start bg-gray-100 p-4 rounded-md">
         <h3 className="text-lg font-semibold mb-2">Navigation</h3>
         <ul className="space-y-2">
           {navLinks.map((link) => (
@@ -191,7 +191,7 @@ const TiptapEditor = () => {
             </li>
           ))}
         </ul>
-      </nav>
+      </nav> */}
     </div>
   )
 }

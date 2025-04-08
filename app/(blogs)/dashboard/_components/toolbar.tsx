@@ -588,7 +588,7 @@ const Toolbar = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobileOrTablet(window.innerWidth < 1024) // Tailwind's 'lg' breakpoint
+      setIsMobileOrTablet(window.innerWidth <= 375) // Tailwind's 'lg' breakpoint
     }
     checkScreenSize()
     window.addEventListener("resize", checkScreenSize)
@@ -713,7 +713,7 @@ const Toolbar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <>
+        <div className="flex flex-wrap items-center">
           {sections[0].map((item) => (
             <ToolbarButton
               key={item.label}
@@ -754,7 +754,7 @@ const Toolbar = () => {
               icon={item.icon}
             />
           ))}
-        </>
+        </div>
       )}
     </div>
   )

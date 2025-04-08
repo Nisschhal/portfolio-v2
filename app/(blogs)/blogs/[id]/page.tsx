@@ -152,7 +152,7 @@ export default function BlogPostPage({
         </main>
 
         {/* Sidebar Navigation */}
-        {navLinks.length > 0 && (
+        {/* {navLinks.length > 0 && (
           <aside className="lg:w-64 w-full">
             <nav className="sticky top-24 bg-white rounded-lg shadow-md p-4">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
@@ -173,7 +173,7 @@ export default function BlogPostPage({
               </ul>
             </nav>
           </aside>
-        )}
+        )} */}
       </div>
     </div>
   )
