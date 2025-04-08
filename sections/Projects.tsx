@@ -8,7 +8,8 @@ import UpRightArrow from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
 import SectionHeader from "@/components/SectionHeader"
 import Card from "@/components/Card"
-import { useScroll } from "motion/react"
+import { useScroll, useTransform } from "motion/react"
+import { useRef } from "react"
 const portfolioProjects = [
   {
     company: "Acme Corp",
@@ -51,7 +52,17 @@ const portfolioProjects = [
 export const ProjectsSection = () => {
   const { scrollY } = useScroll()
 
-  // const
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // Using useScroll hook to track the scroll progress
+  const { scrollYProgress } = useScroll({
+    target: containerRef, // Targeting the image container
+    offset: ["start 0.8", "end end"], // Setting the scroll offsets
+  })
+
+  // Defining transformations based on scroll progress
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]) // Mapping scroll progress to opacity
+  const rotateX = useTransform(scrollYProgress, [0, 1], [50, 0]) // Mapping scroll progress to rotateX angle
 
   return (
     <section className="pb-16 lg:py-24">
@@ -63,7 +74,7 @@ export const ProjectsSection = () => {
           description="See how I transformed concepts into engaging digitial experiences."
         />
         {/* Section Content */}
-        <div className="flex flex-col mt-10 gap-16 md:mt-20">
+        <div className="flex flex-col mt-10 gap-16 md:mt-20" ref={containerRef}>
           {portfolioProjects.map((project, projectIndex) => (
             // Card will stack untill scroll of project section is complete as sticky will only work upto the scroll last and then it moves up and no longer sticky in last card
             <Card

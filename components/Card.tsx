@@ -7,7 +7,7 @@ const Card = ({
   children,
   className,
   ...other
-}: ComponentPropsWithRef<"div">) => {
+}: PropsWithChildren<ComponentPropsWithRef<"div">>) => {
   return (
     <div
       className={twMerge(

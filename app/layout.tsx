@@ -34,7 +34,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          {/* <Header /> */}
           {children}
 
           {/* Star Effect */}

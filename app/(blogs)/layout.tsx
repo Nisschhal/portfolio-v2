@@ -7,7 +7,6 @@ export default async function ThemeLayout({
 }>) {
   return (
     <div>
-      <Header />
       {children}
 
       {/* Star Effect */}

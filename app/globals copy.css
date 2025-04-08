@@ -210,128 +210,198 @@ body {
   }
 }
 
+/* Ensure inline font-family styles are respected */
+.tiptap *,
+.post-body * {
+  font-family: inherit !important; /* Prevent override by prose or other styles */
+}
+
+/* Ensure inline font-family styles are respected */
+.tiptap *,
+.post-body * {
+  font-family: inherit !important; /* Prevent override by prose or other styles */
+}
+
 .tiptap,
 .post-body {
-  @apply text-gray-800;
-}
+  /* Link */
+  a {
+    color: var(--color-blue-300);
+    cursor: pointer;
 
-.tiptap a,
-.post-body a {
-  @apply text-blue-500 hover:underline cursor-pointer;
-}
+    &:hover {
+      @apply underline;
+    }
+  }
 
-.tiptap h1,
-.post-body h1,
-.tiptap h2,
-.post-body h2,
-.tiptap h3,
-.post-body h3,
-.tiptap h4,
-.post-body h4,
-.tiptap h5,
-.post-body h5,
-.tiptap h6,
-.post-body h6 {
-  @apply leading-tight mt-10;
-}
+  /* --------- Heading styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+    margin-top: 2.5rem;
+    text-wrap: pretty;
+  }
 
-.tiptap h1,
-.post-body h1,
-.tiptap h2,
-.post-body h2 {
-  @apply mt-14 mb-6;
-}
+  h1,
+  h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
 
-.tiptap h1,
-.post-body h1 {
-  @apply text-4xl;
-}
+  h1 {
+    font-size: 2.25rem; /* 32px */
+  }
+  h2 {
+    font-size: 1.875rem; /* 30px */
+  }
+  h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+  h4 {
+    font-size: 1.25rem; /* 20px */
+  }
+  h5 {
+    font-size: 1.125rem; /* 18px */
+  }
+  h6 {
+    font-size: 1rem; /* 16px */
+  }
+  p {
+    font-size: 1rem; /* 16px */
+  }
 
-.tiptap h2,
-.post-body h2 {
-  @apply text-3xl;
-}
+  /*----------- List styles */
+  ul,
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+  }
 
-.tiptap h3,
-.post-body h3 {
-  @apply text-2xl;
-}
+  /* Unordered List style type */
+  ul li {
+    list-style-type: disc;
 
-.tiptap h4,
-.post-body h4 {
-  @apply text-xl;
-}
+    p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+  /* Ordered List style type */
+  ol li {
+    list-style-type: decimal;
 
-.tiptap h5,
-.post-body h5 {
-  @apply text-lg;
-}
+    p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
 
-.tiptap h6,
-.post-body h6 {
-  @apply text-base;
-}
+  /* Task list specific styles */
+  ul[data-type="taskList"] {
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
 
-.tiptap p,
-.post-body p {
-  @apply text-base;
-}
+    li {
+      align-items: flex-center;
+      display: flex;
 
-.tiptap ul,
-.post-body ul,
-.tiptap ol,
-.post-body ol {
-  @apply p-0 pl-4 my-5;
-}
+      > label {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+        margin-top: 0.3rem;
+        user-select: none;
+      }
 
-.tiptap ul li,
-.post-body ul li {
-  @apply list-disc;
-}
+      > div {
+        flex: 1 1 auto;
+      }
+    }
 
-.tiptap ol li,
-.post-body ol li {
-  @apply list-decimal;
-}
+    input[type="checkbox"] {
+      cursor: pointer;
+    }
 
-.tiptap ul[data-type="taskList"],
-.post-body ul[data-type="taskList"] {
-  @apply list-none m-0 p-0;
-}
+    ul[data-type="taskList"] {
+      margin: 0;
+    }
+  }
 
-.tiptap ul[data-type="taskList"] li,
-.post-body ul[data-type="taskList"] li {
-  @apply flex items-center;
-}
+  /*------------  Table-specific styling */
+  table {
+    border-collapse: collapse;
+    margin: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
 
-.tiptap ul[data-type="taskList"] li > label,
-.post-body ul[data-type="taskList"] li > label {
-  @apply flex-none mr-2 mt-1 select-none;
-}
+    td,
+    th {
+      border: 1px solid #6c6c6c;
+      box-sizing: border-box;
+      min-width: 1em;
+      padding: 6px 8px;
+      position: relative;
+      vertical-align: top;
 
-.tiptap ul[data-type="taskList"] li > div,
-.post-body ul[data-type="taskList"] li > div {
-  @apply flex-1;
-}
+      > * {
+        margin-bottom: 0;
+      }
+    }
 
-.tiptap table,
-.post-body table {
-  @apply border-collapse w-full my-6 overflow-hidden rounded;
-}
+    th {
+      background-color: #a5a4a4;
+      font-weight: bold;
+      text-align: left;
+    }
 
-.tiptap table td,
-.post-body table td,
-.tiptap table th,
-.post-body table th {
-  @apply border border-gray-500 p-2;
-}
+    .selectedCell:after {
+      background: rgb(128, 128, 128);
+      content: "";
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 2;
+    }
 
-.tiptap table th,
-.post-body table th {
-  @apply bg-gray-300 font-bold text-left;
-}
+    .column-resize-handle {
+      background-color: var(--purple);
+      bottom: -2px;
+      pointer-events: none;
+      position: absolute;
+      right: -2px;
+      top: 0;
+      width: 4px;
+    }
+  }
 
-.tiptap img,
-.post-body img {
-  @apply block max-w-full my-6;
+  .tableWrapper {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  &.resize-cursor {
+    cursor: ew-resize;
+    cursor: col-resize;
+  }
+
+  /* Images */
+  img {
+    display: block;
+    height: auto;
+    margin: 1.5rem 0;
+    max-width: 100%;
+
+    &.ProseMirror-selectednode {
+      outline: 3px solid var(--purple);
+    }
+  }
 }

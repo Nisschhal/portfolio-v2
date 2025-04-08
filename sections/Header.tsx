@@ -44,7 +44,7 @@ export const Header = () => {
           <a href="/about" className="nav-item">
             About
           </a>
-          <a href="/blog" className="nav-item">
+          <a href="/blogs" className="nav-item">
             Blog
           </a>
           {/* Mimicking active state */}
