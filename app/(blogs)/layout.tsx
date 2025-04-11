@@ -1,15 +1,7 @@
-import { Header } from "@/sections/Header"
-
-export default async function ThemeLayout({
+export default async function BlogLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <div>
-      {children}
-
-      {/* Star Effect */}
-    </div>
-  )
+  return <div>{children}</div>
 }
