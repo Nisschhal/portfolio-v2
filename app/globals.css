@@ -1,6 +1,6 @@
 @config "../tailwind.config.ts";
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,6 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-serif);
+  --font-serif-play: var(--font-serif-play);
 
   /* animation large ping */
   --animate-large-ping: large-ping 1s ease-in-out infinite;
@@ -109,20 +110,175 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-body {
-  /* background: var(--background); */
-  /* color: var(--foreground); */
-  /* font-family: Arial, Helvetica, sans-serif; */
-}
-
 @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Nav  */
   .nav-item {
     /* text/70 hover:text/100 */
-    @apply px-2 md:px-4 py-1.5  rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
+    @apply rounded-full px-2 py-1.5 text-sm font-semibold text-white/70 transition duration-300 hover:bg-white/10 hover:text-white md:px-4;
   }
+
+  /* Hero Cirlce */
   .hero-ring {
     /* Circle inset shadow */
-    @apply absolute inset-0  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/5 dark:border-gray-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5 dark:shadow-gray-300/5;
+    @apply absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5 dark:border-gray-300/5 dark:shadow-gray-300/5;
+  }
+
+  /* Blogs */
+  .title {
+    @apply font-serif-play decoration-border/75 text-3xl font-bold underline decoration-2 underline-offset-8;
+  }
+
+  .prose {
+    pre {
+      @apply bg-accent overflow-x-auto rounded-lg px-5 py-4 text-sm;
+    }
+
+    code {
+      @apply rounded-lg px-1 py-0.5;
+    }
+
+    pre code {
+      @apply p-0;
+      line-height: 1.75;
+    }
+
+    code span {
+      @apply font-medium;
+    }
+  }
+
+  /* Tiptap Editor */
+  .tiptap,
+  .post-body {
+    @apply text-gray-800;
+  }
+
+  .tiptap a,
+  .post-body a {
+    @apply cursor-pointer text-blue-500 hover:underline;
+  }
+
+  .tiptap h1,
+  .post-body h1,
+  .tiptap h2,
+  .post-body h2,
+  .tiptap h3,
+  .post-body h3,
+  .tiptap h4,
+  .post-body h4,
+  .tiptap h5,
+  .post-body h5,
+  .tiptap h6,
+  .post-body h6 {
+    @apply mt-10 leading-tight;
+  }
+
+  .tiptap h1,
+  .post-body h1,
+  .tiptap h2,
+  .post-body h2 {
+    @apply mt-14 mb-6;
+  }
+
+  .tiptap h1,
+  .post-body h1 {
+    @apply text-4xl;
+  }
+
+  .tiptap h2,
+  .post-body h2 {
+    @apply text-3xl;
+  }
+
+  .tiptap h3,
+  .post-body h3 {
+    @apply text-2xl;
+  }
+
+  .tiptap h4,
+  .post-body h4 {
+    @apply text-xl;
+  }
+
+  .tiptap h5,
+  .post-body h5 {
+    @apply text-lg;
+  }
+
+  .tiptap h6,
+  .post-body h6 {
+    @apply text-base;
+  }
+
+  .tiptap p,
+  .post-body p {
+    @apply text-base;
+  }
+
+  .tiptap ul,
+  .post-body ul,
+  .tiptap ol,
+  .post-body ol {
+    @apply my-5 p-0 pl-4;
+  }
+
+  .tiptap ul li,
+  .post-body ul li {
+    @apply list-disc;
+  }
+
+  .tiptap ol li,
+  .post-body ol li {
+    @apply list-decimal;
+  }
+
+  .tiptap ul[data-type='taskList'],
+  .post-body ul[data-type='taskList'] {
+    @apply m-0 list-none p-0;
+  }
+
+  .tiptap ul[data-type='taskList'] li,
+  .post-body ul[data-type='taskList'] li {
+    @apply flex items-center;
+  }
+
+  .tiptap ul[data-type='taskList'] li > label,
+  .post-body ul[data-type='taskList'] li > label {
+    @apply mt-1 mr-2 flex-none select-none;
+  }
+
+  .tiptap ul[data-type='taskList'] li > div,
+  .post-body ul[data-type='taskList'] li > div {
+    @apply flex-1;
+  }
+
+  .tiptap table,
+  .post-body table {
+    @apply my-6 w-full border-collapse overflow-hidden rounded;
+  }
+
+  .tiptap table td,
+  .post-body table td,
+  .tiptap table th,
+  .post-body table th {
+    @apply border border-gray-500 p-2;
+  }
+
+  .tiptap table th,
+  .post-body table th {
+    @apply bg-gray-300 text-left font-bold;
+  }
+
+  .tiptap img,
+  .post-body img {
+    @apply my-6 block max-w-full;
   }
 }
 
@@ -199,139 +355,4 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-.tiptap,
-.post-body {
-  @apply text-gray-800;
-}
-
-.tiptap a,
-.post-body a {
-  @apply text-blue-500 hover:underline cursor-pointer;
-}
-
-.tiptap h1,
-.post-body h1,
-.tiptap h2,
-.post-body h2,
-.tiptap h3,
-.post-body h3,
-.tiptap h4,
-.post-body h4,
-.tiptap h5,
-.post-body h5,
-.tiptap h6,
-.post-body h6 {
-  @apply leading-tight mt-10;
-}
-
-.tiptap h1,
-.post-body h1,
-.tiptap h2,
-.post-body h2 {
-  @apply mt-14 mb-6;
-}
-
-.tiptap h1,
-.post-body h1 {
-  @apply text-4xl;
-}
-
-.tiptap h2,
-.post-body h2 {
-  @apply text-3xl;
-}
-
-.tiptap h3,
-.post-body h3 {
-  @apply text-2xl;
-}
-
-.tiptap h4,
-.post-body h4 {
-  @apply text-xl;
-}
-
-.tiptap h5,
-.post-body h5 {
-  @apply text-lg;
-}
-
-.tiptap h6,
-.post-body h6 {
-  @apply text-base;
-}
-
-.tiptap p,
-.post-body p {
-  @apply text-base;
-}
-
-.tiptap ul,
-.post-body ul,
-.tiptap ol,
-.post-body ol {
-  @apply p-0 pl-4 my-5;
-}
-
-.tiptap ul li,
-.post-body ul li {
-  @apply list-disc;
-}
-
-.tiptap ol li,
-.post-body ol li {
-  @apply list-decimal;
-}
-
-.tiptap ul[data-type="taskList"],
-.post-body ul[data-type="taskList"] {
-  @apply list-none m-0 p-0;
-}
-
-.tiptap ul[data-type="taskList"] li,
-.post-body ul[data-type="taskList"] li {
-  @apply flex items-center;
-}
-
-.tiptap ul[data-type="taskList"] li > label,
-.post-body ul[data-type="taskList"] li > label {
-  @apply flex-none mr-2 mt-1 select-none;
-}
-
-.tiptap ul[data-type="taskList"] li > div,
-.post-body ul[data-type="taskList"] li > div {
-  @apply flex-1;
-}
-
-.tiptap table,
-.post-body table {
-  @apply border-collapse w-full my-6 overflow-hidden rounded;
-}
-
-.tiptap table td,
-.post-body table td,
-.tiptap table th,
-.post-body table th {
-  @apply border border-gray-500 p-2;
-}
-
-.tiptap table th,
-.post-body table th {
-  @apply bg-gray-300 font-bold text-left;
-}
-
-.tiptap img,
-.post-body img {
-  @apply block max-w-full my-6;
 }

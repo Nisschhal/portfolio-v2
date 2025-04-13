@@ -12,3 +12,5 @@
 
 - svgr/webpack for svg customization
 - framer-motion: npm install motion
+- prettier for code formatting with prettier-plugin-tailwindcss
+- mdx for markdown support and bloging 
