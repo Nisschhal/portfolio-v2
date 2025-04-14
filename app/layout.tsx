@@ -37,7 +37,7 @@ export default async function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${playfair.variable} ${calistoga.variable} relative z-100 bg-gray-900 font-sans text-white antialiased dark:bg-black`}
+        className={`${inter.variable} ${playfair.variable} ${calistoga.variable} z-100ont-sans relative text-white antialiased`}
       >
         {/* ThemeProvider */}
         <ThemeProvider
@@ -46,7 +46,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          {/* <Header /> */}
           {children}
         </ThemeProvider>
       </body>

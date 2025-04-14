@@ -1,19 +1,19 @@
-"use client"
-import memojiImage from "@/assets/images/memoji-computer.png"
-import Image from "next/image"
-import ArrowDown from "@/assets/icons/arrow-down.svg"
-import grainImage from "@/assets/images/grain.jpg"
-import StarIcon from "@/assets/icons/star.svg"
-import SparkleIcon from "@/assets/icons/sparkle.svg"
-import HeroOrbit from "@/components/HeroOrbit"
-import { ShootingStars } from "@/components/ui/shotting-star"
-import { StarsBackground } from "@/components/ui/star-background"
+'use client'
+import memojiImage from '@/assets/images/memoji-computer.png'
+import Image from 'next/image'
+import ArrowDown from '@/assets/icons/arrow-down.svg'
+import grainImage from '@/assets/images/grain.jpg'
+import StarIcon from '@/assets/icons/star.svg'
+import SparkleIcon from '@/assets/icons/sparkle.svg'
+import HeroOrbit from '@/components/HeroOrbit'
+import { ShootingStars } from '@/components/ui/shotting-star'
+import { StarsBackground } from '@/components/ui/star-background'
 
 export const HeroSection = () => {
   return (
-    <div className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip">
+    <div className='relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60'>
       {/* Mask Background with linear-gradient */}
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_82%,transparent)]">
+      <div className='absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_82%,transparent)]'>
         {/* Background Noise */}
         {/* <div
           className="absolute inset-0 -z-30 opacity-5  "
@@ -21,10 +21,10 @@ export const HeroSection = () => {
         ></div> */}
 
         {/* Background Rounded Circle */}
-        <div className="size-[660px] hero-ring"></div>
-        <div className="size-[860px] hero-ring"></div>
-        <div className="size-[1060px] hero-ring"></div>
-        <div className="size-[1260px] hero-ring"></div>
+        <div className='hero-ring size-[660px]'></div>
+        <div className='hero-ring size-[860px]'></div>
+        <div className='hero-ring size-[1060px]'></div>
+        <div className='hero-ring size-[1260px]'></div>
 
         {/* Stars Container */}
         <>
@@ -35,7 +35,7 @@ export const HeroSection = () => {
             orbitDuration={30}
             shouldSpin
           >
-            <StarIcon className="size-8 text-emerald-300" />
+            <StarIcon className='size-8 text-emerald-300' />
           </HeroOrbit>
           <HeroOrbit
             size={600}
@@ -44,7 +44,7 @@ export const HeroSection = () => {
             shouldSpin
             orbitDuration={30}
           >
-            <StarIcon className="size-12 text-emerald-300" />
+            <StarIcon className='size-12 text-emerald-300' />
           </HeroOrbit>
           <HeroOrbit
             size={830}
@@ -53,7 +53,7 @@ export const HeroSection = () => {
             shouldSpin
             orbitDuration={30}
           >
-            <StarIcon className="size-28 text-emerald-300" />
+            <StarIcon className='size-28 text-emerald-300' />
           </HeroOrbit>
 
           {/* Sparkles Container */}
@@ -66,7 +66,7 @@ export const HeroSection = () => {
               orbitDuration={40}
               spinDuration={6}
             >
-              <SparkleIcon className="size-8 text-emerald-300/20" />
+              <SparkleIcon className='size-8 text-emerald-300/20' />
             </HeroOrbit>
             <HeroOrbit
               size={460}
@@ -76,7 +76,7 @@ export const HeroSection = () => {
               orbitDuration={40}
               spinDuration={6}
             >
-              <SparkleIcon className="size-5 text-emerald-300/20" />
+              <SparkleIcon className='size-5 text-emerald-300/20' />
             </HeroOrbit>
             <HeroOrbit
               size={560}
@@ -86,7 +86,7 @@ export const HeroSection = () => {
               orbitDuration={40}
               spinDuration={6}
             >
-              <SparkleIcon className="size-10 text-emerald-300/20" />
+              <SparkleIcon className='size-10 text-emerald-300/20' />
             </HeroOrbit>
             <HeroOrbit
               size={700}
@@ -96,7 +96,7 @@ export const HeroSection = () => {
               orbitDuration={40}
               spinDuration={6}
             >
-              <SparkleIcon className="size-14 text-emerald-300/20" />
+              <SparkleIcon className='size-14 text-emerald-300/20' />
             </HeroOrbit>
           </>
 
@@ -109,7 +109,7 @@ export const HeroSection = () => {
               shouldSpin
               orbitDuration={60}
             >
-              <div className="size-2 rounded-full bg-emerald-300/20" />
+              <div className='size-2 rounded-full bg-emerald-300/20' />
             </HeroOrbit>
             <HeroOrbit
               size={680}
@@ -118,7 +118,7 @@ export const HeroSection = () => {
               shouldSpin
               orbitDuration={60}
             >
-              <div className="size-2 rounded-full bg-emerald-300/20" />
+              <div className='size-2 rounded-full bg-emerald-300/20' />
             </HeroOrbit>
             <HeroOrbit
               size={740}
@@ -127,59 +127,59 @@ export const HeroSection = () => {
               shouldSpin
               orbitDuration={60}
             >
-              <div className="size-3 rounded-full bg-emerald-300/20" />
+              <div className='size-3 rounded-full bg-emerald-300/20' />
             </HeroOrbit>
           </>
         </>
       </div>
 
       {/* Container */}
-      <div className="container">
+      <div className='container'>
         {/* Hero */}
-        <div className="flex flex-col items-center">
+        <div className='flex flex-col items-center'>
           {/* Avatar */}
           <Image
             src={memojiImage}
-            className="size-[100px]"
-            alt="Person peeking from behind laptop"
+            className='size-[100px]'
+            alt='Person peeking from behind laptop'
           />
 
           {/* Availability */}
-          <div className=" inline-flex items-center bg-gray-950 px-4 py-1.5 border border-gray-800 text-sm font-semibold gap-4 rounded-lg">
+          <div className='inline-flex items-center gap-4 rounded-lg border border-gray-800 bg-gray-950 px-4 py-1.5 text-sm font-semibold'>
             {/* ping */}
-            <div className="bg-green-500 rounded-full size-2.5  relative">
-              <div className="absolute inset-0 bg-green-500 rounded-full size-2.5 animate-large-ping" />
+            <div className='relative size-2.5 rounded-full bg-green-500'>
+              <div className='animate-large-ping absolute inset-0 size-2.5 rounded-full bg-green-500' />
             </div>
-            <div className=" ">Available for new projects</div>
+            <div className=' '>Available for new projects</div>
           </div>
         </div>
 
         {/* Hero Contents */}
-        <div className="max-w-lg mx-auto">
+        <div className='mx-auto max-w-lg'>
           {/* Headline */}
-          <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide">
+          <h1 className='mt-8 text-center font-serif text-3xl tracking-wide md:text-5xl'>
             Building Exceptional User Experiences
           </h1>
           {/* Description */}
-          <p className="mt-4 text-center text-white/60 md:text-lg ">
+          <p className='mt-4 text-center text-white/60 md:text-lg'>
             I create high-performing, user-friendly websites for startups,
             agencies, and businesses of all sizes. Whether you’re just starting
             or scaling up. <br />
-            <span className="italic inline-block mt-1">
+            <span className='mt-1 inline-block italic'>
               🚀 Let&apos;s build something exceptional. 🚀
             </span>
           </p>
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
-          <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl">
-            <span className="font-semibold">Explore My Work</span>
-            <ArrowDown className="size-4" />
+        <div className='mt-8 flex flex-col items-center justify-center gap-4 md:flex-row'>
+          <button className='inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6'>
+            <span className='font-semibold'>Explore My Work</span>
+            <ArrowDown className='size-4' />
           </button>
-          <button className="inline-flex items-center gap-2 border bg-white text-gray-900 border-white px-6 h-12 rounded-xl">
+          <button className='inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900'>
             <span>👋</span>
-            <span className="font-semibold">Let&apos;s Connect</span>
+            <span className='font-semibold'>Let&apos;s Connect</span>
           </button>
         </div>
       </div>

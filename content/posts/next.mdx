@@ -1,0 +1,66 @@
+---
+title: 'Next.js Quick Start Guide'
+publishedAt: '2025-04-15'
+slug: 'nextjs-quick-start'
+author: 'Your Name'
+description: 'Everything you need to start with Next.js in one place'
+image: '/images/posts/nextjs-guide.png'
+category: 'web development'
+tags: ['next.js', 'react', 'frontend']
+---
+
+# Next.js Quick Guide
+
+## Setup
+
+Create a new Next.js project:  
+`npx create-next-app@latest`
+
+## Key Features
+
+### File-based Routing
+
+Create files in `pages` directory to automatically create routes. Example:  
+`pages/about.js` → becomes `/about` route
+
+### API Routes
+
+Create API endpoints in `pages/api` folder. Example:  
+`pages/api/hello.js` can contain serverless functions
+
+### MDX Support
+
+1. Install required packages:  
+   `npm install @next/mdx @mdx-js/loader`
+
+2. Update `next.config.js` to handle MDX files
+
+3. Create `.mdx` files in your pages directory
+
+## Data Fetching
+
+### Static Generation (SSG)
+
+Use `getStaticProps` for pages that can be pre-rendered at build time
+
+### Server-side Rendering (SSR)
+
+Use `getServerSideProps` for pages that need fresh data on each request
+
+## Styling Options
+
+1. **CSS Modules**  
+   Create `.module.css` files and import them into components
+
+2. **Tailwind CSS** (recommended)  
+   Quick setup:  
+   `npm install -D tailwindcss postcss autoprefixer`  
+   `npx tailwindcss init`
+
+## Deployment
+
+Vercel is the easiest way to deploy Next.js apps:
+
+1. Push your code to GitHub
+2. Import the project at vercel.com
+3. Enjoy automatic deployments

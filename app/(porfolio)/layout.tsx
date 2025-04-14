@@ -23,7 +23,7 @@ export default async function PortfolioLayout({
 }>) {
   return (
     <div className=''>
-      {/* <Header /> */}
+      <Header />
       {children}
       <div className='pointer-events-none fixed inset-0'>
         <div

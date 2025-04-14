@@ -1,4 +1,5 @@
-import type { NextConfig } from "next"
+import type { NextConfig } from 'next'
+import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
   // image patterns
@@ -6,8 +7,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "assets.aceternity.com",
+        protocol: 'https',
+        hostname: 'assets.aceternity.com',
       },
     ],
     // domains: ["assets.aceternity.com"],
@@ -17,7 +18,7 @@ const nextConfig: NextConfig = {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find(
       (rule: { test: { test: (arg0: string) => any } }) =>
-        rule.test?.test?.(".svg")
+        rule.test?.test?.('.svg')
     )
 
     config.module.rules.push(
@@ -33,12 +34,12 @@ const nextConfig: NextConfig = {
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
         use: {
-          loader: "@svgr/webpack",
+          loader: '@svgr/webpack',
           options: {
             svgoConfig: {
               plugins: [
                 {
-                  name: "preset-default",
+                  name: 'preset-default',
                   params: {
                     overrides: {
                       removeViewBox: false,
@@ -61,9 +62,9 @@ const nextConfig: NextConfig = {
   experimental: {
     turbo: {
       rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
         },
       },
     },

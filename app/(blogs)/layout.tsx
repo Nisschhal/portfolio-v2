@@ -1,7 +1,14 @@
+import React from 'react'
+import { Header } from '@/sections/Header'
 export default async function BlogLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <div className=''>{children}</div>
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  )
 }

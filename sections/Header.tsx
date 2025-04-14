@@ -1,30 +1,30 @@
-"use client"
-import { ModeToggle } from "@/components/toggle-theme"
-import { usePathname } from "next/navigation"
+'use client'
+import { ModeToggle } from '@/components/toggle-theme'
+import { usePathname } from 'next/navigation'
 const navItems = [
   {
-    name: "Home",
-    link: "#home",
+    name: 'Home',
+    link: '#home',
   },
   {
-    name: "About",
-    link: "#about",
+    name: 'About',
+    link: '#about',
   },
   {
-    name: "Projects",
-    link: "#projects",
+    name: 'Projects',
+    link: '#projects',
   },
   {
-    name: "Contact",
-    link: "#contact",
+    name: 'Contact',
+    link: '#contact',
   },
   {
-    name: "Contact",
-    link: "#contact",
+    name: 'Contact',
+    link: '#contact',
   },
   {
-    name: "Blog",
-    link: "#blog",
+    name: 'Blog',
+    link: '#blog',
   },
 ]
 export const Header = () => {
@@ -32,31 +32,31 @@ export const Header = () => {
   // const isBlog = usePathname().includes("blog")
 
   return (
-    <div className="flex justify-center items-center sticky  top-3 z-10 w-full ">
-      <div className="min-w-md md:min-w-lg lg:min-w-3xl  mx-auto flex items-center justify-center relative">
-        <nav className="flex gap-1 p-0.5 rounded-full border border-white/15 bg-white/10 backdrop-blur  ">
-          <a href="/" className="nav-item">
+    <div className='sticky top-3 z-10 flex w-full items-center justify-center'>
+      <div className='relative mx-auto flex min-w-md items-center justify-center md:min-w-lg lg:min-w-3xl'>
+        <nav className='flex gap-1 rounded-full border border-white/15 bg-white/10 p-0.5 backdrop-blur'>
+          <a href='/' className='nav-item'>
             Home
           </a>
-          <a href="/projects" className="nav-item">
+          <a href='/projects' className='nav-item'>
             Projects
           </a>
-          <a href="/about" className="nav-item">
+          <a href='/about' className='nav-item'>
             About
           </a>
-          <a href="/blogs" className="nav-item">
+          <a href='/blogs' className='nav-item'>
             Blog
           </a>
           {/* Mimicking active state */}
           <a
-            href="/contact"
-            className="nav-item bg-white text-black hover:bg-white/70 hover:text-gray-900 "
+            href='/contact'
+            className='nav-item bg-white text-black hover:bg-white/70 hover:text-gray-900'
           >
             Contact
           </a>
         </nav>
 
-        <div className="absolute right-0">
+        <div className='absolute right-0'>
           <ModeToggle />
         </div>
       </div>
