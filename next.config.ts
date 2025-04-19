@@ -1,5 +1,5 @@
 import type { NextConfig } from 'next'
-import createMDX from '@next/mdx'
+// import createMDX from "@next/mdx"
 
 const nextConfig: NextConfig = {
   // image patterns
@@ -59,6 +59,7 @@ const nextConfig: NextConfig = {
     return config
   },
 
+  // if error persit with turbo related issues
   experimental: {
     turbo: {
       rules: {

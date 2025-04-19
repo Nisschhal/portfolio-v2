@@ -1,5 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter, Calistoga, Playfair_Display } from 'next/font/google'
+import {
+  Inter,
+  Calistoga,
+  Playfair_Display,
+  Space_Grotesk,
+} from 'next/font/google'
 import './globals.css'
 import { ShootingStars } from '@/components/ui/shotting-star'
 import { StarsBackground } from '@/components/ui/star-background'
@@ -12,6 +17,12 @@ const calistoga = Calistoga({
   subsets: ['latin'],
   variable: '--font-serif',
   weight: '400',
+})
+
+export const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-space-grotesk',
 })
 
 const playfair = Playfair_Display({
@@ -37,7 +48,7 @@ export default async function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${playfair.variable} ${calistoga.variable} z-100ont-sans relative text-white antialiased`}
+        className={`${inter.variable} ${playfair.variable} ${calistoga.variable} ${spaceGrotesk.variable} z-100ont-sans relative text-white antialiased`}
       >
         {/* ThemeProvider */}
         <ThemeProvider

@@ -19,6 +19,8 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-serif);
   --font-serif-play: var(--font-serif-play);
+  --font-space-grotesk: var(--font-space-grotesk);
+
   --animate-large-ping: large-ping 1s ease-in-out infinite;
   @keyframes large-ping {
     57%,
@@ -86,6 +88,18 @@
   }
   body {
     @apply text-foreground bg-gray-900 dark:bg-black; /* Match light/dark modes */
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-emerald-300 to-sky-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    /* @apply border gradie */
   }
 
   /* Nav */
@@ -259,13 +273,13 @@
 :root {
   --radius: 0.625rem;
   --background: #111827; /* bg-gray-900 */
-  --foreground: oklch(0.95 0 0); /* subtle light text */
+  --foreground: oklch(0.75 0 0); /* subtle light text */
   --card: oklch(0.13 0 0); /* darker card */
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.16 0 0);
   --popover-foreground: oklch(0.95 0 0);
   --primary: oklch(0.35 0.02 250); /* soft blue */
-  --primary-foreground: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.75 0 0);
   --secondary: oklch(0.2 0 0); /* soft dark block */
   --secondary-foreground: oklch(0.95 0 0);
   --muted: oklch(0.2 0 0);
@@ -293,13 +307,13 @@
 
 .dark {
   --background: rgba(0, 0, 0, 0.85); /* 85% black for softer dark bg */
-  --foreground: oklch(0.93 0 0);
+  --foreground: oklch(0.85 0 0);
   --card: oklch(0.16 0 0);
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.17 0 0);
   --popover-foreground: oklch(0.93 0 0);
   --primary: oklch(0.6 0.12 185); /* subtle teal */
-  --primary-foreground: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.75 0 0);
   --secondary: oklch(0.22 0 0);
   --secondary-foreground: oklch(0.93 0 0);
   --muted: oklch(0.22 0 0);
