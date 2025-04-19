@@ -44,26 +44,30 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         </p>
       </div> */}
 
-      <div ref={ref} className='relative mx-auto max-w-7xl pb-20'>
+      <div ref={ref} className='relative mx-auto max-w-7xl'>
         {data.map((item, index) => (
-          <div
-            key={index}
-            className='group flex justify-start pt-10 md:gap-10 md:pt-40'
-          >
+          //  Individual Timeline Entry
+          <div key={index} className='group flex justify-start pt-10 md:gap-10'>
+            {/* Timeline Dot & Date */}
             <div className='sticky top-40 z-40 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm'>
+              {/* Timeline Dot */}
               <div className='absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3 dark:bg-black'>
-                <div className='group-hover:gradient-bg h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200 p-2 dark:border-neutral-700 dark:bg-neutral-800' />
+                <div className='h-4 w-4 rounded-full border border-neutral-300 bg-neutral-300 p-2 group-hover:bg-gradient-to-r group-hover:from-emerald-300 group-hover:to-sky-300 dark:border-neutral-700' />
               </div>
+              {/* Timeline Date */}
               <h3 className='gradient-text hidden text-xl font-bold md:block md:pl-20 md:text-2xl'>
                 {item.title}
               </h3>
             </div>
 
-            <div className='relative w-full pr-4 pl-20 md:pl-4'>
+            {/* Timeline Content: cursor-pointer and TODO: link to the project */}
+            <div className='relative w-full cursor-pointer pr-4 pl-20 md:pl-4'>
+              {/* Feature Title */}
               <h3 className='gradient-text mb-4 block text-left text-2xl font-bold md:hidden'>
                 {item.title}
               </h3>
-              {item.content}{' '}
+              {/* Feature Content as React Node */}
+              {item.content}
             </div>
           </div>
         ))}
