@@ -80,6 +80,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --inset-shadow-glass:
+    inset -0px -1px 5px rgba(255, 255, 255, 0.25),
+    inset 1px 1px 5px rgba(255, 255, 255, 0.25);
+
+  --inset-shadow-glass-lg:
+    inset -0px -1px 10px rgba(255, 255, 255, 0.25),
+    inset 1px 1px 10px rgba(255, 255, 255, 0.25);
 }
 
 @layer base {
@@ -337,4 +345,16 @@
   --sidebar-accent-foreground: oklch(0.93 0 0);
   --sidebar-border: oklch(0.22 0 0 / 40%);
   --sidebar-ring: oklch(0.5 0 0);
+}
+
+@layer utilities {
+  .glass-active {
+    @apply border border-white/10 bg-white/1 text-white backdrop-blur dark:bg-white/1 dark:text-white;
+  }
+  .glass {
+    @apply border border-white/15 bg-white/10 p-0.5 backdrop-blur-sm transition-all duration-300 dark:border-gray-200/20 dark:bg-black/5;
+  }
+  .glass-sm {
+    @apply border border-white/5 bg-white/5 p-0.5 backdrop-blur-sm transition-all duration-300 dark:border-gray-200/20 dark:bg-white/5;
+  }
 }

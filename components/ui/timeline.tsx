@@ -20,6 +20,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   useEffect(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect()
+      console.log('Timeline height:', rect.height)
       setHeight(rect.height)
     }
   }, [ref])
@@ -52,7 +53,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             <div className='sticky top-40 z-40 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm'>
               {/* Timeline Dot */}
               <div className='absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3 dark:bg-black'>
-                <div className='h-4 w-4 rounded-full border border-neutral-300 bg-neutral-300 p-2 group-hover:bg-gradient-to-r group-hover:from-emerald-300 group-hover:to-sky-300 dark:border-neutral-700' />
+                <div className='glass h-4 w-4 rounded-full border border-neutral-300 bg-neutral-300 p-2 group-hover:bg-gradient-to-r group-hover:from-emerald-300 group-hover:to-sky-300 dark:border-neutral-700' />
               </div>
               {/* Timeline Date */}
               <h3 className='gradient-text hidden text-xl font-bold md:block md:pl-20 md:text-2xl'>

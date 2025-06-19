@@ -11,28 +11,37 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { cn } from '@/lib/utils'
+
+const themeOptions = ['light', 'dark', 'system'] as const
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        asChild
-        className='rounded-full border border-white/20'
-      >
+      <DropdownMenuTrigger asChild className='glass rounded-full'>
         <Button
           variant='outline'
           size='icon'
-          className='bg-gray-900 hover:bg-white/20'
+          className='glass-active inset-shadow-glass cursor-pointer'
         >
           <Sun className='h-[1.2rem] w-[1.2rem] scale-100 rotate-0 text-white/70 transition-all hover:text-white dark:scale-0 dark:-rotate-90' />
           <Moon className='absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
           <span className='sr-only'>Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuItem
+      <DropdownMenuContent align='end' className='glass'>
+        {themeOptions.map(option => (
+          <DropdownMenuItem
+            key={option}
+            onClick={() => setTheme(option)}
+            className={cn(theme === option && 'glass-active', 'cursor-pointer')}
+          >
+            {option}
+          </DropdownMenuItem>
+        ))}
+        {/* <DropdownMenuItem
           onClick={() => setTheme('light')}
           className='text-primary'
         >
@@ -49,7 +58,7 @@ export function ModeToggle() {
           className='text-primary'
         >
           System
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   )

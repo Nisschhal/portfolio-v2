@@ -11,9 +11,9 @@ import { StarsBackground } from '@/components/ui/star-background'
 
 export const HeroSection = () => {
   return (
-    <div className='relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60'>
+    <div className='relative overflow-x-clip py-32 md:py-48 lg:py-60'>
       {/* Orbit Background Mask */}
-      <div className='absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_82%,transparent)]'>
+      <div className='absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_82%,transparent)]'>
         {/* Rings */}
         <div className='hero-ring size-[660px]'></div>
         <div className='hero-ring size-[860px]'></div>
@@ -164,13 +164,15 @@ export const HeroSection = () => {
         <div className='mt-10 flex flex-col items-center justify-center gap-4 md:flex-row'>
           <button
             aria-label='Explore My Work'
-            className='inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6 text-white transition hover:bg-white/10'
+            className='hover:inset-shadow-glass inline-flex h-12 cursor-pointer items-center gap-2 rounded-xl border border-white/15 px-6 text-white transition hover:bg-white/10'
           >
             <span className='font-semibold'>Explore My Work</span>
             <ArrowDown className='size-4' />
           </button>
-          <button className='inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition hover:bg-white/90'>
-            <span>👋</span>
+          <button className='group inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition hover:bg-white/90'>
+            <span className='transition-transform duration-200 group-hover:rotate-90'>
+              👋
+            </span>
             <span className='font-semibold'>Let&apos;s Connect</span>
           </button>
         </div>

@@ -27,7 +27,7 @@ export default async function PortfolioLayout({
       {children}
       <div className='pointer-events-none fixed inset-0'>
         <div
-          className='fixed inset-0 -z-100 opacity-5'
+          className='fixed inset-0 opacity-5'
           style={{
             backgroundImage: `url(${grainImage.src})`,
           }}

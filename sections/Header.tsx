@@ -1,62 +1,87 @@
 'use client'
 import { ModeToggle } from '@/components/toggle-theme'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
 const navItems = [
-  {
-    name: 'Home',
-    link: '#home',
-  },
-  {
-    name: 'About',
-    link: '#about',
-  },
-  {
-    name: 'Projects',
-    link: '#projects',
-  },
-  {
-    name: 'Contact',
-    link: '#contact',
-  },
-  {
-    name: 'Contact',
-    link: '#contact',
-  },
-  {
-    name: 'Blog',
-    link: '#blog',
-  },
+  { name: 'Home', link: '#home' },
+  { name: 'About', link: '#about' },
+  { name: 'Projects', link: '#projects' },
+  { name: 'Blog', link: 'blogs' },
+  { name: 'Contact', link: '#contact' },
 ]
+
 export const Header = () => {
-  // check if /blog is in url
-  // const isBlog = usePathname().includes("blog")
+  const pathname = usePathname()
+  const [hash, setHash] = useState<string>(
+    typeof window !== 'undefined' ? window.location.hash : ''
+  )
+
+  // Track hash changes
+  useEffect(() => {
+    const updateHash = () => setHash(window.location.hash)
+    updateHash()
+    window.addEventListener('hashchange', updateHash)
+    return () => window.removeEventListener('hashchange', updateHash)
+  }, [])
+
+  // Check if the current pathname or hash matches the link
+  const isActive = (link: string) => {
+    if (link.startsWith('#')) {
+      const cleanLink = link.replace('#', '')
+      return (
+        hash === link || (cleanLink === 'home' && !hash && pathname === '/')
+      )
+    }
+    return pathname.includes(link.replace('#', ''))
+  }
 
   return (
-    <div className='sticky top-3 z-10 flex w-full items-center justify-center'>
-      <div className='relative mx-auto flex min-w-md items-center justify-center md:min-w-lg lg:min-w-3xl'>
-        <nav className='flex gap-1 rounded-full border border-white/15 bg-white/10 p-0.5 backdrop-blur'>
-          <a href='/' className='nav-item'>
-            Home
-          </a>
-          <a href='/projects' className='nav-item'>
-            Projects
-          </a>
-          <a href='/about' className='nav-item'>
-            About
-          </a>
-          <a href='/blogs' className='nav-item'>
-            Blog
-          </a>
-          {/* Mimicking active state */}
-          <a
-            href='/contact'
-            className='nav-item bg-white text-black hover:bg-white/70 hover:text-gray-900'
-          >
-            Contact
-          </a>
+    <div className='sticky top-3 z-50 flex w-full items-center justify-center'>
+      <div className='relative mx-auto flex min-w-[300px] items-center justify-center md:min-w-[500px] lg:min-w-[800px]'>
+        <nav className='glass inset-shadow-glass flex gap-1 rounded-full'>
+          <ul className='flex items-center gap-1 py-1.5'>
+            <AnimatePresence>
+              {navItems.map((item, index) => (
+                <motion.li
+                  key={index}
+                  whileTap={{ scale: 0.95 }}
+                  className='relative'
+                >
+                  <a
+                    href={item.link}
+                    className={`nav-item relative z-10 rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200 ${
+                      isActive(item.link)
+                        ? 'text-base text-white'
+                        : 'text-gray-800/80 hover:bg-white/10 hover:text-gray-900 dark:text-gray-200 dark:hover:bg-black/10 dark:hover:text-white'
+                    }`}
+                  >
+                    {item.name}
+                    {/* Glass reflection effect on hover */}
+                    <span className='absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100' />
+                    {/* Sliding glass highlight */}
+                    {isActive(item.link) && (
+                      <motion.div
+                        className='glass-active inset-shadow-glass absolute inset-0 rounded-full'
+                        layoutId='glass-highlight'
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 300,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </a>
+                </motion.li>
+              ))}
+            </AnimatePresence>
+          </ul>
         </nav>
-
-        <div className='absolute right-0'>
+        <div className='absolute right-0 flex items-center'>
           <ModeToggle />
         </div>
       </div>
