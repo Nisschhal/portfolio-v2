@@ -135,6 +135,12 @@ const HeroSection = () => {
 
       {/* Hero */}
       <div className='flex flex-col items-center gap-4'>
+        <div className='inline-flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-950 px-4 py-1.5 text-sm font-semibold'>
+          <div className='relative size-2.5 rounded-full bg-amber-400'>
+            <div className='animate-large-ping absolute inset-0 size-2.5 rounded-full bg-amber-500' />
+          </div>
+          <span>Blog Under Construction</span>
+        </div>
         {/* Avatar */}
         <Image
           src={memojiImage}

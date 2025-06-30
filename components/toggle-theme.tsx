@@ -36,7 +36,10 @@ export function ModeToggle() {
           <DropdownMenuItem
             key={option}
             onClick={() => setTheme(option)}
-            className={cn(theme === option && 'glass-active', 'cursor-pointer')}
+            className={cn(
+              theme === option && 'glass-active',
+              'cursor-pointer capitalize'
+            )}
           >
             {option}
           </DropdownMenuItem>

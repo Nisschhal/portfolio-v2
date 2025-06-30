@@ -1,33 +1,33 @@
-import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg"
-import grainImage from "@/assets/images/grain.jpg"
+import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
+import grainImage from '@/assets/images/grain.jpg'
 
 export const ContactSection = () => {
   return (
-    <section className="py-16 pt-14 lg:py-24 lg:pt-20">
-      <div className="container">
-        <div className="relative overflow-hidden bg-gradient-to-r from-emerald-300 to-sky-300 py-10 px-8 rounded-3xl text-center md:text-left text-gray-900">
+    <section className='py-16 pt-14 lg:py-24 lg:pt-20' id='contact'>
+      <div className='container'>
+        <div className='relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-300 to-sky-300 px-8 py-10 text-center text-gray-900 md:text-left'>
           {/* Grain Image */}
 
           <div
-            className="absolute inset-0 opacity-5 pointer-events-none "
+            className='pointer-events-none absolute inset-0 opacity-5'
             style={{ backgroundImage: `url(${grainImage.src})` }}
           />
           {/* Responsive Div col md:row */}
-          <div className="flex flex-col items-center md:flex-row gap-8 md:gap-16">
+          <div className='flex flex-col items-center gap-8 md:flex-row md:gap-16'>
             {/* Heading */}
             <div>
-              <h2 className="font-serif text-2xl md:text-3xl md:flex-1">
+              <h2 className='font-serif text-2xl md:flex-1 md:text-3xl'>
                 Let's create something amazing together
               </h2>
-              <p className="text-sm md:text-base mt-2">
+              <p className='mt-2 text-sm md:text-base'>
                 Ready to bring your next project to life? Lets&apos;s connect
                 and discuss how I can help you achieve your goals
               </p>
             </div>
-            <div className="md:self-end">
-              <button className="mt-8 text-white inline-flex items-center gap-2 bg-gray-900 px-6 w-max h-12 rounded-xl">
+            <div className='md:self-end'>
+              <button className='mt-8 inline-flex h-12 w-max items-center gap-2 rounded-xl bg-gray-900 px-6 text-white'>
                 <span>Contact Me</span>
-                <ArrowUpRightIcon className="size-4" />
+                <ArrowUpRightIcon className='size-4' />
               </button>
             </div>
           </div>

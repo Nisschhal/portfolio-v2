@@ -5,36 +5,39 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const navItems = [
-  { name: 'Home', link: '#home' },
-  { name: 'About', link: '#about' },
-  { name: 'Projects', link: '#projects' },
-  { name: 'Blog', link: 'blogs' },
-  { name: 'Contact', link: '#contact' },
+  { name: 'Home', link: '/#hero' },
+  { name: 'About', link: '/#about' },
+  { name: 'Projects', link: '/#projects' },
+  { name: 'Contact', link: '/#contact' },
+  { name: 'Blog', link: '/blogs' }, // Note: Changed to '/blogs' for clarity
 ]
 
 export const Header = () => {
   const pathname = usePathname()
-  const [hash, setHash] = useState<string>(
-    typeof window !== 'undefined' ? window.location.hash : ''
-  )
+  const [hash, setHash] = useState<string>('')
 
   // Track hash changes
   useEffect(() => {
-    const updateHash = () => setHash(window.location.hash)
+    const updateHash = () => {
+      const currentHash = window.location.hash || ''
+      setHash(currentHash)
+      console.log('Current hash:', currentHash, 'Pathname:', pathname) // Debug
+    }
     updateHash()
     window.addEventListener('hashchange', updateHash)
     return () => window.removeEventListener('hashchange', updateHash)
-  }, [])
+  }, [pathname])
 
   // Check if the current pathname or hash matches the link
   const isActive = (link: string) => {
-    if (link.startsWith('#')) {
-      const cleanLink = link.replace('#', '')
+    if (link.startsWith('/#')) {
+      const cleanLink = link.replace('/#', '#')
       return (
-        hash === link || (cleanLink === 'home' && !hash && pathname === '/')
+        hash === cleanLink ||
+        (cleanLink === '#home' && !hash && pathname === '/')
       )
     }
-    return pathname.includes(link.replace('#', ''))
+    return pathname === link // Stricter check for non-hash links
   }
 
   return (
@@ -54,13 +57,11 @@ export const Header = () => {
                     className={`nav-item relative z-10 rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200 ${
                       isActive(item.link)
                         ? 'text-base text-white'
-                        : 'text-gray-800/80 hover:bg-white/10 hover:text-gray-900 dark:text-gray-200 dark:hover:bg-black/10 dark:hover:text-white'
+                        : 'text-white/70 dark:text-gray-200 dark:hover:bg-black/10 dark:hover:text-white'
                     }`}
                   >
                     {item.name}
-                    {/* Glass reflection effect on hover */}
                     <span className='absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100' />
-                    {/* Sliding glass highlight */}
                     {isActive(item.link) && (
                       <motion.div
                         className='glass-active inset-shadow-glass absolute inset-0 rounded-full'
@@ -88,7 +89,6 @@ export const Header = () => {
     </div>
   )
 }
-
 // "use client"
 // import {
 //   Navbar,

@@ -9,228 +9,181 @@ import SectionHeader from '@/components/SectionHeader'
 export const AboutMe = () => {
   const timelineData = [
     {
-      title: '2025 - Present',
+      title: '2025 – Present',
       content: (
         <div>
-          <p className='mb-2 text-lg font-semibold text-white dark:text-white'>
-            Team Lead & Full Stack Developer at Neutorline Pvt. Ltd.
+          <p className='mb-2 text-lg font-semibold text-white'>
+            Team Lead & Full Stack Developer — Neutorline Pvt. Ltd.
           </p>
-          <p className='mb-6 text-sm text-neutral-400 dark:text-neutral-400'>
-            Leading and learning as I guide the development of{' '}
-            <span className='font-medium text-white'>Appointege</span>, an
-            AI-powered appointment management system for a US-based enterprise
-            at Neutorline, a sister company of Neutrosys.net (USA). Embracing
-            challenges to grow as a leader while fostering team collaboration.
+          <p className='mb-6 text-sm text-neutral-400'>
+            Leading the end-to-end development of{' '}
+            <span className='font-semibold text-white'>Appointege</span>, an
+            AI-powered appointment management platform built for the US-based
+            Neutrosys group. I oversee a multidisciplinary team of developers
+            and UI/UX designers — uniting technical architecture with seamless
+            user experience design.
             <br />
-            <span className='text-white/90'>Key Responsibilities:</span>
-            <br />• Architecting scalable systems with{' '}
-            <span className='text-white'>Next.js</span>,{' '}
+            <br />
+            <span className='text-white/90'>Engineering Focus:</span>
+            <br />• Built with <span className='text-white'>Next.js</span>,{' '}
             <span className='text-white'>React</span>,{' '}
-            <span className='text-white'>Node.js</span>,{' '}
             <span className='text-white'>PostgreSQL</span>,{' '}
             <span className='text-white'>Prisma</span>, and{' '}
             <span className='text-white'>TailwindCSS</span>.
-            <br />• Implementing secure authentication, calendar scheduling, and
+            <br />• Integrated secure authentication, calendar logic, and
             automated notifications.
-            <br />• Managing CI/CD pipelines and deployments with{' '}
-            <span className='text-white'>Vercel</span> and{' '}
-            <span className='text-white'>GitHub Actions</span>.
-            <br />• Mentoring junior developers and conducting code reviews.
+            <br />• CI/CD managed via <span className='text-white'>
+              Vercel
+            </span>{' '}
+            and <span className='text-white'>GitHub Actions</span>.
             <br />
-            <span className='text-white/90'>What I’m Learning:</span>
-            <br />• Advanced Agile project management and client communication.
-            <br />• Scaling AI-driven features with modern frameworks.
+            <br />
+            <span className='text-white/90'>UI/UX & Team Leadership:</span>
+            <br />• Collaborating with designers to create intuitive, responsive
+            user flows.
+            <br />• Leading both frontend and backend teams across Agile
+            sprints, with regular code reviews and design critiques.
+            <br />
+            <br />
+            <span className='text-white/90'>AI Edge:</span> Integrated{' '}
+            <span className='text-white'>LangChain</span>,{' '}
+            <span className='text-white'>LangGraph</span>, and{' '}
+            <span className='text-white'>Anthropic</span> APIs to deliver
+            agentic workflows and intelligent in-app suggestions — optimizing
+            the appointment experience for enterprise admins.
           </p>
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-            {/* Placeholder for images */}
-          </div>
         </div>
       ),
     },
     {
-      title: '2022 - 2023',
+      title: '2022 – 2023',
       content: (
         <div>
-          <p className='mb-2 text-lg font-semibold text-white dark:text-white'>
-            Technical Assistant & Digital Strategy Lead at Excellence
-            Institution Center
+          <p className='mb-2 text-lg font-semibold text-white'>
+            Technical Assistant & Digital Strategy Lead — Excellence Institution
+            Center
           </p>
-          <p className='mb-6 text-sm text-neutral-400 dark:text-neutral-400'>
-            Stayed humble while digitizing a Loksewa preparation startup during
-            college, learning to bridge traditional education with technology.
+          <p className='mb-6 text-sm text-neutral-400'>
+            Digitally transformed a Loksewa prep startup during college.
             <br />
-            <span className='text-white/90'>Key Contributions:</span>
-            <br />• Collaborated on website development for enhanced UX.
-            <br />• Built IT infrastructure and trained staff on tech adoption.
-            <br />• Supported digital marketing to boost student engagement.
             <br />
-            <span className='text-white/90'>What I Learned:</span>
-            <br />• Real-world application of leadership and team coordination.
-            <br />• Importance of user-focused design and iterative feedback.
+            <span className='text-white/90'>Key Highlights:</span>
+            <br />• Collaborated on official website dev & UX.
+            <br />• Managed IT infra & trained non-tech staff.
+            <br />• Drove digital marketing and automation.
+            <br />
+            <br />
+            <span className='text-white/90'>Outcome:</span> Enabled a
+            traditional education setup to scale online and improve operational
+            efficiency.
           </p>
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-            {/* Placeholder for images */}
-          </div>
         </div>
       ),
     },
     {
-      title: '2020 - 2023',
+      title: '2020 – 2023',
       content: (
         <div>
-          <p className='mb-2 text-lg font-semibold text-white dark:text-white'>
-            Graduated BSc (Hons) Computing
+          <p className='mb-2 text-lg font-semibold text-white'>
+            BSc (Hons) Computing — Coventry University (via Softwarica College)
           </p>
-          <p className='mb-6 text-sm text-neutral-400 dark:text-neutral-400'>
-            Earned my degree from Coventry University via Softwarica College,
-            Kathmandu, staying grounded while diving deep into software
-            engineering and blockchain. Core focus: Math, Programming, Web
-            Development, Database Systems, Networks, and Software Engineering.
+          <p className='mb-6 text-sm text-neutral-400'>
+            Specialized in Software Engineering, Blockchain, and Full Stack Dev.
+            <br />
             <br />
             <span className='text-white/90'>Notable Projects:</span>
-            <br />• <span className='text-white'>e-Voting System:</span> Built a
-            secure blockchain-based voting system using{' '}
+            <br />• <strong className='text-white'>e-Voting:</strong>
+            Decentralized system using{' '}
             <span className='text-white'>Ethereum</span>,{' '}
-            <span className='text-white'>Hardhat</span>, and{' '}
-            <span className='text-white'>MetaMask</span> for transparent,
-            tamper-proof elections.{' '}
+            <span className='text-white'>Hardhat</span>,{' '}
+            <span className='text-white'>MetaMask</span>.{' '}
             <a
               href='https://github.com/nischalpuri/evoting-project'
               className='text-emerald-300 hover:underline'
             >
-              View on GitHub
+              GitHub →
             </a>
-            <br />• <span className='text-white'>Ink Sprout:</span> Developed an
-            e-commerce platform with secure auth, product search, and{' '}
-            <span className='text-white'>Stripe</span> integration using{' '}
-            <span className='text-white'>Next.js</span>,{' '}
-            <span className='text-white'>PostgreSQL</span>, and{' '}
-            <span className='text-white'>Zustand</span>.
-            <br />• <span className='text-white'>Fodery:</span> Created a food
-            delivery app with real-time tracking using{' '}
-            <span className='text-white'>Flutter</span>,{' '}
-            <span className='text-white'>Express</span>,{' '}
-            <span className='text-white'>Node.js</span>, and{' '}
-            <span className='text-white'>MongoDB</span>.
-            <br />• <span className='text-white'>Sensor Detector:</span>{' '}
-            Designed an IoT alert system for intrusion detection with motion
-            sensors using <span className='text-white'>Python</span> and{' '}
+            <br />• <strong className='text-white'>Ink Sprout:</strong>
+            E-commerce with auth, product search, and Stripe.
+            <br />• <strong className='text-white'>Fodery:</strong>
+            Food delivery app with live tracking and agile flow.
+            <br />• <strong className='text-white'>Sensor Detector:</strong>
+            IoT-based intruder alert using{' '}
             <span className='text-white'>Raspberry Pi</span>.
-            <br />
-            <span className='text-white/90'>What I Learned:</span>
-            <br />• Problem-solving through diverse tech stacks.
-            <br />• Value of persistence in mastering complex concepts.
           </p>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <img
               src='/assets/graduation.jpg'
-              alt='Graduation ceremony'
-              width={500}
-              height={500}
-              className='h-32 w-full rounded-lg object-cover shadow-[0_0_16px_rgba(0,_0,_0,_0.1)] transition-transform hover:scale-105 md:h-48'
+              alt='Graduation'
+              className='h-32 w-full rounded-lg object-cover shadow-lg transition-transform hover:scale-105 md:h-48'
             />
             <img
               src='/assets/evoting-screenshot.jpg'
-              alt='e-Voting project screenshot'
-              width={500}
-              height={500}
-              className='h-32 w-full rounded-lg object-cover shadow-[0_0_16px_rgba(0,_0,_0,_0.1)] transition-transform hover:scale-105 md:h-48'
+              alt='e-Voting project'
+              className='h-32 w-full rounded-lg object-cover shadow-lg transition-transform hover:scale-105 md:h-48'
             />
           </div>
         </div>
       ),
     },
     {
-      title: '2018 - 2023',
+      title: '2018 – 2023',
       content: (
         <div>
-          <p className='mb-2 text-lg font-semibold text-white dark:text-white'>
-            Rotaract Club of Dillibazar-Kathmandu – Leadership & Service
+          <p className='mb-2 text-lg font-semibold text-white'>
+            Leadership & Service — Rotaract Club of Dillibazar-Kathmandu
           </p>
-          <p className='mb-6 text-sm text-neutral-400 dark:text-neutral-400'>
-            Grew through service, learning leadership and humility over 5 years
-            in one of Nepal’s most active Rotaract clubs.
+          <p className='mb-6 text-sm text-neutral-400'>
+            Served in multiple leadership roles in one of Nepal’s most active
+            Rotaract clubs.
             <br />
-            <span className='text-white/90'>Roles Held:</span>
-            <br />•{' '}
-            <span className='text-white'>
-              IT & Publication Officer (2018–2019)
-            </span>
-            : Managed digital content.
-            <br />• <span className='text-white'>Secretary (2019–2020)</span>:
-            Organized club operations.
-            <br />•{' '}
-            <span className='text-white'>Vice President (2020–2021)</span>: Led
-            strategic initiatives.
-            <br />•{' '}
-            <span className='text-white'>
-              Community Service Adviser (2021–2023)
-            </span>
-            : Guided impactful projects.
             <br />
-            <span className='text-white/90'>Key Achievements:</span>
-            <br />• Drove digital transformation for community projects.
-            <br />• Organized national events, impacting hundreds.
+            <span className='text-white/90'>Roles:</span>
+            <br />• IT & Publication Officer (2018–2019)
+            <br />• Secretary (2019–2020)
+            <br />• Vice President (2020–2021)
+            <br />• Community Adviser (2021–2023)
             <br />
-            <span className='text-white/90'>Notable Projects:</span>
-            <br />• <span className='text-white'>
-              PUBG Charity Tournament:
-            </span>{' '}
-            Fundraised for orphans via eSports.
-            <br />• <span className='text-white'>Digital Dillibazar:</span>{' '}
-            Promoted QR-based payments for local businesses.
-            <br />• <span className='text-white'>TEACH Program:</span> Trained
-            teachers in digital literacy.
-            <br />• <span className='text-white'>
-              Self-Defense Workshop:
-            </span>{' '}
-            Empowered schoolgirls with safety skills.
-            <br />•{' '}
-            <span className='text-white'>
-              Wall Climbing & Mountain Medicine:
-            </span>{' '}
-            Led youth adventure workshops.
             <br />
-            <span className='text-white/90'>What I Learned:</span>
-            <br />• Value of community-driven impact.
-            <br />• Balancing leadership with teamwork.
+            <span className='text-white/90'>Projects:</span>
+            <br />• PUBG Charity Tournament (National) — Fundraised for orphan
+            support.
+            <br />• Digital Dillibazar — Promoted QR & digital payment
+            awareness.
+            <br />• TEACH — Trained public school teachers in tech & literacy.
+            <br />• Self-Defense Workshop — School safety & empowerment event.
           </p>
           <div className='grid grid-cols-1 gap-4'>
             <img
               src='/assets/rotaract-event.jpg'
-              alt='Rotaract community event'
-              width={500}
-              height={500}
-              className='h-32 w-full rounded-lg object-cover shadow-[0_0_16px_rgba(0,_0,_0,_0.1)] transition-transform hover:scale-105 md:h-48'
+              alt='Rotaract event'
+              className='h-32 w-full rounded-lg object-cover shadow-lg transition-transform hover:scale-105 md:h-48'
             />
           </div>
         </div>
       ),
     },
     {
-      title: '2016 - 2018',
+      title: '2016 – 2018',
       content: (
         <div>
-          <p className='mb-2 text-lg font-semibold text-white dark:text-white'>
-            A-Level Graduate
+          <p className='mb-2 text-lg font-semibold text-white'>
+            A-Level Graduate — Chelsea International Academy
           </p>
-          <p className='mb-6 text-sm text-neutral-400 dark:text-neutral-400'>
-            Started my tech journey at Chelsea International Academy, Kathmandu,
-            with A-Levels in Physics, Chemistry, Mathematics, and Computer
-            Science (GPA: 3.0/4.0), learning the basics of coding with
-            curiosity.
+          <p className='mb-6 text-sm text-neutral-400'>
+            Completed A-Levels in Physics, Chemistry, Math, and Computer
+            Science.
             <br />
-            <span className='text-white/90'>What I Learned:</span>
-            <br />• Foundational programming and problem-solving.
-            <br />• Importance of staying open to new challenges.
+            <br />
+            <span className='text-white/90'>What I Gained:</span>
+            <br />• First exposure to structured programming.
+            <br />• Built foundational logic & academic discipline.
           </p>
           <div className='grid grid-cols-1 gap-4'>
             <img
               src='/assets/highschool-graduation.jpg'
               alt='High school graduation'
-              width={500}
-              height={500}
-              className='h-32 w-full rounded-lg object-cover shadow-[0_0_16px_rgba(0,_0,_0,_0.1)] transition-transform hover:scale-105 md:h-48'
+              className='h-32 w-full rounded-lg object-cover shadow-lg transition-transform hover:scale-105 md:h-48'
             />
           </div>
         </div>
@@ -239,7 +192,7 @@ export const AboutMe = () => {
   ]
 
   return (
-    <section className='py-16 lg:py-24'>
+    <section className='py-16 lg:py-24' id='about'>
       <div className='container mx-auto max-w-5xl px-4'>
         {/* Section Intro */}
         <motion.div
@@ -335,8 +288,6 @@ export const AboutMe = () => {
               'UI/UX Design',
               'Leadership',
               'Agile/SCRUM',
-              'Open Source Contributor',
-              'Cybersecurity Basics',
             ].map(skill => (
               <span
                 key={skill}

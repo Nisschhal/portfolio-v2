@@ -11,7 +11,7 @@ import { StarsBackground } from '@/components/ui/star-background'
 
 export const HeroSection = () => {
   return (
-    <div className='relative overflow-x-clip py-32 md:py-48 lg:py-60'>
+    <div className='relative overflow-x-clip py-32 md:py-48 lg:py-60' id='hero'>
       {/* Orbit Background Mask */}
       <div className='absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_82%,transparent)]'>
         {/* Rings */}
