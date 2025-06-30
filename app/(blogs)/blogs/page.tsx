@@ -1,44 +1,44 @@
-import React from "react"
-import { PenSquare } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { div } from "motion/react-client"
-import HeroSection from "./_sections/HeroSection"
-import BlogGrid from "./_sections/Blogs"
+import React from 'react'
+import { PenSquare } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { div } from 'motion/react-client'
+import HeroSection from './_sections/HeroSection'
+import BlogGrid from './_sections/Blogs'
 
 const examplePosts = [
   {
-    id: "1",
-    title: "Getting Started with Next.js",
-    slug: "getting-started-with-nextjs",
+    id: '1',
+    title: 'Getting Started with Next.js',
+    slug: 'getting-started-with-nextjs',
     excerpt:
-      "Learn how to build high-performance React applications with Next.js",
-    featuredImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
-    createdAt: new Date("2023-06-15"),
+      'Learn how to build high-performance React applications with Next.js',
+    featuredImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c',
+    createdAt: new Date('2023-06-15'),
     author: {
-      name: "Admin User",
+      name: 'Admin User',
       image: null,
     },
     category: {
-      name: "Technology",
-      slug: "technology",
+      name: 'Technology',
+      slug: 'technology',
     },
   },
   {
-    id: "2",
-    title: "Modern UI Design Principles",
-    slug: "modern-ui-design-principles",
+    id: '2',
+    title: 'Modern UI Design Principles',
+    slug: 'modern-ui-design-principles',
     excerpt:
-      "Explore the key principles behind effective and beautiful UI design",
-    featuredImage: "https://images.unsplash.com/photo-1559028012-481c04fa702d",
-    createdAt: new Date("2023-06-10"),
+      'Explore the key principles behind effective and beautiful UI design',
+    featuredImage: 'https://images.unsplash.com/photo-1559028012-481c04fa702d',
+    createdAt: new Date('2023-06-10'),
     author: {
-      name: "Editor User",
+      name: 'Editor User',
       image: null,
     },
     category: {
-      name: "Design",
-      slug: "design",
+      name: 'Design',
+      slug: 'design',
     },
   },
   // Add more example posts here

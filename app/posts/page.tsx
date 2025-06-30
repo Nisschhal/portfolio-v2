@@ -1,5 +1,4 @@
-import React from 'react'
-
-export const Posts = () => {
+'use server'
+export const Posts = async () => {
   return <div>Posts</div>
 }

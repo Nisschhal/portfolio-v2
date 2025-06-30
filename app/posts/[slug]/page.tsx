@@ -1,3 +1,4 @@
+'use server'
 import { getPostBySlug } from '@/lib/post'
 import { notFound } from 'next/navigation'
 import React from 'react'

@@ -1,5 +1,6 @@
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
+import Link from 'next/link'
 
 export const ContactSection = () => {
   return (
@@ -25,10 +26,14 @@ export const ContactSection = () => {
               </p>
             </div>
             <div className='md:self-end'>
-              <button className='mt-8 inline-flex h-12 w-max items-center gap-2 rounded-xl bg-gray-900 px-6 text-white'>
+              <Link
+                href='https://api.whatsapp.com/send?phone=9818275115'
+                target='_blank'
+                className='mt-8 inline-flex h-12 w-max items-center gap-2 rounded-xl bg-gray-900 px-6 text-white'
+              >
                 <span>Contact Me</span>
                 <ArrowUpRightIcon className='size-4' />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

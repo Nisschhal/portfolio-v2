@@ -466,6 +466,7 @@ const portfolioProjects = [
     company: 'Nischal Puri',
     year: '2025',
     title: 'Personal Portfolio',
+    subtitle: 'Rich Animations, Best Viewed on Desktop',
     results: [
       {
         title:
@@ -483,9 +484,9 @@ const portfolioProjects = [
       'Next.js',
       'Prisma',
       'PostgreSQL',
-      'NextAuth.js',
       'TailwindCSS',
       'Framer Motion',
+      'GSAP',
     ],
     link: 'https://nischal-portfolio-mu.vercel.app/',
     image: OldPort,
@@ -538,6 +539,11 @@ export const ProjectsSection = () => {
                   <h3 className='mt-2 font-serif text-2xl md:mt-5 md:text-4xl'>
                     {project.title}
                   </h3>
+                  {project.subtitle && (
+                    <p className='mt-1 text-sm text-white/70 md:text-base'>
+                      {project.subtitle}
+                    </p>
+                  )}
                   <hr className='mt-4 border border-white/10 md:mt-4.5' />
                   <ul className='mt-4 flex flex-col gap-4 md:mt-6'>
                     {project.results.map(result => (

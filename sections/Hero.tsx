@@ -8,6 +8,7 @@ import SparkleIcon from '@/assets/icons/sparkle.svg'
 import HeroOrbit from '@/components/HeroOrbit'
 import { ShootingStars } from '@/components/ui/shotting-star'
 import { StarsBackground } from '@/components/ui/star-background'
+import Link from 'next/link'
 
 export const HeroSection = () => {
   return (
@@ -166,15 +167,21 @@ export const HeroSection = () => {
             aria-label='Explore My Work'
             className='hover:inset-shadow-glass inline-flex h-12 cursor-pointer items-center gap-2 rounded-xl border border-white/15 px-6 text-white transition hover:bg-white/10'
           >
-            <span className='font-semibold'>Explore My Work</span>
+            <a className='font-semibold' href='#projects'>
+              Explore My Work
+            </a>
             <ArrowDown className='size-4' />
           </button>
-          <button className='group inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition hover:bg-white/90'>
+          <Link
+            href='https://api.whatsapp.com/send?phone=9818275115'
+            target='_blank'
+            className='group inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition hover:bg-white/90'
+          >
             <span className='transition-transform duration-200 group-hover:rotate-90'>
               👋
             </span>
-            <span className='font-semibold'>Let&apos;s Connect</span>
-          </button>
+            <span className='font-semibold'>Let's Connect</span>
+          </Link>
         </div>
       </div>
     </div>

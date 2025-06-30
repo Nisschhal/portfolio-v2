@@ -5,6 +5,7 @@ import memojiImage from '@/assets/images/memoji-computer.png'
 import React, { useEffect, useRef, useState } from 'react'
 import { Timeline } from '@/components/ui/timeline'
 import SectionHeader from '@/components/SectionHeader'
+import { SkillsSection } from './On-the-table'
 
 export const AboutMe = () => {
   const timelineData = [
@@ -258,27 +259,8 @@ export const AboutMe = () => {
         </motion.div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true }}
-          className='mt-16 flex flex-col items-center justify-center gap-4 md:flex-row'
-        >
-          <a
-            href='/resume.pdf'
-            className='inline-flex h-12 items-center gap-2 rounded-xl border border-emerald-300/30 bg-neutral-900 px-6 text-neutral-200 transition hover:bg-emerald-300/20'
-          >
-            Download CV
-          </a>
-          <a
-            href='#contact'
-            className='inline-flex h-12 items-center gap-2 rounded-xl bg-emerald-300 px-6 text-gray-900 transition hover:bg-emerald-400'
-          >
-            🚀 Let’s Talk
-          </a>
-        </motion.div>
-        <div className='mt-16'>
+
+        {/* <div className='mt-16'>
           <h3 className='mb-4 text-center text-xl font-semibold text-white'>
             What I Bring to the Table
           </h3>
@@ -297,7 +279,8 @@ export const AboutMe = () => {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
+        <SkillsSection />
       </div>
     </section>
   )
