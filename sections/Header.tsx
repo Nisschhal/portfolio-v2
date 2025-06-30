@@ -3,6 +3,7 @@ import { ModeToggle } from '@/components/toggle-theme'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 
 const navItems = [
   { name: 'Home', link: '/#hero' },
@@ -52,7 +53,7 @@ export const Header = () => {
                   whileTap={{ scale: 0.95 }}
                   className='relative'
                 >
-                  <a
+                  <Link
                     href={item.link}
                     className={`nav-item relative z-10 rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200 ${
                       isActive(item.link)
@@ -76,7 +77,7 @@ export const Header = () => {
                         }}
                       />
                     )}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </AnimatePresence>
