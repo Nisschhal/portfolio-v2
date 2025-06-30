@@ -24,20 +24,20 @@ export const Header = () => {
   const { y: currentScrollY } = useWindowScroll()
 
   // Show or hide the navigation bar based on scroll position
-  // useEffect(() => {
-  //   if (!navContainerRef.current) return
-  //   if (currentScrollY === 0) {
-  //     setIsNavVisible(true)
-  //     navContainerRef.current.classList.remove('floating-nav')
-  //   } else if (currentScrollY > lastScrollY) {
-  //     setIsNavVisible(false)
-  //     navContainerRef.current.classList.add('floating-nav')
-  //   } else if (currentScrollY < lastScrollY) {
-  //     setIsNavVisible(true)
-  //     navContainerRef.current.classList.add('floating-nav')
-  //   }
-  //   setLastScrollY(currentScrollY)
-  // }, [currentScrollY, lastScrollY])
+  useEffect(() => {
+    if (!navContainerRef.current) return
+    if (currentScrollY === 0) {
+      setIsNavVisible(true)
+      navContainerRef.current.classList.remove('floating-nav')
+    } else if (currentScrollY > lastScrollY) {
+      setIsNavVisible(false)
+      navContainerRef.current.classList.add('floating-nav')
+    } else if (currentScrollY < lastScrollY) {
+      setIsNavVisible(true)
+      navContainerRef.current.classList.add('floating-nav')
+    }
+    setLastScrollY(currentScrollY)
+  }, [currentScrollY, lastScrollY])
 
   // Animate the nav based on visibility
   useEffect(() => {
