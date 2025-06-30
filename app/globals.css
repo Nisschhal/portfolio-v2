@@ -94,8 +94,10 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply text-foreground bg-gray-900 dark:bg-black; /* Match light/dark modes */
+    scroll-behavior: smooth;
   }
 
   .gradient-bg {
