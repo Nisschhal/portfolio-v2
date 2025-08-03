@@ -47,31 +47,30 @@ export const Header = () => {
       return
     }
 
-    // Default to 'hero' on main page
-    if (pathname === '/') {
-      setActiveSection('hero')
-    }
-
     // IntersectionObserver for sections on main page
     const observer = new IntersectionObserver(
       entries => {
         let maxRatio = 0
         let mostVisibleSection = ''
         entries.forEach(entry => {
+          console.log(
+            `Section: ${entry.target.id}, Intersection Ratio: ${entry.intersectionRatio}`
+          )
           if (entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio
             mostVisibleSection = entry.target.id
           }
         })
-        if (maxRatio > 0) {
+        if (maxRatio >= 0.1) {
           setActiveSection(mostVisibleSection)
         } else if (pathname === '/') {
-          setActiveSection('hero') // Fallback to hero
+          // Only fallback to 'hero' if no section is sufficiently visible
+          setActiveSection(prev => (prev ? prev : 'hero'))
         }
       },
       {
         threshold: [0.1, 0.3, 0.5, 0.7, 0.9], // Multiple thresholds
-        rootMargin: '-15% 0px -15% 0px', // Adjusted margin
+        rootMargin: '-20% 0px -20% 0px', // Increased margin for stability
       }
     )
 
@@ -82,6 +81,7 @@ export const Header = () => {
           const section = document.querySelector(`#${item.sectionId}`)
           if (section) {
             observer.observe(section)
+            console.log(`Observing section: #${item.sectionId}`)
           } else {
             console.warn(`Section #${item.sectionId} not found in DOM`)
           }
@@ -107,15 +107,15 @@ export const Header = () => {
   return (
     <div className='sticky top-3 z-10 flex w-full items-center justify-center'>
       <div className='relative mx-auto flex min-w-md items-center justify-center md:min-w-lg lg:min-w-3xl'>
-        <nav className='flex gap-1 rounded-full border border-white/15 bg-white/10 p-0.5 backdrop-blur-xl backdrop-saturate-150'>
+        <nav className='flex gap-1 rounded-full border border-white/15 bg-white/10 p-1 backdrop-blur-2xl backdrop-saturate-150 dark:border-gray-900/15 dark:bg-black/10'>
           {navItems.map(item => (
             <a
               key={item.name}
               href={item.link}
-              className={`nav-item rounded-full px-4 py-2 transition-all duration-300 ${
+              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                 activeSection === item.sectionId
-                  ? 'bg-white text-black hover:bg-white/90'
-                  : 'text-white hover:bg-white/20 hover:text-gray-900'
+                  ? 'bg-white/30 text-white shadow-inner shadow-white/20 dark:bg-black/30 dark:text-black dark:shadow-black/20'
+                  : 'text-white/70 hover:bg-white/20 hover:text-white dark:text-gray-200 dark:hover:bg-black/20 dark:hover:text-gray-900'
               }`}
             >
               {item.name}
