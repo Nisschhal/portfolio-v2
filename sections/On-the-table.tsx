@@ -58,8 +58,9 @@ export const SkillsSection = () => {
         className='mt-16 flex flex-col items-center justify-center gap-4 md:flex-row'
       >
         <a
-          href='/resume.pdf'
+          href='/nischal-resume.pdf'
           className='inline-flex h-12 items-center gap-2 rounded-xl border border-emerald-300/30 bg-neutral-900 px-6 text-neutral-200 transition hover:bg-emerald-300/20'
+          target='_blank'
         >
           Download CV
         </a>

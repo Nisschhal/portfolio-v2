@@ -105,17 +105,17 @@ export const Header = () => {
   }, [pathname])
 
   return (
-    <div className='sticky top-3 z-10 flex w-full items-center justify-center'>
-      <div className='relative mx-auto flex min-w-md items-center justify-center md:min-w-lg lg:min-w-3xl'>
-        <nav className='flex gap-1 rounded-full border border-white/15 bg-white/10 p-1 backdrop-blur-2xl backdrop-saturate-150 dark:border-gray-900/15 dark:bg-black/10'>
+    <div className='sticky top-3 z-10 flex w-full items-center justify-center px-4'>
+      <div className='relative mx-auto flex w-full max-w-4xl items-center justify-center sm:min-w-[400px] md:min-w-[600px] lg:min-w-[800px]'>
+        <nav className='flex flex-wrap gap-1 rounded-full border border-white/15 bg-white/10 p-1 backdrop-blur-2xl backdrop-saturate-150 dark:border-gray-200/15 dark:bg-gray-900/10'>
           {navItems.map(item => (
             <a
               key={item.name}
               href={item.link}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+              className={`relative min-w-[80px] flex-1 rounded-full px-3 py-2 text-center text-sm font-medium transition-all duration-300 sm:min-w-[100px] sm:px-4 ${
                 activeSection === item.sectionId
-                  ? 'bg-white/30 text-white shadow-inner shadow-white/20 dark:bg-black/30 dark:text-black dark:shadow-black/20'
-                  : 'text-white/70 hover:bg-white/20 hover:text-white dark:text-gray-200 dark:hover:bg-black/20 dark:hover:text-gray-900'
+                  ? 'bg-white/30 text-white shadow-inner shadow-white/20 dark:bg-gray-100/30 dark:text-white dark:shadow-gray-200/20'
+                  : 'text-white/70 hover:bg-white/20 hover:text-white dark:text-gray-300 dark:hover:bg-gray-200/20 dark:hover:text-white'
               }`}
             >
               {item.name}

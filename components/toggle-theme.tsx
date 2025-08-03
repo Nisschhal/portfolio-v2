@@ -21,16 +21,16 @@ export function ModeToggle() {
         <Button
           variant='outline'
           size='icon'
-          className='rounded-full border border-white/15 bg-white/10 p-2 text-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 hover:bg-white/20 hover:text-white dark:border-gray-900/15 dark:bg-black/10 dark:hover:bg-black/20 dark:hover:text-gray-900'
+          className='h-10 w-10 rounded-full border border-white/15 bg-white/10 p-2 text-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 hover:bg-white/20 hover:text-white dark:border-gray-200/15 dark:bg-gray-900/10 dark:hover:bg-gray-200/20 dark:hover:text-white'
         >
-          <Sun className='h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />
-          <Moon className='absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
+          <Sun className='h-5 w-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />
+          <Moon className='absolute h-5 w-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
           <span className='sr-only'>Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align='end'
-        className='rounded-xl border border-white/15 bg-white/10 text-white/70 backdrop-blur-2xl backdrop-saturate-150 dark:border-gray-900/15 dark:bg-black/10'
+        className='w-40 rounded-xl border border-white/15 bg-white/10 text-white/70 backdrop-blur-2xl backdrop-saturate-150 dark:border-gray-200/15 dark:bg-gray-900/10'
       >
         <DropdownMenuItem
           onClick={() => setTheme('light')}
@@ -46,8 +46,8 @@ export function ModeToggle() {
           onClick={() => setTheme('dark')}
           className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none ${
             theme === 'dark'
-              ? 'bg-black/30 text-black shadow-inner shadow-black/20'
-              : 'hover:bg-black/20 hover:text-gray-900'
+              ? 'bg-gray-100/30 text-white shadow-inner shadow-gray-200/20'
+              : 'hover:bg-gray-200/20 hover:text-white'
           }`}
         >
           Dark
@@ -56,8 +56,8 @@ export function ModeToggle() {
           onClick={() => setTheme('system')}
           className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none ${
             theme === 'system'
-              ? 'bg-white/30 text-white shadow-inner shadow-white/20 dark:bg-black/30 dark:text-black dark:shadow-black/20'
-              : 'hover:bg-white/20 hover:text-white dark:hover:bg-black/20 dark:hover:text-gray-900'
+              ? 'bg-white/30 text-white shadow-inner shadow-white/20 dark:bg-gray-100/30 dark:text-white dark:shadow-gray-200/20'
+              : 'hover:bg-white/20 hover:text-white dark:hover:bg-gray-200/20 dark:hover:text-white'
           }`}
         >
           System
