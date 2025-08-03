@@ -54,23 +54,24 @@ export const Header = () => {
         let mostVisibleSection = ''
         entries.forEach(entry => {
           console.log(
-            `Section: ${entry.target.id}, Intersection Ratio: ${entry.intersectionRatio}`
+            `Section: ${entry.target.id}, Intersection Ratio: ${entry.intersectionRatio}, Is Intersecting: ${entry.isIntersecting}`
           )
-          if (entry.intersectionRatio > maxRatio) {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio
             mostVisibleSection = entry.target.id
           }
         })
-        if (maxRatio >= 0.1) {
+        if (maxRatio >= 0.02) {
+          console.log(`Setting active section to: ${mostVisibleSection}`)
           setActiveSection(mostVisibleSection)
         } else if (pathname === '/') {
-          // Only fallback to 'hero' if no section is sufficiently visible
+          console.log(`Fallback check, current active: ${activeSection}`)
           setActiveSection(prev => (prev ? prev : 'hero'))
         }
       },
       {
-        threshold: [0.1, 0.3, 0.5, 0.7, 0.9], // Multiple thresholds
-        rootMargin: '-20% 0px -20% 0px', // Increased margin for stability
+        threshold: [0.02, 0.05, 0.1, 0.3, 0.5], // Lower threshold for short sections
+        rootMargin: '-30% 0px -30% 0px', // Tighter margin for precision
       }
     )
 
@@ -105,17 +106,17 @@ export const Header = () => {
   }, [pathname])
 
   return (
-    <div className='sticky top-3 z-10 flex w-full items-center justify-center px-4'>
-      <div className='relative mx-auto flex w-full max-w-4xl items-center justify-center sm:min-w-[400px] md:min-w-[600px] lg:min-w-[800px]'>
-        <nav className='flex flex-wrap gap-1 rounded-full border border-white/15 bg-white/10 p-1 backdrop-blur-2xl backdrop-saturate-150 dark:border-gray-200/15 dark:bg-gray-900/10'>
+    <div className='sticky top-3 z-[100] flex w-full items-center justify-center px-2 sm:px-4'>
+      <div className='xs:max-w-[85vw] relative mx-auto flex w-full max-w-[90vw] items-center justify-center md:min-w-lg lg:min-w-3xl'>
+        <nav className='flex gap-0.5 rounded-full border border-white/15 bg-white/10 p-1.5 backdrop-blur-2xl backdrop-saturate-200 md:gap-1 dark:border-gray-700/15 dark:bg-gray-900/20'>
           {navItems.map(item => (
             <a
               key={item.name}
               href={item.link}
-              className={`relative min-w-[80px] flex-1 rounded-full px-3 py-2 text-center text-sm font-medium transition-all duration-300 sm:min-w-[100px] sm:px-4 ${
+              className={`xs:min-w-[70px] xs:px-2.5 xs:text-xs relative min-w-[60px] rounded-full px-2 py-1.5 text-center text-xs font-medium transition-all duration-300 md:min-w-[100px] md:px-4 md:py-2 md:text-sm ${
                 activeSection === item.sectionId
-                  ? 'bg-white/30 text-white shadow-inner shadow-white/20 dark:bg-gray-100/30 dark:text-white dark:shadow-gray-200/20'
-                  : 'text-white/70 hover:bg-white/20 hover:text-white dark:text-gray-300 dark:hover:bg-gray-200/20 dark:hover:text-white'
+                  ? 'bg-white/30 text-white shadow-inner shadow-white/30 dark:bg-gray-100/30 dark:text-white dark:shadow-gray-200/30'
+                  : 'text-white/70 hover:bg-white/20 hover:text-white dark:text-gray-300 dark:hover:bg-gray-800/20 dark:hover:text-white'
               }`}
             >
               {item.name}
