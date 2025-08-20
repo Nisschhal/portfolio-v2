@@ -21,6 +21,61 @@ const portfolioProjects = [
   {
     company: 'Nischal Puri',
     year: '2025',
+    title: 'AI Assistant with Tools',
+    subtitle: 'Advanced AI Agent with Tool Integration',
+    results: [
+      {
+        title:
+          'Developed a Next.js 15 AI agent with real-time tool integration using IBM wxflows.',
+      },
+      {
+        title:
+          'Implemented secure authentication with Clerk and real-time data sync with Convex.',
+      },
+      {
+        title:
+          'Optimized AI responses with Anthropic’s prompt caching and LangChain/LangGraph.',
+      },
+    ],
+    tech: [
+      'Next.js 15',
+      'Clerk',
+      'Convex',
+      'LangChain',
+      'LangGraph',
+      'IBM wxflows',
+      'Anthropic Claude 3.5',
+      'TailwindCSS',
+      'Shadcn/ui',
+    ],
+    link: 'https://ai-chatbot-bmxi.vercel.app',
+    image: AiChat,
+  },
+  {
+    company: 'Nischal Puri',
+    year: '2025',
+    title: 'Zentry Game',
+    subtitle: 'Award-Winning Animated Gaming Website',
+    results: [
+      {
+        title: 'Built an Awwwards-inspired gaming website with React and Vite.',
+      },
+      {
+        title:
+          'Implemented smooth animations using Tailwind CSS and custom clip-path effects.',
+      },
+      {
+        title:
+          'Created responsive hero, navbar, and Bento grid with 3D tilt effects.',
+      },
+    ],
+    tech: ['React', 'Vite', 'TailwindCSS', 'JavaScript'],
+    link: 'https://zentry-game-three.vercel.app',
+    image: ZentryGame,
+  },
+  {
+    company: 'Nischal Puri',
+    year: '2025',
     title: 'Ink Sprout',
     results: [
       { title: 'Built a scalable e-commerce platform for stationery' },
@@ -125,39 +180,7 @@ const portfolioProjects = [
     link: 'https://nischal-portfolio-mu.vercel.app/',
     image: OldPort,
   },
-  {
-    company: 'Nischal Puri',
-    year: '2025',
-    title: 'AI Assistant with Tools',
-    subtitle: 'Advanced AI Agent with Tool Integration',
-    results: [
-      {
-        title:
-          'Developed a Next.js 15 AI agent with real-time tool integration using IBM wxflows.',
-      },
-      {
-        title:
-          'Implemented secure authentication with Clerk and real-time data sync with Convex.',
-      },
-      {
-        title:
-          'Optimized AI responses with Anthropic’s prompt caching and LangChain/LangGraph.',
-      },
-    ],
-    tech: [
-      'Next.js 15',
-      'Clerk',
-      'Convex',
-      'LangChain',
-      'LangGraph',
-      'IBM wxflows',
-      'Anthropic Claude 3.5',
-      'TailwindCSS',
-      'Shadcn/ui',
-    ],
-    link: 'https://ai-chatbot-bmxi.vercel.app',
-    image: AiChat,
-  },
+
   {
     company: 'Nischal Puri',
     year: '2025',
