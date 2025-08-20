@@ -8,6 +8,7 @@ import NextAuth from '@/public/assets/images/projects/next-auth.png'
 import OldPort from '@/public/assets/images/projects/old-port.png'
 import AiChat from '@/public/assets/images/projects/ai-chat.png'
 import ZentryGame from '@/public/assets/images/projects/zentry-game.png'
+import Spylt from '@/public/assets/images/projects/spylt.png'
 import CheckCircle from '@/assets/icons/check-circle.svg'
 import UpRightArrow from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
@@ -20,6 +21,31 @@ import Image from 'next/image'
 const portfolioProjects = [
   {
     company: 'Nischal Puri',
+    status: 'In Progress',
+    year: '2025',
+    title: 'Spylt Clone',
+    subtitle: 'Animation-Rich Site Built with React, Tailwind CSS, and GSAP',
+    results: [
+      {
+        title:
+          'Followed a comprehensive tutorial to build a real-world, Awwwards-inspired website from scratch, focusing on beginner-friendly animations and layouts.',
+      },
+      {
+        title:
+          'Implemented advanced GSAP features including text reveal animations, scroll-activated highlighting, smooth horizontal scrolling, clip-path reveals, video mask reveals, and element pinning.',
+      },
+      {
+        title:
+          'Integrated Tailwind CSS for responsive styling and React for component-based structure, with resources like Figma designs and GitHub code for easy replication.',
+      },
+    ],
+    tech: ['React', 'Tailwind CSS', 'GSAP'],
+    link: 'https://syplt-clone-gsap.vercel.app',
+    image: Spylt,
+  },
+  {
+    company: 'Nischal Puri',
+    status: 'Completed',
     year: '2025',
     title: 'AI Assistant with Tools',
     subtitle: 'Advanced AI Agent with Tool Integration',
@@ -53,6 +79,7 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'In Progress',
     year: '2025',
     title: 'Zentry Game',
     subtitle: 'Award-Winning Animated Gaming Website',
@@ -75,6 +102,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2025',
     title: 'Ink Sprout',
     results: [
@@ -88,6 +117,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2025',
     title: 'Book Wiz (Library)',
     results: [
@@ -101,6 +132,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2024',
     title: 'Car Hive',
     results: [
@@ -114,6 +147,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2024',
     title: 'Sole Mate',
     results: [
@@ -127,6 +162,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2025',
     title: 'Tail Sprout',
     results: [
@@ -140,6 +177,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2025',
     title: 'Next Auth',
     results: [
@@ -153,6 +192,8 @@ const portfolioProjects = [
   },
   {
     company: 'Nischal Puri',
+    status: 'Completed',
+
     year: '2025',
     title: 'Personal Portfolio',
     subtitle: 'Rich Animations, Best Viewed on Desktop',
@@ -179,29 +220,6 @@ const portfolioProjects = [
     ],
     link: 'https://nischal-portfolio-mu.vercel.app/',
     image: OldPort,
-  },
-
-  {
-    company: 'Nischal Puri',
-    year: '2025',
-    title: 'Zentry Game',
-    subtitle: 'Award-Winning Animated Gaming Website',
-    results: [
-      {
-        title: 'Built an Awwwards-inspired gaming website with React and Vite.',
-      },
-      {
-        title:
-          'Implemented smooth animations using Tailwind CSS and custom clip-path effects.',
-      },
-      {
-        title:
-          'Created responsive hero, navbar, and Bento grid with 3D tilt effects.',
-      },
-    ],
-    tech: ['React', 'Vite', 'TailwindCSS', 'JavaScript'],
-    link: 'https://zentry-game-three.vercel.app',
-    image: ZentryGame,
   },
 ]
 
@@ -248,9 +266,12 @@ export const ProjectsSection = () => {
                       {project.year}
                     </span>
                   </div>
-                  <h3 className='mt-2 font-serif text-2xl md:mt-5 md:text-4xl'>
-                    {project.title}
-                  </h3>
+                  <div>
+                    <h3 className='mt-2 font-serif text-2xl md:mt-5 md:text-4xl'>
+                      {project.title}
+                      <span className='ml-2 text-xl'>. {project.status}</span>
+                    </h3>
+                  </div>
                   {project.subtitle && (
                     <p className='mt-1 text-sm text-white/70 md:text-base'>
                       {project.subtitle}
