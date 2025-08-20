@@ -10,7 +10,7 @@ import { SkillsSection } from './On-the-table'
 export const AboutMe = () => {
   const timelineData = [
     {
-      title: '2025 – Present',
+      title: 'Jan - Aug, 2025',
       content: (
         <div>
           <p className='mb-2 text-lg font-semibold text-white'>
