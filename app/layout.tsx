@@ -38,9 +38,6 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'Portfolio | Nischal Puri',
   description: 'Portfolio of Nischal Puri - Full Stack Developer',
-  icons: {
-    icon: './../assets/images/memoji-smile.png',
-  },
 }
 
 export default async function RootLayout({

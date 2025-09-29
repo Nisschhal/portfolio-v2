@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Blog | Nischal Puri',
   description: "Nischal Puri's Blog - Full Stack Developer and Tech Enthusiast",
   icons: {
-    icon: '../../assets/images/memoji-computer.png',
+    icon: '/memoji-computer.png',
   },
 }
 export default async function BlogLayout({
