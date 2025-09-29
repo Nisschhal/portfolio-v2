@@ -13,7 +13,7 @@ const calistoga = Calistoga({
 
 export const metadata: Metadata = {
   title: 'Portfolio | Nischal Puri',
-  description: 'Portfolio of Nischal Puri - Full Stack Developer',
+  description: "Nischal Puri's Portfolio - Full Stack Developer",
 }
 
 export default async function PortfolioLayout({
