@@ -9,6 +9,7 @@ import OldPort from '@/public/assets/images/projects/old-port.png'
 import AiChat from '@/public/assets/images/projects/ai-chat.png'
 import ZentryGame from '@/public/assets/images/projects/zentry-game.png'
 import Spylt from '@/public/assets/images/projects/spylt.png'
+import MacBookClone from '@/public/assets/images/projects/mac-landing.png'
 import CheckCircle from '@/assets/icons/check-circle.svg'
 import UpRightArrow from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
@@ -19,6 +20,30 @@ import { useRef } from 'react'
 import Image from 'next/image'
 
 const portfolioProjects = [
+  {
+    company: 'Nischal Puri',
+    status: 'Completed',
+    year: '2025',
+    title: 'MacBook Pro Landing Page',
+    subtitle: 'Apple-Inspired 3D Interactive Website with Scroll Animations',
+    results: [
+      {
+        title:
+          "Cloned Apple's MacBook Pro landing page with immersive 3D product showcase.",
+      },
+      {
+        title:
+          'Implemented interactive 3D rendering using Three.js with color switching and video textures.',
+      },
+      {
+        title:
+          'Enhanced with GSAP scroll animations, pinned sections, and responsive Tailwind CSS.',
+      },
+    ],
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Three.js', 'GSAP', 'Zustand'],
+    link: 'https://mac-landing-gsap-3js.vercel.app',
+    image: MacBookClone,
+  },
   {
     company: 'Nischal Puri',
     status: 'In Progress',
