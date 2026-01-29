@@ -360,3 +360,13 @@
     @apply border border-white/5 bg-white/5 p-0.5 backdrop-blur-sm transition-all duration-300 dark:border-gray-200/20 dark:bg-white/5;
   }
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

@@ -4,109 +4,75 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const navItems = [
-  {
-    name: 'Home',
-    link: '/#hero',
-    path: '/',
-    sectionId: 'hero',
-  },
-  {
-    name: 'About',
-    link: '/#about',
-    path: '/',
-    sectionId: 'about',
-  },
-  {
-    name: 'Projects',
-    link: '/#projects',
-    path: '/',
-    sectionId: 'projects',
-  },
-  {
-    name: 'Contact',
-    link: '/#contact',
-    path: '/',
-    sectionId: 'contact',
-  },
-  {
-    name: 'Blog',
-    link: '/blogs',
-    path: '/blogs',
-    sectionId: 'blogs',
-  },
+  { name: 'Home', link: '/#hero', path: '/', sectionId: 'hero' },
+  { name: 'About', link: '/#about', path: '/', sectionId: 'about' },
+  { name: 'Projects', link: '/#projects', path: '/', sectionId: 'projects' },
+  { name: 'Contact', link: '/#contact', path: '/', sectionId: 'contact' },
+  { name: 'Blog', link: '/blogs', path: '/blogs', sectionId: 'blogs' },
 ]
 
 export const Header = () => {
   const pathname = usePathname()
   const [activeSection, setActiveSection] = useState('')
 
+  // 1. Pathname Logic
+  const isArchivePage = pathname === '/blogs'
+  const isIndividualPost = pathname.startsWith('/blogs/')
+
   useEffect(() => {
-    // Handle Blog page active state
-    if (pathname === '/blogs') {
+    // Stop logic if we are hiding the header anyway
+    if (isIndividualPost) return
+
+    if (isArchivePage) {
       setActiveSection('blogs')
       return
     }
 
-    // IntersectionObserver for sections on main page
     const observer = new IntersectionObserver(
       entries => {
         let maxRatio = 0
         let mostVisibleSection = ''
         entries.forEach(entry => {
-          console.log(
-            `Section: ${entry.target.id}, Intersection Ratio: ${entry.intersectionRatio}, Is Intersecting: ${entry.isIntersecting}`
-          )
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
             maxRatio = entry.intersectionRatio
             mostVisibleSection = entry.target.id
           }
         })
         if (maxRatio >= 0.02) {
-          console.log(`Setting active section to: ${mostVisibleSection}`)
           setActiveSection(mostVisibleSection)
         } else if (pathname === '/') {
-          console.log(`Fallback check, current active: ${activeSection}`)
           setActiveSection(prev => (prev ? prev : 'hero'))
         }
       },
       {
-        threshold: [0.02, 0.05, 0.1, 0.3, 0.5], // Lower threshold for short sections
-        rootMargin: '-30% 0px -30% 0px', // Tighter margin for precision
+        threshold: [0.02, 0.05, 0.1, 0.3, 0.5],
+        rootMargin: '-30% 0px -30% 0px',
       }
     )
 
-    // Observe sections only on main page
     if (pathname === '/') {
       navItems.forEach(item => {
-        if (item.path === '/' && item.sectionId !== 'blogs') {
-          const section = document.querySelector(`#${item.sectionId}`)
-          if (section) {
-            observer.observe(section)
-            console.log(`Observing section: #${item.sectionId}`)
-          } else {
-            console.warn(`Section #${item.sectionId} not found in DOM`)
-          }
-        }
+        const section = document.querySelector(`#${item.sectionId}`)
+        if (section) observer.observe(section)
       })
     }
 
-    // Cleanup observers
-    return () => {
-      if (pathname === '/') {
-        navItems.forEach(item => {
-          if (item.path === '/' && item.sectionId !== 'blogs') {
-            const section = document.querySelector(`#${item.sectionId}`)
-            if (section) {
-              observer.unobserve(section)
-            }
-          }
-        })
-      }
-    }
-  }, [pathname])
+    return () => observer.disconnect()
+  }, [pathname, isArchivePage, isIndividualPost])
+
+  // 2. GUARD: Completely hide header if on an individual post page
+  if (isIndividualPost) return null
 
   return (
-    <div className='sticky top-3 z-[100] flex w-full items-center justify-center px-2 sm:px-4'>
+    <div
+      className='top-3 z-[100] flex w-full items-center justify-center px-2 sm:px-4'
+      style={{
+        // 3. Dynamic Positioning:
+        // If on archive page, use 'absolute' (not sticky).
+        // Otherwise, use 'sticky' for the home page sections.
+        position: isArchivePage ? 'absolute' : 'sticky',
+      }}
+    >
       <div className='xs:max-w-[85vw] relative mx-auto flex w-full max-w-[90vw] items-center justify-center md:min-w-lg lg:min-w-3xl'>
         <nav className='flex gap-0.5 rounded-full border border-white/15 bg-white/10 p-1.5 backdrop-blur-2xl backdrop-saturate-200 md:gap-1 dark:border-gray-700/15 dark:bg-gray-900/20'>
           {navItems.map(item => (
@@ -123,9 +89,13 @@ export const Header = () => {
             </a>
           ))}
         </nav>
-        <div className='absolute right-0'>
-          <ModeToggle />
-        </div>
+
+        {/* Show theme toggle everywhere except individual posts (handled by the guard above) */}
+        {!activeSection.includes('blogs') && (
+          <div className='absolute right-0'>
+            <ModeToggle />
+          </div>
+        )}
       </div>
     </div>
   )
