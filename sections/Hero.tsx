@@ -189,7 +189,7 @@ export const HeroSection = () => {
           </Link>
         </div>
         {/* Bottom Hint - Anchor to the bottom of the 100vh */}
-        <div className='mt-4 flex animate-pulse flex-col items-center gap-2 opacity-30'>
+        <div className='mt-8 flex animate-pulse flex-col items-center gap-2 opacity-30'>
           <span className='text-[9px] font-black tracking-[0.5em] uppercase'>
             Scroll
           </span>

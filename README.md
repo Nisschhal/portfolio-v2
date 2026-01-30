@@ -25,3 +25,60 @@
   - Extrac the frontmatter(metadata) and content(post) from the mdx file
 - Install Tailwindcss/typography for styling mdx content
   `npm install -D @tailwindcss/typography`
+
+## Implement velite for Blog's mdx Content Manager
+
+- install velite, its stable and maintained then content layer
+- define collection and config for your post structure in `velite.config.ts` in
+  root
+  - refer to my `velite.config.ts` i have commented all to better understand
+- once the json file is generated using `npx velite`
+- Now is the time to Render it, but the `body` is in mdx format which is just
+  long string js code
+- To render that body we need helper or higher order MDX Engine to run that long
+  complex js code of body
+- Create `components/{blogs}/mdx-content.tsx` and copy paste the code
+- Note: Don't forget to add `npm install rehype-slug -D` because without this it
+  won't add ids to your headings which is required to higlight the table of
+  content if you want that feature
+
+  ```JS
+    // 1. We import the "Runtime".
+  // Think of this as the "Kitchen Tools" React uses to build HTML tags.
+  import Image from 'next/image'
+  import * as runtime from 'react/jsx-runtime'
+
+  // Next.js image and custom React components that you want to use mdx or blog post body
+  const sharedComponents = {
+    // RULE: "Hijack" the standard HTML <img> tag and use Next.js <Image /> instead.
+    // This makes standard Markdown ![]() syntax optimized for SEO and images automatically.
+    img: (props: any) => (
+      <Image width={1200} height={630} className='rounded-lg border' {...props} />
+    ),
+    // Add other custom components you use (is your using in mdx):
+    // Callout,
+    // Card,
+  }
+
+  // 2. This is a "Helper Function".
+  // 'code' is the long string of JavaScript from Velite.
+  const useMDXComponent = (code: string) => {
+    // 'new Function' takes a string and turns it into a real, runnable program.
+    const fn = new Function(code)
+
+    // We run the program and give it the "Kitchen Tools" (runtime).
+    // It returns the finished React component.
+    return fn({ ...runtime }).default
+  }
+
+  // 3. This is the actual React Component you will use in your pages.
+  export const MDXContent = ({ code }: { code: string }) => {
+    // We use our helper function above to get the "Component"
+    const Component = useMDXComponent(code)
+
+    // We return the component so it shows up on the screen
+    return <Component />
+  }
+  ```
+
+  - Now

@@ -62,9 +62,9 @@ export const BlogHeader = () => {
         }}
         exit={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.4, ease: 'circOut' }}
-        className='fixed top-6 z-[100] flex w-full items-center justify-center px-4'
+        className='pointer-events-none fixed top-6 z-[100] flex w-full items-center justify-center px-4'
       >
-        <div className='flex items-center gap-4'>
+        <div className='pointer-events-auto flex items-center gap-4'>
           {/* Industrial Brand Icon */}
           <Link
             href='/'

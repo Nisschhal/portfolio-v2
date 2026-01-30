@@ -240,7 +240,7 @@
   }
 
   .prose {
-    background-color: theme('colors.gray.900');
+    background-color: #030712;
     --tw-prose-body: #d4d4d4; /* soft light gray */
     --tw-prose-headings: #e0e0e0; /* slightly brighter */
     --tw-prose-lead: #c4c4c4;
@@ -260,7 +260,7 @@
   }
 
   .dark .prose {
-    background-color: #000000;
+    background-color: #030712;
     --tw-prose-body: #d4d4d4; /* SAME as light – unified, subtle tone */
     --tw-prose-headings: #e0e0e0;
     --tw-prose-lead: #c4c4c4;

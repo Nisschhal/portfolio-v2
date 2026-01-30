@@ -49,7 +49,7 @@ export default function BlogsLayout({
 }>) {
   return (
     // Outer container provides the base background color
-    <div className='relative min-h-screen overflow-x-hidden bg-[#030712] font-sans selection:bg-emerald-500/30'>
+    <div className='relative min-h-screen overflow-clip bg-[#030712] font-sans selection:bg-emerald-500/30'>
       {/* LAYER 2: Navigation (Always on top) */}
       <BlogHeader />
       {/* LAYER 1: Background Atmosphere (Stars & Grain) */}
