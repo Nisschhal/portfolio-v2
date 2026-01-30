@@ -2,12 +2,9 @@
 import memojiImage from '@/assets/images/memoji-computer.png'
 import Image from 'next/image'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
-import grainImage from '@/assets/images/grain.jpg'
 import StarIcon from '@/assets/icons/star.svg'
 import SparkleIcon from '@/assets/icons/sparkle.svg'
 import HeroOrbit from '@/components/HeroOrbit'
-import { ShootingStars } from '@/components/ui/shotting-star'
-import { StarsBackground } from '@/components/ui/star-background'
 import Link from 'next/link'
 
 export const HeroSection = () => {
@@ -128,13 +125,21 @@ export const HeroSection = () => {
       <div className='container'>
         {/* Avatar & Status */}
         <div className='flex flex-col items-center'>
+          <div className='animate-float -mt-20 inline-flex items-center gap-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-5 py-2.5 text-[10px] font-black tracking-[0.4em] text-emerald-400 uppercase shadow-[0_0_20px_rgba(16,185,129,0.1)] backdrop-blur-xl'>
+            <span className='relative flex h-2 w-2'>
+              <span className='absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75'></span>
+              <span className='relative h-2 w-2 rounded-full bg-emerald-500'></span>
+            </span>
+            FULL-STACK // AI Agents // Devops
+          </div>
+
           <Image
             src={memojiImage}
             alt='Illustration of a person with laptop'
             title="That's me — your next developer!"
             className='size-[100px]'
           />
-          <div className='inline-flex w-[390px] items-center gap-3 rounded-full border border-gray-800 bg-gray-950 px-4 py-1.5 text-sm font-medium text-white shadow-sm md:max-w-max'>
+          <div className='inline-flex w-[390px] items-center gap-3 rounded-full border border-white/40 bg-gray-950 px-4 py-1.5 text-sm font-medium text-white shadow-sm md:max-w-max'>
             <div className='relative size-2.5 rounded-full bg-green-500'>
               <div className='animate-large-ping absolute inset-0 rounded-full bg-green-500' />
             </div>
@@ -154,7 +159,7 @@ export const HeroSection = () => {
             I turn your vision into intuitive, high-performance websites — with
             code that speaks and design that connects.
             <br />
-            <span className='font-space-grotesk mt-2 block text-sm italic'>
+            <span className='font-space-grotesk mt-2 block text-sm text-emerald-400 italic'>
               🚀 Ready to launch something meaningful? Let’s build it —
               together.
             </span>
@@ -182,6 +187,13 @@ export const HeroSection = () => {
             </span>
             <span className='font-semibold'>Let's Connect</span>
           </Link>
+        </div>
+        {/* Bottom Hint - Anchor to the bottom of the 100vh */}
+        <div className='mt-4 flex animate-pulse flex-col items-center gap-2 opacity-30'>
+          <span className='text-[9px] font-black tracking-[0.5em] uppercase'>
+            Scroll
+          </span>
+          <div className='h-14 w-px bg-gradient-to-b from-emerald-500 to-transparent' />
         </div>
       </div>
     </div>
