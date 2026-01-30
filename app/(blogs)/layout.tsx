@@ -16,7 +16,7 @@ export default async function BlogLayout({
 }>) {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       {children}
     </div>
   )

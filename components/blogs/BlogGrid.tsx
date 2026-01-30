@@ -87,7 +87,12 @@ import { Search, Command } from 'lucide-react'
 import CategorySlider from './CategorySlider'
 import BlogCard from './BlogCard'
 
-const BlogGrid = ({ posts }: { posts: any[] }) => {
+interface BlogGridProps {
+  posts: any[]
+  isArchive?: boolean // Add this prop
+}
+
+const BlogGrid = ({ posts, isArchive = false }: BlogGridProps) => {
   const [search, setSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
 
@@ -115,7 +120,9 @@ const BlogGrid = ({ posts }: { posts: any[] }) => {
     <section className='mx-auto max-w-7xl px-4 py-12 md:px-6'>
       {/* Sticky Industrial Filter Bar */}
       <div className='sticky top-4 z-[40] mb-12 flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#030712]/80 p-3 shadow-2xl backdrop-blur-md'>
-        <div className='flex flex-col gap-3 lg:flex-row'>
+        <div
+          className={`flex flex-col gap-4 ${!isArchive ? 'lg:flex-row lg:items-center' : ''}`}
+        >
           <div className='group relative flex-1'>
             <Search className='absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-600 transition-colors group-focus-within:text-emerald-500' />
             <input
@@ -126,7 +133,7 @@ const BlogGrid = ({ posts }: { posts: any[] }) => {
               onChange={e => setSearch(e.target.value)}
             />
           </div>
-          <div className='lg:w-2/3'>
+          <div className=''>
             <CategorySlider
               categories={categories}
               active={activeCategory}
@@ -135,6 +142,7 @@ const BlogGrid = ({ posts }: { posts: any[] }) => {
                 setActiveCategory('all')
                 setSearch('')
               }}
+              isArchive={isArchive}
             />
           </div>
         </div>
