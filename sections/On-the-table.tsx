@@ -202,8 +202,8 @@ const aiSkills = [
   { title: 'RAG Pipelines', emoji: '🧠', left: '35%', top: '35%' },
   { title: 'AI Agents', emoji: '🤖', left: '10%', top: '65%' },
   { title: 'Vector DBs', emoji: '📁', left: '55%', top: '15%' },
-  { title: 'OpenAI', emoji: '✨', left: '45%', top: '60%' },
-  { title: 'IBM wxflows', emoji: '☁️', left: '65%', top: '40%' },
+  { title: 'LLMs', emoji: '✨', left: '45%', top: '60%' },
+  { title: 'Inngest', emoji: '☁️', left: '65%', top: '40%' },
 ]
 
 export const SkillsSection = () => {
@@ -312,7 +312,7 @@ export const SkillsSection = () => {
                  <h4 className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.4em] mb-3">What&apos;s Next?</h4>
                  <h3 className='text-xl font-bold text-white mb-4'>Scalable Microservices</h3>
                  <p className='text-xs text-neutral-400 leading-relaxed font-mono'>
-                    Currently mastering <span className='text-white'>NestJS</span>, <span className='text-white'>Kafka</span> streaming, and cloud architectures.
+                    Currently mastering <span className='text-white'>NestJS</span>, <span className='text-white'>Kafka</span>  <span className='text-white'>Redis</span> streaming, and cloud architectures.
                  </p>
                </div>
             </Card>
