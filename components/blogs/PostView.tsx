@@ -507,7 +507,7 @@ const PostView = ({ post }: { post: any }) => {
           style={{ transform: `scale(1.05) translateY(${progress * 0.1}px)` }} // Subtle parallax
           alt=''
         />
-        <div className='absolute inset-0 bg-gradient-to-b from-[#030712]/90 via-[#030712]/40 to-[#030712]' />
+        <div className='absolute inset-0 bg-gradient-to-b from-[#030712]/5 via-[#030712]/5 to-[#030712]' />
 
         <div className='relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-8 pb-16'>
           {/* Top Bar: Navigation */}

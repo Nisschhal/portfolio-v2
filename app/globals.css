@@ -440,17 +440,6 @@ code > [data-line]::before {
   color: gray;
 }
 
-code[data-line-numbers-max-digits='2'] > [data-line]::before {
-  width: 2rem;
-}
-
-code[data-line-numbers-max-digits='3'] > [data-line]::before {
-  width: 3rem;
-}
-[data-rehype-pretty-code-figure] {
-  position: relative;
-}
-
 [data-rehype-pretty-code-title] {
   position: absolute;
   top: -13px;
