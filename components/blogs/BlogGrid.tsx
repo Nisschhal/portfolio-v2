@@ -123,7 +123,7 @@ const BlogGrid = ({ posts, isArchive = false }: BlogGridProps) => {
         <div
           className={`flex flex-col gap-4 ${!isArchive ? 'lg:flex-row lg:items-center' : ''}`}
         >
-          <div className='group relative flex-1'>
+          <div className='group relative min-w-sm flex-1'>
             <Search className='absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-600 transition-colors group-focus-within:text-emerald-500' />
             <input
               type='text'
@@ -133,7 +133,7 @@ const BlogGrid = ({ posts, isArchive = false }: BlogGridProps) => {
               onChange={e => setSearch(e.target.value)}
             />
           </div>
-          <div className=''>
+          <div className='w-full min-w-0 overflow-hidden'>
             <CategorySlider
               categories={categories}
               active={activeCategory}

@@ -56,8 +56,9 @@ export default defineConfig({
   // Where final json file and image ends up
   output: {
     data: '.velite', // Where JSON data and Types go (Default: .velite)
-    assets: 'public/static', // Where optimized images go (Default: public/static)
-    base: '/static/', // The URL prefix for images (Default: /static/)
+    assets: 'public/blogs', // default is /public/static // Where optimized images go (Default: public/static)
+    base: '/blogs/', // The URL prefix for images (Default: /static/)
+    name: '[name].[ext]', // <--- Remove [hash] in image here
     clean: true, // Remove old files before building again
   },
   mdx: {

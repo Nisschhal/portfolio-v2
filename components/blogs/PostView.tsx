@@ -415,7 +415,7 @@ import {
   Layout,
 } from 'lucide-react'
 import Link from 'next/link'
-import { MDXContent } from './Mdx-content'
+import { MDXContent } from './MdxContent'
 
 const PostView = ({ post }: { post: any }) => {
   // --- STATE ---

@@ -32,6 +32,11 @@
 - define collection and config for your post structure in `velite.config.ts` in
   root
   - refer to my `velite.config.ts` i have commented all to better understand
+  - Refer to my `velite.config.ts` file make sure to remove hash because velite
+    engine yet can't figure out image url with hash
+  - Also make sure image name doesn't clash with one another put the cover-slug
+    or something to make image name unique by yourself
+  - maybe in future, by the time you are using might resolve that issue
 - once the json file is generated using `npx velite`
 - Now is the time to Render it, but the `body` is in mdx format which is just
   long string js code
@@ -55,6 +60,7 @@
     img: (props: any) => (
       <Image width={1200} height={630} className='rounded-lg border' {...props} />
     ),
+    Image,
     // Add other custom components you use (is your using in mdx):
     // Callout,
     // Card,
@@ -81,4 +87,19 @@
   }
   ```
 
-  - Now
+  - Now all the generated file will be in `.velite/index.t` and images in
+    `public/static` or differnt name in public if you changed in config file
+  - If you want to use Images in the body of MDX content then:
+    - Either use `![Image Name](/static/image-name.jpg) this will be transformed
+      into Next image from mdx component we configured
+    - or
+      ```JS
+          <Image
+          src='/blogs/carlos-muza-hpjSkU2UYSU-unsplash.jpg'
+          width='718'
+          height='404'
+          alt='Image'
+          sizes='100vw'
+          />
+      ```
+      this will use default next Image

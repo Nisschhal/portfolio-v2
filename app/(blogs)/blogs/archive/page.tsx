@@ -98,13 +98,19 @@
 'use client'
 
 import React from 'react'
-import FeaturedSlider from '@/components/blogs/FeaturedSlider'
-import BlogGrid from '@/components/blogs/BlogGrid'
-import { ALL_BLOGS } from '@/data/blogs'
+
 import { History, Activity, Flame, UserCheck } from 'lucide-react'
+import { posts } from '@velite' // 1. Import real data
+import BlogGrid from '@/components/blogs/BlogGrid'
+import FeaturedSlider from '@/components/blogs/FeatureSlider'
 
 export default function ArchivePage() {
-  const featuredPosts = ALL_BLOGS.slice(0, 3)
+  // Sort posts by date (newest first)
+  const sortedPosts = posts.sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  )
+  const featuredPosts = sortedPosts.slice(0, 3)
 
   return (
     // REMOVED: bg-[#030712] and min-h-screen
@@ -148,7 +154,7 @@ export default function ArchivePage() {
             {[
               {
                 label: 'Knowledge Units',
-                value: ALL_BLOGS.length,
+                value: sortedPosts.length,
                 icon: History,
               },
               { label: 'Build Journey', value: '4+ Years', icon: Activity },
@@ -176,7 +182,7 @@ export default function ArchivePage() {
 
       {/* Grid Explorer - isArchive tells the grid to reset instead of redirect */}
       <section id='explorer' className='scroll-mt-24'>
-        <BlogGrid posts={ALL_BLOGS} isArchive={true} />
+        <BlogGrid posts={sortedPosts} isArchive={true} />
       </section>
 
       <div className='pointer-events-none h-32 bg-gradient-to-t from-emerald-500/[0.02] to-transparent' />

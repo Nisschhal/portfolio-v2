@@ -2,11 +2,8 @@
 
 import React from 'react'
 import HeroSection from './_sections/HeroSection'
-import BlogGrid from '@/components/blogs/BlogGrid'
-import { ALL_BLOGS } from '@/data/blogs'
-import NewsletterSection from '@/components/blogs/Newsletter'
-import Footer from '../../../components/blogs/Footer'
 import { posts } from '@velite' // 1. Import real data
+import BlogGrid from '@/components/blogs/BlogGrid'
 
 // Unified Dummy Data matching your JSON format exactly
 

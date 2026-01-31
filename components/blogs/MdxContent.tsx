@@ -1,6 +1,6 @@
 import { Check, Copy } from 'lucide-react'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import * as runtime from 'react/jsx-runtime'
 
 // Custom Pre component with Copy Button
@@ -50,6 +50,7 @@ const sharedComponents = {
   // Add other components you use everywhere here:
   // Callout,
   // Card,
+  Image,
 }
 
 /**
@@ -60,8 +61,12 @@ const sharedComponents = {
 const useMDXComponent = (code: string) => {
   // 'new Function' executes the string as code.
   // We pass the 'runtime' so the code knows how to create <div>, <h1>, etc.
-  const fn = new Function(code)
-  return fn({ ...runtime }).default
+  const Component = useMemo(() => {
+    const fn = new Function('runtime', code)
+    return fn({ ...runtime }).default
+  }, [code])
+
+  return Component
 }
 
 interface MDXProps {

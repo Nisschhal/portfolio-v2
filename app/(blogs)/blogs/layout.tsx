@@ -3,9 +3,12 @@ import { ShootingStars } from '@/components/ui/shotting-star'
 import { StarsBackground } from '@/components/ui/star-background'
 import grainImage from '@/assets/images/grain.jpg'
 import { Header } from '@/sections/Header'
-import Footer from '../../../components/blogs/Footer'
+import { Footer } from '@/sections/Footer'
 import NewsletterSection from '@/components/blogs/Newsletter'
 import { BlogHeader } from '@/components/blogs/BlogHeader'
+// import Footer from '../../../components/blogs/Footer'
+// import NewsletterSection from '@/components/blogs/Newsletter'
+// import { BlogHeader } from '@/components/blogs/BlogHeader'
 
 export const metadata: Metadata = {
   // 🔹 SEO/AEO: Structured for Search & AI Answer Engines
