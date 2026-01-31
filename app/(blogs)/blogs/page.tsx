@@ -3,8 +3,8 @@
 import React from 'react'
 import { posts } from '@velite' // 1. Import real data
 import BlogGrid from '@/components/blogs/BlogGrid'
-import { HeroSection } from '@/sections/Hero'
 import { Metadata } from 'next'
+import BlogHero from '@/components/blogs/BlogHero'
 
 export const metadata: Metadata = {
   title: {
@@ -36,7 +36,7 @@ export default function BlogsPage() {
 
   return (
     <main className='br relative min-h-screen selection:bg-emerald-500/30'>
-      <HeroSection />
+      <BlogHero />
 
       {/* Pass your JSON data to the grid */}
       <BlogGrid posts={sortedPosts} />

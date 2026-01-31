@@ -9,7 +9,6 @@ tags:
   - git
   - github
   - ssh
-  - devops
   - security
 slug: setting-up-ssh-keys-for-github-from-scratch-with-multiple-accounts
 ---

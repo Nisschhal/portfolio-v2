@@ -117,7 +117,7 @@ const BlogGrid = ({ posts, isArchive = false }: BlogGridProps) => {
   })
 
   return (
-    <section className='mx-auto max-w-7xl px-4 py-12 md:px-6'>
+    <section id="explorer" className='mx-auto max-w-7xl px-4 py-12 md:px-6'>
       {/* Sticky Industrial Filter Bar */}
       <div className='sticky top-4 z-[40] mb-12 flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#030712]/80 p-3 shadow-2xl backdrop-blur-md'>
         <div
