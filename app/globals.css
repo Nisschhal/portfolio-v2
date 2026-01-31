@@ -244,7 +244,7 @@
     --tw-prose-body: #d4d4d4; /* soft light gray */
     --tw-prose-headings: #e0e0e0; /* slightly brighter */
     --tw-prose-lead: #c4c4c4;
-    --tw-prose-links: #5eead4; /* teal-300 */
+    --tw-prose-links: theme('colors.emerald.400'); /* teal-300 */
     --tw-prose-bold: #ffffff;
     --tw-prose-counters: #a1a1aa; /* zinc-400 */
     --tw-prose-bullets: #a1a1aa;
@@ -264,7 +264,7 @@
     --tw-prose-body: #d4d4d4; /* SAME as light – unified, subtle tone */
     --tw-prose-headings: #e0e0e0;
     --tw-prose-lead: #c4c4c4;
-    --tw-prose-links: #2dd4bf; /* subtle cyan-teal */
+    --tw-prose-links: theme('colors.emerald.400'); /* subtle cyan-teal */
     --tw-prose-bold: #f4f4f5;
     --tw-prose-counters: #52525b; /* zinc-600 */
     --tw-prose-bullets: #52525b;
@@ -386,4 +386,78 @@
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
+}
+
+/* // Href in all text */
+p > a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* // Headings with anchor style */
+
+h1 > a,
+h2 > a,
+h3 > a {
+  text-decoration: none;
+  color: theme('colors.emerald.500');
+}
+
+h1 > a:after,
+h2 > a:after,
+h3 > a:after {
+  content: '🔗'; /* Or "\0023" for literal # if needed */
+  font-size: 0.8rem;
+  color: theme('colors.gray.500'); /* Optional: Tailwind color */
+  margin-left: 0.25rem; /* Space it from text */
+  opacity: 0; /* Fade in on hover */
+  transition: opacity 0.4s ease; /* Smooth */
+  cursor: pointer;
+}
+/* Target ::after of .icon.icon-link inside hovered <a> that are direct children of h1/h2/h3 */
+h1:hover > a:after,
+h2:hover > a:after,
+h3:hover > a:after {
+  opacity: 1;
+}
+
+/* Line number for Code block  */
+code {
+  counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+code[data-line-numbers-max-digits='2'] > [data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits='3'] > [data-line]::before {
+  width: 3rem;
+}
+[data-rehype-pretty-code-figure] {
+  position: relative;
+}
+
+[data-rehype-pretty-code-title] {
+  position: absolute;
+  top: -13px;
+  right: 1px;
+  background-color: var(--color-accent);
+  color: var(--color-light);
+  padding: 4px 8px;
+  font-size: 1rem;
+  border-radius: 4px;
 }

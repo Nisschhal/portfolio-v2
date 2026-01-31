@@ -1,6 +1,8 @@
 import { defineCollection, defineConfig, s } from 'velite'
 import rehypeSlug from 'rehype-slug' // Import the plugin
 import rehypePrettyCode from 'rehype-pretty-code' // 1. Import
+import remarkGfm from 'remark-gfm'
+import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 
 const posts = defineCollection({
   name: 'Post', // The TypeScript type name generated
@@ -62,7 +64,17 @@ export default defineConfig({
     clean: true, // Remove old files before building again
   },
   mdx: {
-    // THIS LINE IS THE KEY: It adds IDs to your <h2>, <h3>, etc.
-    rehypePlugins: [rehypeSlug],
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      // THIS LINE IS THE KEY: It adds IDs to your <h2>, <h3>, etc.
+      rehypeSlug,
+      [rehypeAutoLinkHeadings, { behavior: 'wrap' }],
+      [
+        rehypePrettyCode,
+        {
+          theme: 'dracula',
+        },
+      ],
+    ],
   },
 })

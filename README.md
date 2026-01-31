@@ -103,3 +103,119 @@
           />
       ```
       this will use default next Image
+
+## The plugin System
+
+- MDX is just a long text of string. If you use it in website it won't convert
+  into html stucture, so we need a way to transfer that #heading ##heading and
+  so on.
+- Under the hood of velite there is a basic remark parser which converts the mdx
+  into usable form of string, React Component that we used in useMDX function to
+  get html structure.
+- The process (Unified Assembly Line):
+- You have: ## I am heading 2
+- 1. Remarks Parsing(remark-parse) reads this text and then turns into Syntax
+     Tree (specifically an MDAST - Markdown Abstract Syntax Tree), A JSON object
+     which describes the logic to write this line.
+
+     ```JSON
+      {
+        "type": "heading",
+        "depth": 2,
+        "children": [
+          { "type": "text", "value": "I am heading 2" }
+        ]
+      }
+     ```
+
+     - At this point, it is just a JSON info about text being "heading" level 2.
+       No HTML <h2>.
+
+- 2. If there any remark-plugins then they would be applied in this phase. Such
+     as 'remark-emoji' would conver the :rocket: to 🚀 if it was in the text.
+- 3. Then comes Briding remark-rehype which translate the Markdown tree into an
+     HTML tree (HAST - HTML Abstract Syntax Tree).
+     ```JSON
+      {
+        "type": "element",
+        "tagName": "h2",
+        "properties": {},
+        "children": [
+          { "type": "text", "value": "I am heading 2" }
+        ]
+      }
+     ```
+  - Now it is an <h2> tag, but it’s still just a data object.
+  - 4. If you have any rehype-plugins then it is applied here. Such as
+       rehype-slug, which adds the id to heading.
+
+    ```JSON
+          {
+        "type": "element",
+        "tagName": "h2",
+        "properties": {
+          "id": "i-am-heading-2"
+        },
+        "children": [
+          { "type": "text", "value": "I am heading 2" }
+        ]
+      }
+    ```
+
+    - This is the place where plugins such as "Shiki" would also add colors to
+      your code blocks. Basically everything that can be done to html to
+      beautify is done here.
+
+  - 5. Compilation (MDX Engine) which transforms the HTML object and write the
+       JS function string. Which can be parsed by runtime engine. That we did
+       into `mdx-content.tsx` component. It looks something like this:
+
+       ```JS
+        // A simplified version of what's in your .velite folder
+        function _createMdxContent(props) {
+          const { components } = props;
+          return runtime.jsx(components.h2 || "h2", {
+            id: "i-am-heading-2",
+            children: "I am heading 2"
+          });
+        }
+       ```
+
+       - It looks like React component, which works along side our custom/shared
+         Components.
+    - 6. Final (Execution) which is done by MDXContent that runs this function
+         and turns them into Real DOM node with all infomation like id and so
+         on. <h2 id="i-am-heading-2">I am heading 2</h2>
+
+### Process:
+
+1. Raw Text: ## Heading --> 2. Remark (MDAST): { type: "heading" } --> 3.
+   Bridge: (Translating Markdown logic to HTML tags) --> 4. Rehype (HAST): {
+   tagName: "h2", properties: { id: "heading" } } --> 5. Compiler:
+   runtime.jsx("h2", { id: "heading" }) --> 6. DOM: <h2> on your screen.
+
+#### Plugins I used:
+
+- remark-gfm: to support GFM Github Flavour Markdown (autolink literals,
+  footnotes, strikethrough, tables, tasklists).
+- rehype-slug: adds ids to headings.
+- rehype-autolink-headings: add links from headings back to themselves, helpful
+  when you share links to point to specific heading [generates when user click
+  the heading].
+- rehype-pretty-code: Rehype plugin powered by the **shiki** syntax highlighter
+  that provides beautiful code blocks for Markdown or MDX.
+  [Rehype Pretty Code Docs](https://rehype-pretty.pages.dev/)
+- @tailwindcss/typography: Because TailwindCSS resets every default css there is
+  in html structure that every browser follows. So that it can apply its own
+  design system/style with className.
+  - So again with mdx transform html there is not css so either we put one line
+    at a time in global.css or use existing: @tailwindcss/typography for html
+    tags coming from mdx. Hence, className="prose" on mdx wrapper.
+
+  - But rehype-pretty-code is untouched by tailwind/typography plugins,
+    rehype-pretty-code just adds the wrapper title/label around tag which
+    contains codes snippets, so we can target/select them in global.css to style
+    as we want.
+
+  - **Don't forget to delete the generated .velite and cached .next folder** to
+    apply new changes of plugins.

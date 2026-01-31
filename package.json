@@ -55,6 +55,8 @@
     "react-icons": "^5.5.0",
     "react-use": "^17.6.0",
     "reactjs-tiptap-editor": "^0.2.20",
+    "rehype-autolink-headings": "^7.1.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.2.0",
     "tw-animate-css": "^1.2.5",
     "zustand": "^5.0.3"
