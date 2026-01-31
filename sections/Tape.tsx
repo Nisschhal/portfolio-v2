@@ -1,5 +1,4 @@
 import StarIcon from '@/assets/icons/star.svg'
-import { i } from 'motion/react-client'
 import { Fragment } from 'react'
 
 const words = [

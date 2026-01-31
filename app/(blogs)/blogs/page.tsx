@@ -1,11 +1,31 @@
-'use client'
+
 
 import React from 'react'
-import HeroSection from './_sections/HeroSection'
 import { posts } from '@velite' // 1. Import real data
 import BlogGrid from '@/components/blogs/BlogGrid'
+import { HeroSection } from '@/sections/Hero'
+import { Metadata } from 'next'
 
-// Unified Dummy Data matching your JSON format exactly
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Learning Logs by Nischal Puri',
+    default: 'Learning Logs | Nischal Puri',
+  },
+  description: 'Technical ledger of architectural breakthroughs and build notes.',
+  openGraph: {
+    title: 'The Learning Logs | Nischal Puri',
+    description: 'Documenting the raw process of building and scaling modern systems.',
+    url: 'https://nischaldev.vercel.app/blogs',
+    images: [
+      {
+        url: 'https://nischaldev.vercel.app/og-main-blog.png', // 👈 Put a generic "Blog Hero" image in your public folder
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+}
+
 
 export default function BlogsPage() {
   // Sort posts by date (newest first)
