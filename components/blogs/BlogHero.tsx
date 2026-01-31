@@ -131,7 +131,7 @@ const BlogHero = () => {
               <span className='absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75'></span>
               <span className='h-2 w-2 rounded-full bg-emerald-500'></span>
             </span>
-            V.2025-2026 LOGS
+            V.2026 LOGS || GETTING STARTED
           </div>
 
           {/* Avatar */}

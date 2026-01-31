@@ -157,7 +157,7 @@ export default function ArchivePage() {
                 value: sortedPosts.length,
                 icon: History,
               },
-              { label: 'Build Journey', value: '4+ Years', icon: Activity },
+              { label: 'Build Journey', value: '2+ Years', icon: Activity },
               { label: 'Bugs Smashed', value: 'Countless', icon: Flame },
               { label: 'Mental State', value: 'Curious', icon: UserCheck },
             ].map((stat, i) => (
