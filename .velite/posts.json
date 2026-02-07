@@ -6,7 +6,6 @@
       "git",
       "github",
       "ssh",
-      "devops",
       "security"
     ],
     "image": {
@@ -111,6 +110,88 @@
       "headline": "Setting Up SSH Keys for GitHub: My Journey from Scratch with Multiple Accounts (2025)",
       "image": "/blogs/generate-ssh-key-1200x675.jpg",
       "datePublished": "2025-12-18T00:00:00.000Z",
+      "author": "Nischal Puri"
+    }
+  },
+  {
+    "title": "Overcoming the Fear of Docker: Why I Had to Learn Linux First to Finally Make it Click",
+    "description": "A raw and honest look at my journey from avoiding Docker to mastering it. Learn why Linux is the essential missing link and how the 'Build, Image, Container' workflow solves the 'it works on my machine' nightmare forever.",
+    "tags": [
+      "docker",
+      "linux",
+      "devops",
+      "architecture"
+    ],
+    "image": {
+      "src": "/blogs/docker.png",
+      "height": 794,
+      "width": 2544,
+      "blurDataURL": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACwAQCdASoIAAIADMDOJZgCdADdGFuAAP3S1k0AoxrUUQQW1IgAAA==",
+      "blurWidth": 8,
+      "blurHeight": 2
+    },
+    "publishedAt": "2024-05-20T00:00:00.000Z",
+    "author": "Nischal Puri",
+    "updatedAt": "2024-05-20T00:00:00.000Z",
+    "body": "const{Fragment:e,jsx:n,jsxs:t}=arguments[0];function _createMdxContent(i){const r={a:\"a\",blockquote:\"blockquote\",code:\"code\",em:\"em\",h1:\"h1\",h2:\"h2\",h3:\"h3\",hr:\"hr\",img:\"img\",li:\"li\",ol:\"ol\",p:\"p\",strong:\"strong\",...i.components};return t(e,{children:[n(r.h1,{id:\"getting-started-the-procrastination-loop\",children:n(r.a,{href:\"#getting-started-the-procrastination-loop\",children:\"Getting Started: The Procrastination Loop\"})}),\"\\n\",n(r.p,{children:'For the longest time, Docker was on my \"I’ll do it tomorrow\" list.'}),\"\\n\",t(r.p,{children:[\"I knew I needed to learn it. I saw it in every job description. But honestly? \",n(r.strong,{children:\"It scared me.\"}),' I had this internal narrative that Docker was only for \"Senior Developers\" or \"DevOps Wizards\"—the kind of people who speak in binary and never leave the terminal. As a developer in the middle of a transition, I felt like I wasn\\'t \"ready\" for it.']}),\"\\n\",t(r.p,{children:[\"But then I had a realization: \",n(r.strong,{children:\"In the age of AI, the gap between Senior and Junior is shrinking.\"}),' AI can help you write code, but it can’t (yet) architect a system or organize how that code is shipped. The new \"hero\" isn\\'t just the one who writes the best functions; it’s the one who knows how to ',n(r.strong,{children:\"organize and architect the system.\"})]}),\"\\n\",n(r.p,{children:\"So, I stopped making excuses and jumped in.\"}),\"\\n\",n(r.hr,{}),\"\\n\",n(r.h2,{id:\"the-first-failure-jumping-into-the-deep-end\",children:n(r.a,{href:\"#the-first-failure-jumping-into-the-deep-end\",children:\"The First Failure: Jumping into the Deep End\"})}),\"\\n\",t(r.p,{children:[\"My first attempt was a disaster. I did what most people do: I searched for a tutorial. Everywhere I looked, I was hit in the face with complex \",n(r.code,{children:\".yaml\"}),\" files and technical jargon without any context.\"]}),\"\\n\",t(r.p,{children:[n(r.strong,{children:\"It didn't click.\"}),\" I was trying to build a house without knowing what a brick was.\"]}),\"\\n\",t(r.p,{children:[\"After some deep research, I realized my mistake. As a Full Stack developer aiming for Cloud or CI/CD, there is one non-negotiable prerequisite: \",n(r.strong,{children:\"Linux.\"})]}),\"\\n\",n(r.p,{children:\"Almost every server in the world runs on Linux. Docker is essentially a feature of Linux. Trying to learn Docker without knowing Linux is like trying to learn to drive a manual car without knowing what a clutch is.\"}),\"\\n\",n(r.h2,{id:\"linux-the-mediator\",children:n(r.a,{href:\"#linux-the-mediator\",children:\"Linux: The Mediator\"})}),\"\\n\",t(r.p,{children:[\"I thought, \",n(r.em,{children:'\"How hard can it be? It’s just an OS like Windows.\"'})]}),\"\\n\",t(r.p,{children:['I’d messed with Linux in High School, but I stayed in the \"safe zone\" of the GUI (the buttons and windows). This time, I went deep into the ',n(r.strong,{children:\"CLI (Command Line Interface).\"})]}),\"\\n\",t(r.p,{children:[\"At first, it was boring. Then it was tough. But as I drilled commands like \",n(r.code,{children:\"systemctl\"}),\", \",n(r.code,{children:\"chmod\"}),\", and \",n(r.code,{children:\"chown\"}),' into my muscle memory, something changed. I realized the CLI wasn\\'t just \"old-school\"—it was ',n(r.strong,{children:\"faster\"}),\".\"]}),\"\\n\",t(r.blockquote,{children:[\"\\n\",t(r.p,{children:[n(r.strong,{children:\"Pro Tip:\"}),\" If you're on a Mac, you're already halfway there. MacOS is Unix-based, so your terminal is very similar to a Linux server. Using my Mac terminal daily helped turn these commands into second nature.\"]}),\"\\n\"]}),\"\\n\",t(r.p,{children:[\"I learned about networking, user groups, and services. At the time, I didn't know \",n(r.em,{children:\"why\"}),\" I’d need to manage a user group in the cloud, but I trusted the process.\"]}),\"\\n\",n(r.h2,{id:\"the-aha-moment\",children:n(r.a,{href:\"#the-aha-moment\",children:'The \"Aha!\" Moment'})}),\"\\n\",t(r.p,{children:[\"Once I felt comfortable in Linux, I went back to Docker. \",n(r.strong,{children:'Suddenly, the \"scary\" stuff felt easy.'})]}),\"\\n\",t(r.p,{children:[\"Even moving from Docker to Kubernetes (K8s) didn't feel like a leap anymore. It was just a few extra commands on top of the Linux foundation I had already built. I could finally see how the dots connected: \",n(r.strong,{children:\"Linux is the soil, Docker is the pot, and your App is the plant.\"})]}),\"\\n\",n(r.hr,{}),\"\\n\",n(r.h2,{id:\"why-do-we-actually-need-docker\",children:n(r.a,{href:\"#why-do-we-actually-need-docker\",children:\"Why do we actually need Docker?\"})}),\"\\n\",t(r.p,{children:[\"The history of software development is plagued by one sentence: \",n(r.strong,{children:'\"But it works on my machine!\"'})]}),\"\\n\",n(r.h3,{id:\"the-problem\",children:n(r.a,{href:\"#the-problem\",children:\"The Problem\"})}),\"\\n\",n(r.p,{children:\"Every developer's laptop is a unique snowflake. You might have Python 3.9 on Windows; I might have Python 3.11 on a Mac. When I send you my code, it breaks. In the old days, you’d have to spend hours (or days) debugging dependencies just to get a project to run.\"}),\"\\n\",n(r.h3,{id:\"the-solution\",children:n(r.a,{href:\"#the-solution\",children:\"The Solution\"})}),\"\\n\",t(r.p,{children:[\"Docker creates a \",n(r.strong,{children:\"standardized environment.\"}),' It doesn\\'t matter if your server is running Ubuntu, RedHat, or Windows—if it has Docker installed, it can run your \"container\" perfectly.']}),\"\\n\",n(r.p,{children:\"To keep it simple, here are the only four terms you need to master:\"}),\"\\n\",t(r.ol,{children:[\"\\n\",t(r.li,{children:[n(r.strong,{children:\"Docker\"}),\": The \",n(r.strong,{children:\"Engine\"}),\". The system that manages and fires up the containers.\"]}),\"\\n\",t(r.li,{children:[n(r.strong,{children:\"Dockerfile\"}),\": The \",n(r.strong,{children:\"Recipe\"}),\". A text file with instructions on what your app needs (Node.js, Python, libraries).\"]}),\"\\n\",t(r.li,{children:[n(r.strong,{children:\"Docker Image\"}),\": The \",n(r.strong,{children:\"Package\"}),'. The \"frozen\" output of your Dockerfile. It contains your code and everything needed to run it.']}),\"\\n\",t(r.li,{children:[n(r.strong,{children:\"Docker Container\"}),\": The \",n(r.strong,{children:\"Instance\"}),\". The live, running version of your image.\"]}),\"\\n\"]}),\"\\n\",n(r.hr,{}),\"\\n\",n(r.p,{children:n(r.img,{src:\"/blogs/virtualization.png\",alt:\"Virtualization Architecture\"})}),\"\\n\",\"\\n\",n(r.h2,{id:\"closing-thoughts\",children:n(r.a,{href:\"#closing-thoughts\",children:\"Closing Thoughts\"})}),\"\\n\",t(r.p,{children:[\"If you are feeling stuck or intimidated by Docker, \",n(r.strong,{children:\"stop.\"}),\" Go back to the basics. Spend a week in the Linux terminal. Learn how the underlying system works.\"]}),\"\\n\",n(r.p,{children:\"Docker isn't just a tool; it’s an industry standard for shipping software. Once you understand that it's just a way to \\\"box up\\\" your Linux environment and move it anywhere, the magic disappears—and you become the architect of your own systems.\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"Next up: I’ll show you how to write your first Dockerfile without the headache.\"})})]})}return{default:function(e={}){const{wrapper:t}=e.components||{};return t?n(t,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [
+      {
+        "title": "Getting Started: The Procrastination Loop",
+        "url": "#getting-started-the-procrastination-loop",
+        "items": [
+          {
+            "title": "The First Failure: Jumping into the Deep End",
+            "url": "#the-first-failure-jumping-into-the-deep-end",
+            "items": []
+          },
+          {
+            "title": "Linux: The Mediator",
+            "url": "#linux-the-mediator",
+            "items": []
+          },
+          {
+            "title": "The \"Aha!\" Moment",
+            "url": "#the-aha-moment",
+            "items": []
+          },
+          {
+            "title": "Why do we actually need Docker?",
+            "url": "#why-do-we-actually-need-docker",
+            "items": [
+              {
+                "title": "The Problem",
+                "url": "#the-problem",
+                "items": []
+              },
+              {
+                "title": "The Solution",
+                "url": "#the-solution",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "Closing Thoughts",
+            "url": "#closing-thoughts",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "readingTime": 3,
+      "wordCount": 764
+    },
+    "slug": "overcoming-fear-of-docker-linux-prerequisite-guide",
+    "isLongRead": false,
+    "url": "/blogs/overcoming-fear-of-docker-linux-prerequisite-guide",
+    "readingTime": "3 min read",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Overcoming the Fear of Docker: Why I Had to Learn Linux First to Finally Make it Click",
+      "image": "/blogs/docker.png",
+      "datePublished": "2024-05-20T00:00:00.000Z",
       "author": "Nischal Puri"
     }
   }
