@@ -48,7 +48,7 @@ Here is the simplified, complete list:
 ![Virtualization Architecture](./virtualization.png)
 
 --- 
-## Docker Setup
+## Docker Setup - Level 1
 Download and Install [Docker Desktop](https://www.docker.com/) for learning Purposes. 
 - But remember in sever there is no Docker desktop version, unless company wants to spend extra money.
 
@@ -163,7 +163,8 @@ We use type because 3 types of mount can be done:
 3. **type=tmpfs**: Lives on RAM and dies with container. Super fast but not safe.
 
 
-## Docker Commands
+## Docker Command
+s
 ### Docker Volume Commands
 
 | Command | What it does |
@@ -207,7 +208,94 @@ ls /var/lib/docker/volumes
 ***Up to this point I say we completed level 1 the foundation of Docker using ubuntu example**
 Though for theory and internal workflow on how Docker actually works: I suggest look into youtube.
 
-## Running First App
+## Running First App - Level 2
+
+**CLI Way**
+The magic of docker is you don't need to install tools like postgres, mongodb, redis, and so on into your local machine.
+Just pull the image from docker hub and start the container with its required port binding and environment variables. And you are good to go.
+
+Since we are setting up the foundation let's start with CLI on how to run apps.
+I have create todos app called Flow using postgress image and created my todos app image on top of it and published to Docker Hub. 
+So we will use that as an example. 
+
+But before that we need to create a separete network for our container to talk to each other without conflict. 
+Why:
+    - without shared network they are use `default bridge network` where each new conainer is assigned with new IP address.
+    - And every time we need to connect containers we need to look for their IP address and use it. For app DB_URL we need to know the postgress container IP address to connect
+Solution:
+    - create a shared network
+    - put all the container in a shared newtork and they now talk to each other via container name
+    - NO need to figure our each container IP address now.
+
+1. `docker network create todo-net`
+
+2. Run Postgres Image 
+    - As this is required for our app lets run this first.
+    - Run (None Volume Mount)
+    ```
+        docker run -d \
+    --name postgres \
+    -e POSTGRES_PASSWORD=example1 \
+    -e POSTGRES_DB=tododb \
+    -p 5432:5432 \
+    --restart unless-stopped \
+    --network todo-net \
+    postgres:latest
+        ```
+    - Volume Mount
+        ``` 
+        docker run -d \        
+    --name postgres-container \
+    -e POSTGRES_PASSWORD=example1 \
+    -e POSTGRES_DB=tododb \
+    -p 5432:5432 \
+    --restart unless-stopped \
+    --network todo-net \
+    --mount type=bind,src=/Users/userName/path/to/host/todos-postgres-data,dst=/var/lib/postgresql \     
+    postgres:latest
+    ```
+    - You can add volume to persit data by adding : `-v pg-todo-data:/var/lib/postgresql \` as named volume or `-v Absolute-path/todo-postgres-data:/var/lib/postgresql \` as bind volume
+    This way even if container is delete and created a brand new all data will be persisted across containers.
+
+3. Run our App Image
+```
+docker run -d \
+  --name my-todos \
+  --network todo-net \
+  -p 3000:3000 \
+  -e DATABASE_URL="postgresql://postgres:example1@postgres-container:5432/tododb" \
+  nischal99/flow-todos:v1
+  ```
+
+4. You can use the at http://localhost:3000
+
+### Docker Network Commands
+
+| Command                                   | What it does |
+|-------------------------------------------|--------------|
+| `docker network ls`                       | Lists all networks on your machine |
+| `docker network create <name>`            | Creates a new custom bridge network |
+| `docker network inspect <name>`           | Shows detailed information about a network |
+| `docker run --network <name> ...`         | Starts a container attached to a specific network |
+| `docker network rm <name>`                | Deletes a network (only if no containers are attached)|
+| `docker network connect <net> <container>`| Attaches an already running container to a network    |
+
+
+## YAML - Level 3
+Now that we know how to use CLI for docker and how they connect let's move to easy way. 
+Using command everytime you need to create and configure container from image needs too much focus and if one typo you need to delete, and start from scratch.
+To save time and make life easy YAML (Yet Another Markup Language) helps a lot.
+It won't be wrong to say that everything in Devops is YAML.
+
+### What is YAML? 
+(YAML Ain't Markup Language) is a human-readable, lightweight data serialization language, commonly used for configuration files, automation scripts, and data exchange. 
+Basically what it means is it defines how our service: container runs and all of their configuration: environments, ports, networks, volumes and so on.
+And by using the yaml file we dont't have to touch CLI while creating or configuring settings for containers.
+
+
+
+
+
 
 
 
