@@ -281,7 +281,277 @@ docker run -d \
 | `docker network connect <net> <container>`| Attaches an already running container to a network    |
 
 
-## YAML - Level 3
+
+## Dockerfile - Level 3
+Upto know we know how we can pull and run the docker image, so lets now look how we can create one.
+
+To create docker image we need:
+1. **Dockerfile + codebase**: Contains all the instruction to compile our codebase/app, a.k.a context into a docker image.
+2. **.dockerignore**: Similar to gitignore it excludes file that we might not need or might cause conflict with differnt devices if we add it.
+3. **Dockerhub**: Similar to Github we publish our image to docker hub from where we pull or share for later use while deploying.
+
+<!-- PUt dockerfile and context image here -->
+
+
+### Dockerfile - Instructions
+Every Line (except comment) contains `INSTRUCTION argument` which tells what to do during image build.
+There are various ways to use or configure the instruction in Dockerfile but I will use the most efficient way possible.
+
+And Since image runs on container and each container is just isolated linux, we need runtime environment, Linux.
+
+
+#### Beginner way
+This is most often the case while building docker image so lets see the **okay** way and then we will see **further optimized** way.
+
+    ```bash
+        # This tells Docker: "Start with this ready-made image that already has Node.js 20 installed"
+        # We use "alpine" version because it's small and fast
+        FROM node:20-alpine
+
+        # Create a folder called /app inside the container — this is where our app will live
+        WORKDIR /app
+
+        # ──────────────────────────────────────────────────────────────
+        # Step 1: Copy only the files needed for installing packages first
+        # Why? Docker remembers (caches) this step. If these files don't change,
+        # it won't reinstall everything every time → much faster builds!
+        # ──────────────────────────────────────────────────────────────
+        COPY pnpm-lock.yaml package.json ./
+
+        # Install pnpm (our package manager) globally inside the container
+        # We need this because the base image has npm, but not pnpm yet
+        RUN npm install -g pnpm
+
+        # Now install all the packages our app needs
+        # --frozen-lockfile = use exactly the versions in pnpm-lock.yaml (safe & consistent)
+        # --ignore-scripts = very important! Skip any automatic scripts (like "prisma generate")
+        #                    that might run during install — we do that later ourselves
+        RUN pnpm install --frozen-lockfile --ignore-scripts
+
+        # ──────────────────────────────────────────────────────────────
+        # Step 2: Now copy the Prisma files and all the rest of our code
+        # We copy Prisma schema first so "prisma generate" can find it
+        # ──────────────────────────────────────────────────────────────
+        # COPY prisma ./prisma
+
+        # Copy everything else (source code, next.config.js, components, etc.)
+        COPY . .
+
+        # Now that schema.prisma is inside the container,
+        # we can safely generate the Prisma client code that our app uses
+        RUN pnpm prisma generate
+
+        # Build the Next.js app (this creates an optimized version ready for production)
+        # If your package.json doesn't have a "build" script → you can comment this line
+        RUN pnpm build
+
+        # Tell people (and Docker) that our app listens on port 3000 inside the container
+        # (We still need to "open" this port later when running the container)
+        EXPOSE 3000
+
+        # When someone starts the container, automatically run these two commands one after another:
+        # 1. Apply any pending database changes (migrations)
+        # 2. Start the Next.js production server
+        CMD ["sh", "-c", "pnpm prisma migrate deploy && pnpm start"]  
+    ```
+
+**Explaination**:
+
+1.`FROM ubuntu` but we don't use that because its like creating linux inside linux with huge filesize, which is basically the case but to optimize and reduce the image size we leverage docker's **Union Mount Filesystems overlay** which shares the same file layer i.e runtime/OS, just like caching.
+    - So instead of using `ubuntu` or other linux, update it and then install node/python or other runtime in it, we use base node/runtime image or required language runtime which already has updated ubuntu or compatiable OS to run container in it, such as `node:19.6-alpine`, reducing the size by the factor of 5 or more.
+
+2. `WORKDIR /app`: Creates a folder inside container to copy the source code to build, can be anything you want.
+
+3. `ENV NODE_ENV production`: if app requires any environment variables such as PORT and other non sensitive data we can populate here.
+
+3. `COPY pnpm-lock.yaml package*.json ./`: Copies the `package-lock or pnpm-lock.yaml` into `/app ` so docker caches the step and only run `npm install or pnpm install` if this file changes.
+
+<!-- 4. `RUN --mount=type=cache,target=/root/.npm npm set cache /app/.npm npm/pnpm ci --only=production --prefer-offline`: Bind the cache of root foler, because this runs before changing user, it contains all the download deps in .tgz format which reuses in next build and only download and cache new dependencies.
+- For `pnpm` we need to first install it so it would be `RUN --mount=type=cache,target=/root/.local/share/pnpm/store pnpm install --frozen-lockfile --prod --prefer-offline` will install production dev, ignoring dev dependencies such as @types/* and helper packages in development.
+    - If you want to put custom folder for cache use `npm set cache /custom/npm-cache` before `install`.
+    - `--prefer-offline`: tells "Trust my local cache more, only go online if I truly don't have it"
+Note: These cache sits in host machine or docker VM usually in `/var/lib/buildkit` or `/var/lib/docker/buildkit` so that on every next build the cache is used. -->
+
+6. `COPY . .`: Once all packages are installed copy the source code **. (dot) specifies everything** to the specified path in **WORKDIR** i.e /app to run or build app.
+
+<!--
+6. `COPY --chown=node:node sourcePath containerPath`: Once all packages are installed copy the source code **. (dot) specifies everything** to the specified path in **WORKDIR** i.e /app to run or build app. `--chwon=user:group` this changes the ownership of the code to user node and group node, which is non root user: no root previliges, good from security perspecive. -->
+
+<!-- 5. `USER node`: Switch the user from root(default) to user node to run code as non root user. -->
+
+6. `EXPOSE 3000`: For documentation and information that this app runs on port 3000.
+
+7. `CMD ['npm', 'start']` or `CMD ['node', 'index.js']` which required to run app. 
+
+Now build the image using: `docker build --tag node-app:1.0` and the size would be `270MB`
+
+
+#### Optimized way - Multi State build
+Above Dockerfile can build image and it works but from the security and size perspective we can further optimize it.
+
+We can leverage multi stage build process so that only the final compiled code is left and everything that helps to make app is stripped away because it no longer needs in production, such as `devDependencies tools: tailwindcss, prisma CLI, @types..` and so on.
+
+So removing it will help us further reduced the final image size making it light weight and fast runtime.
+
+Think of multi stage build like filter of three or two stages (depending how you use it): 
+
+Stage 1 (Deps): Uses and caches package or pnpm-lock file, installs compilers, TypeScript, Tailwind, and Prisma all the dependencies specified. After first build, it almost never touched by build process, unless new deps are added. Saving build time.
+Stage 2 (Builder): Uses a installed deps `--from=deps` stage and builds the app.
+Stage 3 (Runner): Uses a tiny image. It copies the finished files from Stage 2 and ignores all the heavy tools.
+
+Note: Stage can be defined as `AS` **deps** for stage 1 and **builder** for stage 2. But it is often the case to use two stage by combining stage 1 and stage 2 as `builder` but since I want to use pro way we will use 3 stage build process 😁. 
+
+> Instead of COPY . . which says everything on the WORKINGDIR
+We reach back into the "deps/builder" stage using `--from=deps/builder ` and copy ONLY what we need: `--from=builder /app/.next ./`
+
+    ```bash
+    # syntax=docker/dockerfile:1
+
+    # ──────────────────────────────────────────────────────────────────────────────
+    # STAGE 0: BASE (The Foundation)
+    # This is the "Blueprint" for all other stages. We do OS-level setup here.
+    # ──────────────────────────────────────────────────────────────────────────────
+    FROM node:20-alpine AS base
+
+    # 1. WHY LIBC6-COMPAT? 
+    # Alpine Linux uses 'musl' instead of 'glibc' (used by Ubuntu/Windows).
+    # The Prisma Query Engine binary REQUIRES 'glibc' to run.
+    # This package acts as a compatibility bridge so Prisma works on Alpine.
+    # RUN apk add --no-cache libc6-compat // Uncomment it if error in build due to prisma incompatible
+
+    # 2. WHY WORKDIR?
+    # Sets the "Active Folder" inside the container. Acts like 'cd /app'.
+    WORKDIR /app
+
+    # 3. ENABLE PACKAGE MANAGERS
+    # Corepack is a Node.js tool that automatically manages pnpm/yarn versions.
+    # This ensures that the version of pnpm used in Docker matches your local machine.
+    RUN corepack enable && corepack prepare pnpm@latest --activate
+
+
+    # ──────────────────────────────────────────────────────────────────────────────
+    # STAGE 1: DEPS (The Warehouse)
+    # Goal: Download every single package (Dependencies + DevDependencies).
+    # ──────────────────────────────────────────────────────────────────────────────
+    FROM base AS deps
+
+    # 4. WHY COPY ONLY LOCKFILES?
+    # Docker builds in layers. If package.json hasn't changed, Docker reuses 
+    # the 'install' layer from previous builds. This is called "Layer Caching."
+    COPY package.json pnpm-lock.yaml* package-lock.json* ./
+
+    # 5. THE CACHE MOUNT TRICK
+    # '--mount=type=cache' tells Docker to save the download folder on your SSD.
+    # When you build again, it only downloads NEW packages.
+
+    # --- FOR PNPM USERS ---
+    RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
+        pnpm install --frozen-lockfile
+
+    # --- FOR NPM USERS (Uncomment below and comment out the pnpm lines above) ---
+    # RUN --mount=type=cache,target=/root/.npm \
+    #     npm ci
+
+
+    # ──────────────────────────────────────────────────────────────────────────────
+    # STAGE 2: BUILDER (The Factory)
+    # Goal: Compile code (TS -> JS) and perform "Pruning" (Removing Dev-Deps).
+    # ──────────────────────────────────────────────────────────────────────────────
+    FROM base AS builder
+
+    # 6. BRING IN THE TOOLS
+    # We copy node_modules from the 'deps' stage to this 'builder' stage.
+    COPY --from=deps /app/node_modules ./node_modules
+
+    # 7. COPY ALL SOURCE CODE
+    # We copy your src, public, prisma, and config files now.
+    COPY . .
+
+    # 8. WHY PRISMA GENERATE?
+    # This creates the "Prisma Client" (the code that lets your app talk to the DB).
+    # It MUST happen after node_modules are present but before the final build.
+    RUN npx prisma generate
+
+    # 9. THE BUILD COMMAND
+    # --- FOR PNPM ---
+    RUN pnpm build
+    # --- FOR NPM ---
+    # RUN npm run build
+
+    # 10. REMOVING DEV-DEPENDENCIES (THE "PRUNE")
+    # If you are NOT using Next.js 'standalone' mode (e.g., Express or Node),
+    # you MUST run this to delete TypeScript, ESLint, and other heavy tools.
+    # --- FOR PNPM ---
+    RUN pnpm prune --prod
+    # --- FOR NPM ---
+    # RUN npm prune --omit=dev
+
+
+    # ──────────────────────────────────────────────────────────────────────────────
+    # STAGE 3: RUNNER (The Production Room)
+    # Goal: The smallest, most secure image possible. 
+    # ──────────────────────────────────────────────────────────────────────────────
+    FROM base AS runner
+
+    # 11. PRODUCTION MODE
+    # NODE_ENV=production tells frameworks to minify code and hide error logs.
+    ENV NODE_ENV=production
+
+    # 12. SECURITY: NON-ROOT USER
+    # Running as 'root' is dangerous. If your app is hacked, the hacker gets root access.
+    # We create a restricted 'nextjs' user for safety.
+    RUN addgroup --system --gid 1001 nodejs && \
+        adduser --system --uid 1001 nextjs
+
+    # 13. COPYING THE FINISHED "PLATE" (CHOOSE YOUR APP TYPE)
+
+    # --- IF USING NEXT.JS STANDALONE (Recommended) ---
+    # This folder ALREADY has the dev-deps removed by the Next.js compiler.
+    COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+    COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+    COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+    COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+    # --- IF USING EXPRESS / NODE / NON-STANDALONE NEXT.JS ---
+    # We copy the 'dist' (compiled code) and the 'pruned' node_modules from Stage 2.
+    # COPY --from=builder --chown=nextjs:nodejs /app/dist ./dist
+    # COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+    # COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+    # COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+    # 14. PRISMA CLI FOR MIGRATIONS
+    # Migrations need the Prisma CLI (The Tool). Next.js standalone only copies 
+    # the Client (The Engine). We manually copy the Tool here to avoid re-installing.
+    COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
+    COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
+
+    # 15. LOGIN & PORT
+    USER nextjs
+    EXPOSE 3000
+    ENV PORT 3000
+
+    # 16. THE STARTUP COMMAND
+    # 'prisma migrate deploy' updates your Database tables at startup.
+    # 'node server.js' starts the lightweight Next.js server. 
+    # (For Express, change this to 'node dist/index.js')
+    CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy && node server.js"]
+    ```
+
+Note: It is 3 stage process though it says 4 because 0 the foundation is used to setup base image 
+
+> Now with this Docker build we have reduces the file size from `270MB` to just `83.3MB` which is massive
+ 
+
+
+
+
+
+
+
+
+
+
+## YAML - Level 4
 Now that we know how to use CLI for docker and how they connect let's move to easy way. 
 Using command everytime you need to create and configure container from image needs too much focus and if one typo you need to delete, and start from scratch.
 To save time and make life easy YAML (Yet Another Markup Language) helps a lot.

@@ -35,6 +35,8 @@ import AiChat from '@/public/assets/images/projects/ai-chat.png'
 import ZentryGame from '@/public/assets/images/projects/zentry-game.png'
 import Spylt from '@/public/assets/images/projects/spylt.png'
 import MacBookClone from '@/public/assets/images/projects/mac-landing.png'
+import FurnitureStore from '@/public/assets/images/projects/furniture.png'
+import WellnessGym from '@/public/assets/images/projects/wellness.png'
 import { useRef } from 'react'
 
 interface Project {
@@ -50,6 +52,67 @@ interface Project {
 }
 
 const portfolioProjects = [
+  {
+  company: 'Nischal Puri',
+  status: 'Completed',
+  year: '2025',
+  title: 'Nest Store - Furniture E-Commerce',
+  subtitle: 'AI-Powered Full-Stack Furniture Store with Real-Time Sync and Shopping Assistant',
+  results: [
+    {
+      title: 'Developed a modern furniture e-commerce platform using Next.js 16 App Router, Sanity CMS for headless content management, and real-time live updates.',
+    },
+    {
+      title: 'Integrated secure Stripe payments with webhooks, Clerk authentication, Zustand cart management, and an AI shopping assistant with natural language queries, product search, and order tracking via tool calling.',
+    },
+    {
+      title: 'Built a custom admin dashboard with multiplayer editing, AI insights, responsive Tailwind CSS + shadcn/ui design, Embla Carousel, and type-safe GROQ queries for seamless inventory and order handling.',
+    },
+  ],
+  tech: [
+    'Next.js 16',
+    'Sanity CMS',
+    'Tailwind CSS',
+    'shadcn/ui',
+    'Clerk',
+    'Stripe',
+    'Zustand',
+    'Vercel AI SDK',
+    'Embla Carousel',
+  ],
+  link: 'https://ai-e-com.vercel.app/', // ← replace with your actual deployed link
+  image: FurnitureStore, // ← replace with your imported image variable
+},
+{
+  company: 'Nischal Puri',
+  status: 'Completed', // or 'In Progress' if still building
+  year: '2025',
+  title: 'Wellness Nepal Gym',
+  subtitle: 'AI-Enhanced E-Commerce Platform for Gym Providers in Nepal with Intelligent Buyer Assistance',
+  results: [
+    {
+      title: 'Created a specialized e-commerce platform for gym equipment and services targeted at Nepal-based gyms and buyers, featuring product listings, cart, and secure checkout.',
+    },
+    {
+      title: 'Equipped with AI agents powered by LangChain and LangGraph to assist buyers through natural language interactions, recommendations, and tool calling for features like product search, pricing queries, and order status.',
+    },
+    {
+      title: 'Utilized multiple LLM providers (OpenAI, Google, Groq) for flexible AI responses, integrated with Next.js for responsive UI and Tailwind CSS for modern, mobile-friendly design.',
+    },
+  ],
+  tech: [
+    'Next.js',
+    'LangChain',
+    'LangGraph',
+    'Tailwind CSS',
+    'OpenAI',
+    'Google Gemini',
+    'Groq',
+    "Framer Motion"
+  ],
+  link: 'https://wellness-nepal.vercel.app/', // ← replace with your actual deployed link
+  image: WellnessGym, // ← replace with your imported image variable
+},
   {
     company: 'Nischal Puri',
     status: 'Completed',
