@@ -235,7 +235,8 @@ Solution:
     ```
         docker run -d \
     --name postgres \
-    -e POSTGRES_PASSWORD=example1 \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=example \
     -e POSTGRES_DB=tododb \
     -p 5432:5432 \
     --restart unless-stopped \
@@ -246,7 +247,8 @@ Solution:
         ``` 
         docker run -d \        
     --name postgres-container \
-    -e POSTGRES_PASSWORD=example1 \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=example \
     -e POSTGRES_DB=tododb \
     -p 5432:5432 \
     --restart unless-stopped \
@@ -264,10 +266,10 @@ docker run -d \
   --network todo-net \
   -p 3000:3000 \
   -e DATABASE_URL="postgresql://postgres:example1@postgres-container:5432/tododb" \
-  nischal99/flow-todos:v1
+  nischal99/my-todo:latest
   ```
 
-4. You can use the at http://localhost:3000
+4. Now You can use the at http://localhost:3000
 
 ### Docker Network Commands
 
@@ -300,8 +302,7 @@ There are various ways to use or configure the instruction in Dockerfile but I w
 And Since image runs on container and each container is just isolated linux, we need runtime environment, Linux.
 
 
-#### Beginner way
-This is most often the case while building docker image so lets see the **okay** way and then we will see **further optimized** way.
+Following is the usual way to build docker image. 
 
     ```bash
         # This tells Docker: "Start with this ready-made image that already has Node.js 20 installed"
@@ -383,173 +384,55 @@ Note: These cache sits in host machine or docker VM usually in `/var/lib/buildki
 
 7. `CMD ['npm', 'start']` or `CMD ['node', 'index.js']` which required to run app. 
 
-Now build the image using: `docker build --tag node-app:1.0` and the size would be `270MB`
+Now build the image using: `docker build --tag my-app:1.0`
+
+**This is the one stage build process but to make image size less you can use multi-stage build process where 1st stage builds final code using every tools and then 2nd stage copies only the build files required to run app, reducing code size by removing dev deps and extra tools **
+
+> For that you need to know exactly what built code is required to run app, otherwise code crashes if you miss anything, So to be safe use single build process by copying everything.
 
 
-#### Optimized way - Multi State build
-Above Dockerfile can build image and it works but from the security and size perspective we can further optimize it.
+### Publish Docker Image - Docker hub
 
-We can leverage multi stage build process so that only the final compiled code is left and everything that helps to make app is stripped away because it no longer needs in production, such as `devDependencies tools: tailwindcss, prisma CLI, @types..` and so on.
+Similar to github you can host your image and share or use later just using the image name.
+To upload your image;
+    1. you need to login to docker hub: `docker login`
+    2. You need your username: 
+        - `docker push your-username/my-app:1.0`
+        - my-app:1.0 is the image name you build
+        - you can skip version but its wise to put if you upgrade your image later with new features. (if not specified: default is :latest)
 
-So removing it will help us further reduced the final image size making it light weight and fast runtime.
+### Publish to Github Container Registery - ghrc
 
-Think of multi stage build like filter of three or two stages (depending how you use it): 
+Alternate for Docker Hub is Github Container Registery, if you don't want to leave github ecosystem and or use Github Actions, to ease the CI/CD you can use `ghcr`.
 
-Stage 1 (Deps): Uses and caches package or pnpm-lock file, installs compilers, TypeScript, Tailwind, and Prisma all the dependencies specified. After first build, it almost never touched by build process, unless new deps are added. Saving build time.
-Stage 2 (Builder): Uses a installed deps `--from=deps` stage and builds the app.
-Stage 3 (Runner): Uses a tiny image. It copies the finished files from Stage 2 and ignores all the heavy tools.
+FYI: `ghrc` is more generous then Docker hub.
 
-Note: Stage can be defined as `AS` **deps** for stage 1 and **builder** for stage 2. But it is often the case to use two stage by combining stage 1 and stage 2 as `builder` but since I want to use pro way we will use 3 stage build process 😁. 
+There are two way to setup `ghrc`: 
+But before that you need to create token in github to authentication: 
+    - Github.com -> Settings -> Developer Settings -> Personal Access tokens -> Token (classic)
+    - Create but keep `write` permission checkon to push and pull image.
+    - Copy the token, shown above.
 
-> Instead of COPY . . which says everything on the WORKINGDIR
-We reach back into the "deps/builder" stage using `--from=deps/builder ` and copy ONLY what we need: `--from=builder /app/.next ./`
+1. **First way: Token based**
+    - Open terminal
+    - export GHCR_PAT=<your-token>
+    - echo $GHCR_PAT | docker login ghcr.io -u YOUR_USERNAME --password-sdtin
 
-    ```bash
-    # syntax=docker/dockerfile:1
+2. **Second way: Username & Password**:
+    - Open terminal
+    - docker login ghcr.io it will prompt to write your github: Username and GHCR token
+    - Paste github username 
+    - Paste created token
 
-    # ──────────────────────────────────────────────────────────────────────────────
-    # STAGE 0: BASE (The Foundation)
-    # This is the "Blueprint" for all other stages. We do OS-level setup here.
-    # ──────────────────────────────────────────────────────────────────────────────
-    FROM node:20-alpine AS base
+To push now make sure you have the right username of your github:
+    - create a tag for your image in `ghrc`: `docker tag <image-name> ghcr.io/username/<image-name:tag-name>`
+    - push: `docker push ghcr.io/username/<image-name:tag-name>`
 
-    # 1. WHY LIBC6-COMPAT? 
-    # Alpine Linux uses 'musl' instead of 'glibc' (used by Ubuntu/Windows).
-    # The Prisma Query Engine binary REQUIRES 'glibc' to run.
-    # This package acts as a compatibility bridge so Prisma works on Alpine.
-    # RUN apk add --no-cache libc6-compat // Uncomment it if error in build due to prisma incompatible
+After completed go to github in `packages`: `https://github.com/username?tab=packages` and you will see your new docker image with `image-name:tag`
 
-    # 2. WHY WORKDIR?
-    # Sets the "Active Folder" inside the container. Acts like 'cd /app'.
-    WORKDIR /app
+To pull or run use : `docker pull ghcr.io/username/image-name:tag`
 
-    # 3. ENABLE PACKAGE MANAGERS
-    # Corepack is a Node.js tool that automatically manages pnpm/yarn versions.
-    # This ensures that the version of pnpm used in Docker matches your local machine.
-    RUN corepack enable && corepack prepare pnpm@latest --activate
-
-
-    # ──────────────────────────────────────────────────────────────────────────────
-    # STAGE 1: DEPS (The Warehouse)
-    # Goal: Download every single package (Dependencies + DevDependencies).
-    # ──────────────────────────────────────────────────────────────────────────────
-    FROM base AS deps
-
-    # 4. WHY COPY ONLY LOCKFILES?
-    # Docker builds in layers. If package.json hasn't changed, Docker reuses 
-    # the 'install' layer from previous builds. This is called "Layer Caching."
-    COPY package.json pnpm-lock.yaml* package-lock.json* ./
-
-    # 5. THE CACHE MOUNT TRICK
-    # '--mount=type=cache' tells Docker to save the download folder on your SSD.
-    # When you build again, it only downloads NEW packages.
-
-    # --- FOR PNPM USERS ---
-    RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
-        pnpm install --frozen-lockfile
-
-    # --- FOR NPM USERS (Uncomment below and comment out the pnpm lines above) ---
-    # RUN --mount=type=cache,target=/root/.npm \
-    #     npm ci
-
-
-    # ──────────────────────────────────────────────────────────────────────────────
-    # STAGE 2: BUILDER (The Factory)
-    # Goal: Compile code (TS -> JS) and perform "Pruning" (Removing Dev-Deps).
-    # ──────────────────────────────────────────────────────────────────────────────
-    FROM base AS builder
-
-    # 6. BRING IN THE TOOLS
-    # We copy node_modules from the 'deps' stage to this 'builder' stage.
-    COPY --from=deps /app/node_modules ./node_modules
-
-    # 7. COPY ALL SOURCE CODE
-    # We copy your src, public, prisma, and config files now.
-    COPY . .
-
-    # 8. WHY PRISMA GENERATE?
-    # This creates the "Prisma Client" (the code that lets your app talk to the DB).
-    # It MUST happen after node_modules are present but before the final build.
-    RUN npx prisma generate
-
-    # 9. THE BUILD COMMAND
-    # --- FOR PNPM ---
-    RUN pnpm build
-    # --- FOR NPM ---
-    # RUN npm run build
-
-    # 10. REMOVING DEV-DEPENDENCIES (THE "PRUNE")
-    # If you are NOT using Next.js 'standalone' mode (e.g., Express or Node),
-    # you MUST run this to delete TypeScript, ESLint, and other heavy tools.
-    # --- FOR PNPM ---
-    RUN pnpm prune --prod
-    # --- FOR NPM ---
-    # RUN npm prune --omit=dev
-
-
-    # ──────────────────────────────────────────────────────────────────────────────
-    # STAGE 3: RUNNER (The Production Room)
-    # Goal: The smallest, most secure image possible. 
-    # ──────────────────────────────────────────────────────────────────────────────
-    FROM base AS runner
-
-    # 11. PRODUCTION MODE
-    # NODE_ENV=production tells frameworks to minify code and hide error logs.
-    ENV NODE_ENV=production
-
-    # 12. SECURITY: NON-ROOT USER
-    # Running as 'root' is dangerous. If your app is hacked, the hacker gets root access.
-    # We create a restricted 'nextjs' user for safety.
-    RUN addgroup --system --gid 1001 nodejs && \
-        adduser --system --uid 1001 nextjs
-
-    # 13. COPYING THE FINISHED "PLATE" (CHOOSE YOUR APP TYPE)
-
-    # --- IF USING NEXT.JS STANDALONE (Recommended) ---
-    # This folder ALREADY has the dev-deps removed by the Next.js compiler.
-    COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-    COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-    COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-    COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-
-    # --- IF USING EXPRESS / NODE / NON-STANDALONE NEXT.JS ---
-    # We copy the 'dist' (compiled code) and the 'pruned' node_modules from Stage 2.
-    # COPY --from=builder --chown=nextjs:nodejs /app/dist ./dist
-    # COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
-    # COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
-    # COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-
-    # 14. PRISMA CLI FOR MIGRATIONS
-    # Migrations need the Prisma CLI (The Tool). Next.js standalone only copies 
-    # the Client (The Engine). We manually copy the Tool here to avoid re-installing.
-    COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
-    COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
-
-    # 15. LOGIN & PORT
-    USER nextjs
-    EXPOSE 3000
-    ENV PORT 3000
-
-    # 16. THE STARTUP COMMAND
-    # 'prisma migrate deploy' updates your Database tables at startup.
-    # 'node server.js' starts the lightweight Next.js server. 
-    # (For Express, change this to 'node dist/index.js')
-    CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy && node server.js"]
-    ```
-
-Note: It is 3 stage process though it says 4 because 0 the foundation is used to setup base image 
-
-> Now with this Docker build we have reduces the file size from `270MB` to just `83.3MB` which is massive
- 
-
-
-
-
-
-
-
-
-
+For more full instruction follow [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
 
 ## YAML - Level 4
 Now that we know how to use CLI for docker and how they connect let's move to easy way. 
@@ -562,6 +445,105 @@ It won't be wrong to say that everything in Devops is YAML.
 Basically what it means is it defines how our service: container runs and all of their configuration: environments, ports, networks, volumes and so on.
 And by using the yaml file we dont't have to touch CLI while creating or configuring settings for containers.
 
+### Running Container using YAML 
+We can either use direct CLI mode to run images, but we need to maybe run multiple containers for different service such as DB, and app.
+
+1. **Using CMD**:
+    - Create shared network to let conainers talk to each other.
+        - `docker network create flow-network`
+    - Run DB with all its env 
+        - **Long Form**: `docker run -d --name postgres_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=example -e POSTGRES_DB=tododb -p 5432:5432 -v postgres_data:/var/lib/postgresql --network flow-network postgres:latest`
+        - OR
+        - **Short Form**: `docker run -d --name postgres_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=example -e POSTGRES_DB=tododb -p 5432:5432 -v postgres_data:/var/lib/postgresql --network flow-network postgres:latest`
+    - Now run App
+        - **Long form**: `docker run --detach --name flow_todos --env DATABASE_URL="postgresql://postgres:example@postgres_db:5432/tododb?schema=public" --env NODE_ENV=production --publish 3000:3000 --network flow-network nischal99/my-todo:latest`
+        - OR
+        - **Short form**: `docker run -d --name flow_todos -e DATABASE_URL="postgresql://postgres:example@postgres_db:5432/tododb?schema=public" -e NODE_ENV=production -p 3000:3000 --network flow-network nischal99/my-todo:latest`
+    - Pg Admin Container if you 
+
+2. **YAML File**:
+    ```bash
+        services: # This starts the list of "members" in your project (the containers)
+        # --- PART 1: THE DATABASE (The Brain) ---
+            db:
+                image: postgres:latest # Downloads the official Postgres software from the internet
+                container_name: postgres_db # Gives the container a specific name on your computer
+                restart: always # If the DB crashes or your PC reboots, Docker starts it back up
+                shm_size: 128mb # "Shared Memory" - Gives Postgres a little extra speed boost
+
+                environment: # These are the "Settings" or "Login Info" for the database
+                POSTGRES_USER: postgres # The master username
+                POSTGRES_PASSWORD: example # The master password
+                POSTGRES_DB: tododb # The name of the specific "folder" (database) to create inside
+
+                ports:
+                - "5432:5432" # [Your Computer Port] : [Internal Container Port]
+                    # This lets you connect to the DB from outside Docker (like TablePlus)
+
+                volumes:
+                - postgres_data:/var/lib/postgresql/data # PERSISTENCE: This is the most important part!
+                    # It saves your data on your REAL hard drive.
+                    # Without this, deleting the container deletes your todos.
+
+                healthcheck: # This is like an "Alarm Clock" that checks if the DB is awake
+                test: ["CMD-SHELL", "pg_isready -U postgres -d tododb"] # Runs a command to see if DB is ready
+                interval: 5s # Check every 5 seconds
+                timeout: 5s # Give up after 5 seconds
+                retries: 5 # Try 5 times before saying "it's broken"
+
+                networks:
+                - flow-network # Puts the DB in a "private chat room" called flow-network
+
+            # --- PART 2: THE DATABASE UI (The Visual Viewer) ---
+            adminer:
+                image: adminer:latest # A simple website to see your database tables in a browser
+                container_name: adminer_ui
+                restart: always
+                ports:
+                - "8080:8080" # Go to http://localhost:8080 in your browser to use this
+                networks:
+                - flow-network # Must be in the same "chat room" to see the DB
+
+            # --- PART 3: YOUR APP (The Website) ---
+            app:
+                build: . # Tells Docker: "Look at the Dockerfile in THIS folder to build my app"
+                image: nischal99/my-todo:latest # After building, name the result "my-todo:latest"
+                container_name: flow_todos
+                restart: always
+                ports:
+                    - "3000:3000" # Go to http://localhost:3000 to see your website
+
+                environment:
+                    # This is how the code finds the DB.
+                    # NOTICE: We use '@db' (the service name), NOT '@localhost'.
+                    # Inside Docker, containers use their names to talk to each other.
+                    DATABASE_URL: postgresql://postgres:example@db:5432/tododb?schema=public
+                    NODE_ENV: production # Tells the app to run in "Fast/Production" mode
+
+                depends_on: # ORDER OF OPERATIONS
+                    db:
+                        condition: service_healthy # Don't start the APP until the DB says "I am healthy and awake!"
+
+                networks:
+                    - flow-network # Join the same chat room so it can talk to the DB
+
+            # --- PART 4: THE INFRASTRUCTURE (The "Virtual" Hardware) ---
+
+            networks:
+                flow-network: # Creates the "Private Chat Room" (Network)
+                    driver: bridge # Standard type of network for 99% of apps
+
+            volumes:
+                postgres_data: # Creates the "Virtual Hard Drive" (Volume)
+            # This is where your actual data lives safely on your Mac/PC.
+        ```
+
+Simply run: `docker compose up -d` this will do all the job of creating container one by one.
+If you need to only run one service, such as db: `docker compose up db -d`
+What happned:
+    - docker compose use the yaml to create network and volume and connected them based on yaml code/instruction.
+
+> Pro tips: If you change the db credentials or name make sure to also change the volume name or path or delete it and create with same volume name or path because previous credentials and db name is already set in that volume disk, which will cause error of credential/auth error even in your yaml or cmd you have new matching credentials in postgres_db and app env. 
 
 
 
