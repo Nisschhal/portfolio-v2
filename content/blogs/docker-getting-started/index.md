@@ -166,6 +166,11 @@ docker run -it --mount type=volume,destination=/container-data-folder ubuntu:lat
 
 > You can use either src, source or dst,target and destination. or just : with -v
 
+> Docker Binding are of three types: 
+  - **Bind** you can see and change in your machine
+  - **volume** managed by docker
+  - **tmpfs** also manged by docker, but it stored in RAM, and volatile
+
 ![Docker Volume](./docker-volume.png)
 
 ---
