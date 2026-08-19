@@ -37,11 +37,15 @@ import Spylt from '@/public/assets/images/projects/spylt.png'
 import MacBookClone from '@/public/assets/images/projects/mac-landing.png'
 import FurnitureStore from '@/public/assets/images/projects/furniture.png'
 import WellnessGym from '@/public/assets/images/projects/wellness.png'
+import Merobhumi from '@/public/assets/images/projects/merobhumi.png'
+import RbsSalon from '@/public/assets/images/projects/rbs-salon.png'
+import Gharedi from '@/public/assets/images/projects/gharedi.png'
 import { useRef } from 'react'
 
 interface Project {
   company: string
   status: string
+  tag?: string
   year: string
   title: string
   subtitle?: string
@@ -52,6 +56,141 @@ interface Project {
 }
 
 const portfolioProjects = [
+  {
+  company: 'Merobhumi',
+  status: 'Live',
+  tag: 'Client',
+  year: '2026',
+  title: 'Merobhumi — Real Estate Platform',
+  subtitle: 'AI-First Property Platform with Data-Rich Dashboards and Live Listing Search',
+  results: [
+    {
+      title: 'Sole engineer on a complex real estate platform, building dynamic, data-rich dashboards that surface large listing datasets in real time, with Next.js server rendering for the search visibility that drives property discovery.',
+    },
+    {
+      title: 'Split the API into a dedicated Node/Express service with a self-built OAuth layer rather than leaning on framework routes, keeping the backend free to scale independently as the product grows.',
+    },
+    {
+      title: 'Shipped an AI chat interface open to both first-time visitors and signed-in users, built on the AI SDK with tool calling that queries the database directly so property answers and dashboard data reflect live listings.',
+    },
+    {
+      title: 'Stood up the company\'s entire IT infrastructure from scratch — environments, deployments and CI/CD — and integrated a payment gateway alongside SMS and email alerting for the auth and transactional flows.',
+    },
+  ],
+  tech: [
+    'Next.js',
+    'Node / Express',
+    'OAuth',
+    'AI SDK',
+    'Tool Calling',
+    'Cloudinary',
+    'Tailwind CSS',
+  ],
+  link: 'https://www.merobhumi.com/',
+  image: Merobhumi,
+},
+  {
+  company: 'WN Wellness Equipment',
+  status: 'Live',
+  tag: 'Client',
+  year: '2025',
+  title: 'WN Wellness Equipment',
+  subtitle: 'Bold, SEO-Rich B2B Storefront for Nepal\'s Gym Equipment Wholesaler',
+  results: [
+    {
+      title: 'Delivered a client-commissioned marketing site for an industrial gym equipment wholesaler serving gym operators across all 77 districts of Nepal, built around a quote-request model rather than a cart — matching how B2B equipment deals actually close.',
+    },
+    {
+      title: 'Designed a deliberately bold visual identity around the SHAKTI product line, with a structured equipment arsenal spanning Multi-Station, Cardio, Strength and Free Weights, plus a Success Stories portfolio that turns completed gym fit-outs into social proof.',
+    },
+    {
+      title: 'Added an AI chat interface offering an "AI mode" for discovery — buyers describe the setup they need in plain language instead of drilling through categories, and the assistant surfaces matching equipment.',
+    },
+    {
+      title: 'Built on Next.js with server-rendered pages for search visibility, and Cloudinary handling equipment media storage and optimized delivery so a heavily image-driven catalogue stays fast.',
+    },
+  ],
+  tech: [
+    'Next.js',
+    'SSR / SEO',
+    'AI Chat Search',
+    'Cloudinary',
+    'Tailwind CSS',
+    'Framer Motion',
+  ],
+  link: 'https://www.wnwellnessequipment.com/',
+  image: WellnessGym,
+},
+  {
+  company: 'RBS Unisex Salon',
+  status: 'WIP',
+  tag: 'Client',
+  year: '2026',
+  title: 'RBS Unisex Salon & Academy',
+  subtitle: 'Modern, Premium Booking Site for a Nepali Unisex Salon and Beauty Training Center',
+  results: [
+    {
+      title: 'Building a premium salon site for a Devdaha and Khaireni based business that runs two sides of one brand — ladies and gents salon services, and a professional beauty academy — with parallel Book Appointment and Join Classes paths from the hero.',
+    },
+    {
+      title: 'Designed a clean, modern, premium aesthetic — dark gold-accented palette, elegant serif display type, generous spacing and a light/dark theme toggle — giving a local salon the visual quality of a high-end brand.',
+    },
+    {
+      title: 'Wrote the interface in mixed Nepali and English so the copy reads the way customers actually speak, and structured services into clear entry points: gents haircut, ladies services, bridal makeup, and beauty courses.',
+    },
+    {
+      title: 'Built on Next.js with server-rendered, SEO-rich pages so the salon surfaces in local search — the primary discovery channel for appointment-driven businesses.',
+    },
+  ],
+  tech: [
+    'Next.js',
+    'SSR / SEO',
+    'Tailwind CSS',
+    'Dark / Light Theme',
+  ],
+  link: 'https://rbsunisexsalon.vercel.app/',
+  image: RbsSalon,
+},
+  {
+  company: 'Nischal Puri',
+  status: 'Completed',
+  year: '2026',
+  title: 'Gharedi — Real Estate Marketplace',
+  subtitle: 'Map-Driven Two-Sided Property Platform with Agent Dashboards and Subscription Billing',
+  results: [
+    {
+      title: 'Built a two-sided marketplace serving both buyers and agents: buyers search, filter and save listings across houses, apartments, condos and townhouses, while agents list properties, work a lead inbox and manage their portfolio from a dedicated dashboard.',
+    },
+    {
+      title: 'Implemented map-based discovery with MapLibre and React Map GL alongside Leaflet, rendering property markers over a live map, with debounced search by city, neighbourhood or ZIP so filtering stays responsive across large result sets.',
+    },
+    {
+      title: 'Modelled content in Sanity with an embedded Studio, type-safe GROQ schema generation and seed scripts, giving the platform a fully managed CMS backend rather than hardcoded listing data.',
+    },
+    {
+      title: 'Secured the app with Clerk behind a custom proxy gatekeeper that enforces public, private and onboarding route rules, and monetised the agent side through Clerk Billing subscription tiers.',
+    },
+    {
+      title: 'Built on Next.js 16 and React 19 with the React Compiler enabled, shadcn/ui on Tailwind CSS v4, React Hook Form with Zod validation, and Recharts for dashboard analytics.',
+    },
+  ],
+  tech: [
+    'Next.js 16',
+    'React 19',
+    'Sanity CMS',
+    'Clerk',
+    'Clerk Billing',
+    'MapLibre',
+    'Leaflet',
+    'shadcn/ui',
+    'Tailwind CSS v4',
+    'Zod',
+    'Recharts',
+    'TypeScript',
+  ],
+  link: 'https://real-state-gharedi.vercel.app/',
+  image: Gharedi,
+},
   {
   company: 'Nischal Puri',
   status: 'Completed',
@@ -83,36 +222,21 @@ const portfolioProjects = [
   link: 'https://ai-e-com.vercel.app/', // ← replace with your actual deployed link
   image: FurnitureStore, // ← replace with your imported image variable
 },
-{
-  company: 'Nischal Puri',
-  status: 'Completed', // or 'In Progress' if still building
-  year: '2025',
-  title: 'Wellness Nepal Gym',
-  subtitle: 'AI-Enhanced E-Commerce Platform for Gym Providers in Nepal with Intelligent Buyer Assistance',
-  results: [
-    {
-      title: 'Created a specialized e-commerce platform for gym equipment and services targeted at Nepal-based gyms and buyers, featuring product listings, cart, and secure checkout.',
-    },
-    {
-      title: 'Equipped with AI agents powered by LangChain and LangGraph to assist buyers through natural language interactions, recommendations, and tool calling for features like product search, pricing queries, and order status.',
-    },
-    {
-      title: 'Utilized multiple LLM providers (OpenAI, Google, Groq) for flexible AI responses, integrated with Next.js for responsive UI and Tailwind CSS for modern, mobile-friendly design.',
-    },
-  ],
-  tech: [
-    'Next.js',
-    'LangChain',
-    'LangGraph',
-    'Tailwind CSS',
-    'OpenAI',
-    'Google Gemini',
-    'Groq',
-    "Framer Motion"
-  ],
-  link: 'https://wellness-nepal.vercel.app/', // ← replace with your actual deployed link
-  image: WellnessGym, // ← replace with your imported image variable
-},
+  {
+    company: 'Nischal Puri',
+    status: 'Completed',
+
+    year: '2025',
+    title: 'Ink Sprout',
+    results: [
+      { title: 'Built a scalable e-commerce platform for stationery' },
+      { title: 'Integrated secure authentication and payment systems' },
+      { title: 'Enhanced state management with Zustand' },
+    ],
+    tech: ['Next.js', 'Drizzle', 'PostgreSQL', 'Zustand'],
+    link: 'https://ink-sprout-v2-nischal.vercel.app',
+    image: InkSprout,
+  },
   {
     company: 'Nischal Puri',
     status: 'Completed',
@@ -217,21 +341,6 @@ const portfolioProjects = [
     tech: ['React', 'Vite', 'TailwindCSS', 'JavaScript'],
     link: 'https://zentry-game-three.vercel.app',
     image: ZentryGame,
-  },
-  {
-    company: 'Nischal Puri',
-    status: 'Completed',
-
-    year: '2025',
-    title: 'Ink Sprout',
-    results: [
-      { title: 'Built a scalable e-commerce platform for stationery' },
-      { title: 'Integrated secure authentication and payment systems' },
-      { title: 'Enhanced state management with Zustand' },
-    ],
-    tech: ['Next.js', 'Drizzle', 'PostgreSQL', 'Zustand'],
-    link: 'https://ink-sprout-v2-nischal.vercel.app',
-    image: InkSprout,
   },
   {
     company: 'Nischal Puri',
@@ -419,6 +528,11 @@ const StackView = () => {
                 <div className='rounded bg-emerald-400/10 px-2 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-emerald-400 uppercase'>
                   {project.status}
                 </div>
+                {project.tag && (
+                  <div className='rounded bg-sky-400/10 px-2 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-sky-400 uppercase'>
+                    {project.tag}
+                  </div>
+                )}
                 <span className='font-mono text-[10px] text-gray-500'>
                   {project.company} // {project.year}
                 </span>
@@ -500,8 +614,15 @@ const GridView = () => (
             fill
             className='object-cover transition-transform duration-300 group-hover:scale-110'
           />
-          <div className='absolute top-4 right-4 rounded-full border border-emerald-500/20 bg-black/60 px-3 py-1 text-[10px] font-bold text-emerald-400 uppercase backdrop-blur'>
-            {p.status}
+          <div className='absolute top-4 right-4 flex gap-2'>
+            {p.tag && (
+              <div className='rounded-full border border-sky-500/20 bg-black/60 px-3 py-1 text-[10px] font-bold text-sky-400 uppercase backdrop-blur'>
+                {p.tag}
+              </div>
+            )}
+            <div className='rounded-full border border-emerald-500/20 bg-black/60 px-3 py-1 text-[10px] font-bold text-emerald-400 uppercase backdrop-blur'>
+              {p.status}
+            </div>
           </div>
         </div>
         <div className='px-2'>
@@ -632,6 +753,7 @@ const ListView = () => {
           <div className='hidden flex-col gap-1 lg:flex'>
             <span className='font-mono text-[10px] font-bold text-emerald-500 uppercase'>
               {p.status}
+              {p.tag && <span className='ml-2 text-sky-400'>· {p.tag}</span>}
             </span>
             <span className='font-mono text-[9px] text-gray-600 uppercase'>
               {p.company} // {p.year}

@@ -198,12 +198,15 @@ const infraTools = [
 ]
 
 const aiSkills = [
-  { title: 'LangChain', emoji: '🦜', left: '5%', top: '15%' },
-  { title: 'RAG Pipelines', emoji: '🧠', left: '35%', top: '35%' },
-  { title: 'AI Agents', emoji: '🤖', left: '10%', top: '65%' },
-  { title: 'Vector DBs', emoji: '📁', left: '55%', top: '15%' },
-  { title: 'LLMs', emoji: '✨', left: '45%', top: '60%' },
-  { title: 'Inngest', emoji: '☁️', left: '65%', top: '40%' },
+  { title: 'LangChain', emoji: '🦜', left: '3%', top: '6%' },
+  { title: 'Vector DBs', emoji: '📁', left: '42%', top: '6%' },
+  { title: 'Claude Code', emoji: '🧑‍💻', left: '6%', top: '27%' },
+  { title: 'MCP', emoji: '🔌', left: '50%', top: '27%' },
+  { title: 'RAG Pipelines', emoji: '🧠', left: '2%', top: '48%' },
+  { title: 'Inngest', emoji: '☁️', left: '46%', top: '48%' },
+  { title: 'AI Agents', emoji: '🤖', left: '5%', top: '69%' },
+  { title: 'LLMs', emoji: '✨', left: '42%', top: '69%' },
+  { title: 'AI SDK', emoji: '⚡', left: '66%', top: '69%' },
 ]
 
 export const SkillsSection = () => {

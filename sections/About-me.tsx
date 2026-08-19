@@ -10,6 +10,109 @@ import { SkillsSection } from './On-the-table'
 export const AboutMe = () => {
   const timelineData = [
     {
+      title: '2025 — Present',
+      content: (
+        <div className="group">
+          <div className='mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1'>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className='text-[10px] font-bold text-emerald-300 uppercase tracking-widest'>Currently Available</span>
+          </div>
+
+          <p className='mb-2 text-lg font-semibold text-white'>
+            AI-First Full Stack Developer — <span className="text-emerald-300">Freelance</span>
+          </p>
+          <div className='mb-6 text-sm text-neutral-400 leading-relaxed'>
+            <p className="mb-5">
+              Working directly with clients to ship <span className="text-white font-medium">production web platforms and AI-powered workflows</span>—owning architecture, infrastructure, and delivery end to end.
+            </p>
+
+            <div className='mb-2 flex items-baseline gap-2'>
+              <span className='text-white font-semibold text-sm'>Merobhumi</span>
+              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2026 — Present · Real Estate</span>
+            </div>
+            <p className="mb-3">
+              Engaged as the <span className="text-white font-medium">sole engineer</span> on a real estate platform—owning the product end to end and standing up the entire IT infrastructure <span className="text-white font-medium">from scratch.</span>
+            </p>
+
+            <div className="space-y-3 border-l border-emerald-500/20 pl-4">
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 01: Real Estate Platform</span>
+                <p>
+                  Building a complex property application with <span className='text-sky-300'>data-rich, dynamic dashboards</span> that surface large listing datasets in real time. Built on <span className='text-white font-medium'>Next.js</span> so listings render server-side—critical for search visibility in a market where discovery happens on Google.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 02: Dedicated Backend</span>
+                <p>
+                  Deliberately split the API into a standalone <span className='text-white font-medium'>Node / Express</span> service instead of leaning on framework routes, with a <span className='text-sky-300'>self-built OAuth</span> layer—keeping the backend free to scale independently as the product grows.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 03: Infrastructure From Zero</span>
+                <p>
+                  Architected and now maintain the company&apos;s full <span className='text-white font-medium'>IT infrastructure</span>—environments, deployments, and CI/CD—built from the ground up.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 04: Payments & Notifications</span>
+                <p>
+                  Integrated a <span className='text-white font-medium'>payment gateway</span> alongside <span className='text-sky-300'>SMS and email alerting</span>, powering both the authentication flow and transactional updates to users.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Approach: AI-First</span>
+                <p>
+                  Shipped an in-product <span className='text-sky-300'>AI chat interface</span>—open to first-time visitors and signed-in users alike—that answers property questions and surfaces dashboard data on request. Built with the AI SDK, using <span className='text-white font-medium'>tool calling</span> to query the database directly so results reflect live listings rather than a stale snapshot.
+                </p>
+              </div>
+            </div>
+
+            <div className='mt-6 mb-2 flex items-baseline gap-2'>
+              <span className='text-white font-semibold text-sm'>WN Wellness Equipment</span>
+              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2025 · B2B Wholesale</span>
+            </div>
+            <p className="mb-3">
+              Delivered a <span className='text-white font-medium'>bold, SEO-rich storefront</span> for an industrial gym equipment wholesaler serving all 77 districts of Nepal.
+            </p>
+
+            <div className="space-y-3 border-l border-sky-500/20 pl-4">
+              <div>
+                <span className='text-sky-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Built For How B2B Actually Sells</span>
+                <p>
+                  Designed around a <span className='text-white font-medium'>quote-request flow</span> rather than a cart—equipment deals close through conversation, not checkout—with server-rendered pages so buyers find them on Google.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-sky-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>AI Mode Discovery</span>
+                <p>
+                  Added an <span className='text-sky-300'>AI chat</span> that lets buyers describe the setup they need in plain language instead of drilling through equipment categories.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <span className='text-neutral-500 font-mono text-[10px] uppercase tracking-widest block mb-2'>Stack</span>
+              <div className="flex flex-wrap gap-2">
+                {['Next.js (SSR + SEO)', 'Node / Express', 'OAuth', 'AI SDK', 'Tool Calling', 'Cloudinary', 'Payment Gateway', 'SMS / Email', 'CI/CD'].map((tag) => (
+                  <span key={tag} className="text-[10px] border border-white/10 bg-white/5 px-2 py-0.5 rounded text-neutral-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
       title: 'Oct — Dec, 2025',
       content: (
         <div className="group">
