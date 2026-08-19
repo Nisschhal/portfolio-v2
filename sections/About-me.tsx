@@ -53,14 +53,21 @@ export const AboutMe = () => {
               </div>
 
               <div>
-                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 03: Infrastructure From Zero</span>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 03: Auth & Access Control</span>
+                <p>
+                  Built authentication end to end—<span className='text-white font-medium'>JWT tokens backed by server-side sessions</span>—with <span className='text-sky-300'>role-aware middleware</span> that resolves who the caller is on every request and redirects them to the right surface, so no one lands on a route outside their permissions. Property submissions are validated before they reach the database, keeping the dashboards and AI search trustworthy at the source.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 04: Infrastructure From Zero</span>
                 <p>
                   Architected and now maintain the company&apos;s full <span className='text-white font-medium'>IT infrastructure</span>—environments, deployments, and CI/CD—built from the ground up.
                 </p>
               </div>
 
               <div>
-                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 04: Payments & Notifications</span>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Deployment 05: Payments & Notifications</span>
                 <p>
                   Integrated a <span className='text-white font-medium'>payment gateway</span> alongside <span className='text-sky-300'>SMS and email alerting</span>, powering both the authentication flow and transactional updates to users.
                 </p>

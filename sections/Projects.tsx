@@ -71,6 +71,12 @@ const portfolioProjects = [
       title: 'Split the API into a dedicated Node/Express service with a self-built OAuth layer rather than leaning on framework routes, keeping the backend free to scale independently as the product grows.',
     },
     {
+      title: 'Built the auth layer end to end — JWT-issued tokens backed by server-side sessions, with middleware that resolves the caller\'s role on every request and redirects them to the right surface, so buyers, agents and admins never reach routes outside their permissions.',
+    },
+    {
+      title: 'Enforced property validation on listing submissions so incomplete or malformed records never reach the database, keeping the dashboards and AI search trustworthy at the source rather than patching bad data downstream.',
+    },
+    {
       title: 'Shipped an AI chat interface open to both first-time visitors and signed-in users, built on the AI SDK with tool calling that queries the database directly so property answers and dashboard data reflect live listings.',
     },
     {
@@ -81,6 +87,8 @@ const portfolioProjects = [
     'Next.js',
     'Node / Express',
     'OAuth',
+    'JWT / Sessions',
+    'RBAC Middleware',
     'AI SDK',
     'Tool Calling',
     'Cloudinary',
