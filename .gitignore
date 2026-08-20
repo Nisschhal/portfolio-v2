@@ -43,3 +43,8 @@ next-env.d.ts
 
 # Velite generated files
 .velite
+
+# installers / binaries — never belongs in the repo (GitHub rejects >100MB)
+*.dmg
+*.pkg
+*.exe
