@@ -10,7 +10,7 @@ import { SkillsSection } from './On-the-table'
 export const AboutMe = () => {
   const timelineData = [
     {
-      title: '2025 — Present',
+      title: '2026 — Present',
       content: (
         <div className="group">
           <div className='mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1'>
@@ -22,7 +22,7 @@ export const AboutMe = () => {
           </div>
 
           <p className='mb-2 text-lg font-semibold text-white'>
-            AI-First Full Stack Developer — <span className="text-emerald-300">Freelance</span>
+            AI-First Full Stack Developer — <span className="text-emerald-300">Remote Contract</span>
           </p>
           <div className='mb-6 text-sm text-neutral-400 leading-relaxed'>
             <p className="mb-5">
@@ -31,7 +31,7 @@ export const AboutMe = () => {
 
             <div className='mb-2 flex items-baseline gap-2'>
               <span className='text-white font-semibold text-sm'>Merobhumi</span>
-              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2026 — Present · Real Estate</span>
+              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2026 — Present · Remote · Real Estate</span>
             </div>
             <p className="mb-3">
               Engaged as the <span className="text-white font-medium">sole engineer</span> on a real estate platform—owning the product end to end and standing up the entire IT infrastructure <span className="text-white font-medium">from scratch.</span>
@@ -83,7 +83,7 @@ export const AboutMe = () => {
 
             <div className='mt-6 mb-2 flex items-baseline gap-2'>
               <span className='text-white font-semibold text-sm'>WN Wellness Equipment</span>
-              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2025 · B2B Wholesale</span>
+              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2025 · Contract · B2B Wholesale</span>
             </div>
             <p className="mb-3">
               Delivered a <span className='text-white font-medium'>bold, SEO-rich storefront</span> for an industrial gym equipment wholesaler serving all 77 districts of Nepal.
