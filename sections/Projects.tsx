@@ -40,6 +40,9 @@ import WellnessGym from '@/public/assets/images/projects/wellness.png'
 import Merobhumi from '@/public/assets/images/projects/merobhumi.png'
 import RbsSalon from '@/public/assets/images/projects/rbs-salon.png'
 import Gharedi from '@/public/assets/images/projects/gharedi.png'
+import RepoPortfolio from '@/public/assets/images/projects/repo-portfolio.png'
+import DevFlow from '@/public/assets/images/projects/devflow.png'
+import MultiAi from '@/public/assets/images/projects/multi-ai.png'
 import { useRef } from 'react'
 
 interface Project {
@@ -158,6 +161,96 @@ const portfolioProjects = [
   ],
   link: 'https://rbsunisexsalon.vercel.app/',
   image: RbsSalon,
+},
+  {
+  company: 'Nischal Puri',
+  status: 'Live',
+  year: '2026',
+  title: 'Multi-AI — Multi-Agent Chat Platform',
+  subtitle: 'Microservice SaaS Routing Every Message to a Specialised LangGraph Agent, on Redis-Backed Sessions and Context',
+  results: [
+    {
+      title: 'Architected the backend as microservices — an Express gateway fronting separate auth, chat and agent services, each with its own package and database, sharing code through TypeScript path aliases. The gateway is the only entry point: it validates the session against Redis and injects the resolved user id downstream, so no service trusts a caller-supplied identity.',
+    },
+    {
+      title: 'Built the agent layer on LangGraph as a state machine: a router node classifies intent with an LLM, then dispatches to one of six specialised agents — chat, web search, coding, PDF, PPT and image — instead of pushing one oversized prompt at a single model.',
+    },
+    {
+      title: 'Designed search as a deliberate two-step: the Tavily node fetches live web results but generates nothing, appending them to graph state so the chat node synthesises them against real conversation history — keeping raw retrieval separate from the voice that answers the user.',
+    },
+    {
+      title: 'Cached conversation context in Redis as a capped list — push, trim to the last 20, refresh the TTL — with a read-through to MongoDB on a miss, cutting per-request history reads to roughly a millisecond. History is assembled server-side rather than posted by the browser, so the context feeding the model cannot be tampered with client-side.',
+    },
+    {
+      title: 'Made image generation survive free-tier reality with a provider fallback chain — Cloudflare, then Hugging Face FLUX, then Pollinations — persisting results to Cloudinary, behind per-user daily and global monthly quotas that protect a shared credit pool from a single user draining it.',
+    },
+    {
+      title: 'Runs on Docker locally, but production deliberately collapses the gateway and all three services into one Render web service by mounting them as routers in a single process — the microservice boundaries stay in the code while the hosting bill stays at zero, provisioned reproducibly through a Render blueprint. Sessions live on Upstash rather than Render Key Value, whose free tier has no persistence and would sign every user out on each deploy.',
+    },
+  ],
+  tech: [
+    'React',
+    'Vite',
+    'TypeScript',
+    'Express 5',
+    'Microservices',
+    'API Gateway',
+    'LangGraph',
+    'LangChain',
+    'Groq',
+    'Gemini',
+    'Tavily',
+    'MongoDB',
+    'Redis / Upstash',
+    'Firebase Auth',
+    'Docker',
+    'Render',
+    'Cloudinary',
+  ],
+  link: 'https://multi-ai-frontend-six.vercel.app/',
+  image: MultiAi,
+},
+  {
+  company: 'Nischal Puri',
+  status: 'Live',
+  year: '2026',
+  title: 'DevFlow — Developer Q&A Community',
+  subtitle: 'Stack Overflow-Style Q&A Platform with AI-Drafted Answers, Reputation and Transaction-Safe Voting',
+  results: [
+    {
+      title: 'Built the full question lifecycle — ask, edit, answer and vote in rich Markdown — with tag-based browsing, saved collections, a jobs board and public profile pages, in the shape developers already know from Stack Overflow.',
+    },
+    {
+      title: 'Added AI-drafted answers for threads sitting unanswered, running through the Vercel AI SDK behind a dedicated server route so the model call never reaches the browser and the API key stays server-side.',
+    },
+    {
+      title: 'Routed every server action through a single handler that validates against a Zod schema, enforces the auth gate and opens the database connection before any business logic runs — so an unvalidated or unauthenticated write is structurally impossible rather than a review catch.',
+    },
+    {
+      title: 'Modelled the domain across 11 Mongoose schemas including votes and an interaction log, with reputation applied as atomic increments in a bulk write so points land on both the voter and the content author without a read-modify-write race.',
+    },
+    {
+      title: 'Wrapped multi-document writes — voting, answering, question creation and OAuth account linking — in MongoDB transactions, so a partial failure can never leave vote counts drifting from the interactions that produced them.',
+    },
+    {
+      title: 'Implemented authentication on Auth.js with both a bcrypt credentials flow and OAuth providers, keeping account records in the same database as the content, and shipped structured request logging with pino.',
+    },
+  ],
+  tech: [
+    'Next.js 16',
+    'TypeScript',
+    'MongoDB',
+    'Mongoose',
+    'Transactions',
+    'Auth.js',
+    'Vercel AI SDK',
+    'MDX Editor',
+    'Zod',
+    'shadcn/ui',
+    'Tailwind CSS',
+  ],
+  link: 'https://devflow-five-alpha.vercel.app',
+  image: DevFlow,
 },
   {
   company: 'Nischal Puri',
@@ -503,10 +596,128 @@ export const ProjectsSection = () => {
             {view === 'list' && <ListView key='list' />}
           </AnimatePresence>
         </div>
+
+        {/* --- THE WORKSHOP --- */}
+        <WorkshopBand />
       </div>
     </section>
   )
 }
+
+/* -------------------------------------------------------------------------- */
+/*                      THE WORKSHOP (second portfolio)                       */
+/* -------------------------------------------------------------------------- */
+const workshopProject = {
+  company: 'The Workshop',
+  status: 'Live',
+  tag: 'Personal',
+  year: '2026',
+  title: 'The Workshop — Every Repo, Written Up',
+  subtitle:
+    'A Second, Separate Portfolio Indexing All 148 Public Repositories — 33 Of Them As Full Case Studies',
+  results: [
+    {
+      title:
+        'This site is the showroom; the workshop is the record. 148 public repositories indexed, 33 written up with the architecture decisions and the rejected alternatives kept rather than summarised away, across 11 ADRs.',
+    },
+    {
+      title:
+        'Ships as a pure static Astro build — every page rendered at build time, no client framework, no runtime JavaScript for content, and no backend.',
+    },
+    {
+      title:
+        'Client confidentiality is enforced by the build rather than by convention: an entry marked client that declares a source repo fails the build, and CI independently re-reads the built HTML to assert no client page links to source.',
+    },
+    {
+      title:
+        'All project data flows through a single module, so the storage layer can move from Markdown to Postgres by swapping four function bodies without touching a component.',
+    },
+    {
+      title:
+        'Built end to end with Claude Code, with the agent setup version-controlled — a Stop hook spawns a read-only reviewer subagent each turn, and skills are pinned by content hash so an upstream change cannot land silently.',
+    },
+  ],
+  tech: [
+    'Astro',
+    'TypeScript',
+    'Tailwind CSS',
+    'Zod',
+    'Docker',
+    'Nginx',
+    'GitHub Actions',
+    'Claude Code',
+    'MCP',
+  ],
+  link: 'https://nischal-dev-eight.vercel.app',
+  image: RepoPortfolio,
+}
+
+const WorkshopBand = () => (
+  <div className='mt-16 md:mt-24'>
+    <Card className='px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16'>
+      <div className='lg:grid lg:grid-cols-2 lg:gap-16'>
+        <div className='lg:pb-16'>
+          <div className='inline-flex items-center gap-3'>
+            <div className='rounded bg-emerald-400/10 px-2 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-emerald-400 uppercase'>
+              {workshopProject.status}
+            </div>
+            <div className='rounded bg-sky-400/10 px-2 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-sky-400 uppercase'>
+              {workshopProject.tag}
+            </div>
+            <span className='font-mono text-[10px] text-gray-500'>
+              {workshopProject.company} // {workshopProject.year}
+            </span>
+          </div>
+          <h3 className='mt-4 font-serif text-2xl text-white md:text-4xl'>
+            {workshopProject.title}
+          </h3>
+          <p className='mt-2 text-sm font-light text-white/70'>
+            {workshopProject.subtitle}
+          </p>
+          <hr className='mt-6 border-white/10' />
+          <ul className='mt-6 flex flex-col gap-4'>
+            {workshopProject.results.map((result, idx) => (
+              <li
+                key={idx}
+                className='flex items-start gap-3 text-sm text-white/50'
+              >
+                <CheckCircle2 className='h-5 w-5 shrink-0 text-emerald-500' />
+                <span className='leading-relaxed'>{result.title}</span>
+              </li>
+            ))}
+          </ul>
+          <div className='mt-10 flex flex-wrap gap-2'>
+            {workshopProject.tech.map(tech => (
+              <span
+                key={tech}
+                className='rounded-md border border-white/5 bg-white/5 px-2.5 py-1 font-mono text-[9px] font-bold text-gray-400 uppercase'
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          <a
+            href={workshopProject.link}
+            target='_blank'
+            rel='noreferrer'
+            className='mt-12 block'
+          >
+            <button className='flex h-12 w-full items-center justify-center gap-3 rounded-xl bg-white px-8 text-[10px] font-black tracking-widest text-gray-950 uppercase transition-all hover:bg-emerald-50 active:scale-95'>
+              Open The Workshop <ArrowUpRight className='size-4' />
+            </button>
+          </a>
+        </div>
+        <div className='relative mt-12 lg:mt-0'>
+          <Image
+            src={workshopProject.image}
+            alt={workshopProject.title}
+            className='rounded-t-3xl object-cover lg:absolute lg:h-full lg:w-auto lg:max-w-none lg:object-cover'
+          />
+        </div>
+      </div>
+    </Card>
+  </div>
+)
 
 /* -------------------------------------------------------------------------- */
 /*                            VIEW 1: STACK (Classic)                         */
