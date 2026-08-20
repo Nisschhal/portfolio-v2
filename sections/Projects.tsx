@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import {
   motion,
@@ -44,6 +44,12 @@ import RepoPortfolio from '@/public/assets/images/projects/repo-portfolio.png'
 import DevFlow from '@/public/assets/images/projects/devflow.png'
 import MultiAi from '@/public/assets/images/projects/multi-ai.png'
 import { useRef } from 'react'
+
+type ViewMode = 'grid' | 'list' | 'stack'
+
+/** Matches Tailwind's `lg` breakpoint — the point where ListView's columns and
+ *  hover preview become usable. */
+const DESKTOP_QUERY = '(min-width: 1024px)'
 
 interface Project {
   company: string
@@ -552,7 +558,29 @@ const portfolioProjects = [
 ]
 
 export const ProjectsSection = () => {
-  const [view, setView] = useState<'grid' | 'list' | 'stack'>('stack')
+  // `null` until the viewport is known on the client, so the server and first
+  // client render agree instead of flashing the wrong view.
+  const [view, setView] = useState<ViewMode | null>(null)
+  const pickedByUser = useRef(false)
+
+  // Default follows the viewport — cards on mobile/tablet, registry list on
+  // desktop — and keeps following it on resize until the user picks a view.
+  useEffect(() => {
+    const mql = window.matchMedia(DESKTOP_QUERY)
+    const applyDefault = () => {
+      if (pickedByUser.current) return
+      setView(mql.matches ? 'list' : 'grid')
+    }
+
+    applyDefault()
+    mql.addEventListener('change', applyDefault)
+    return () => mql.removeEventListener('change', applyDefault)
+  }, [])
+
+  const selectView = (next: ViewMode) => {
+    pickedByUser.current = true
+    setView(next)
+  }
 
   return (
     <section className='px-6 py-24 lg:py-40' id='projects'>
@@ -573,7 +601,7 @@ export const ProjectsSection = () => {
             ].map(type => (
               <button
                 key={type.id}
-                onClick={() => setView(type.id as 'grid' | 'list' | 'stack')}
+                onClick={() => selectView(type.id as ViewMode)}
                 className={cn(
                   'flex items-center gap-2 rounded-xl px-5 py-2.5 text-[10px] font-bold tracking-widest uppercase transition-all duration-300',
                   view === type.id
