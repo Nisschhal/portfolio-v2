@@ -734,9 +734,18 @@ const StackView = () => {
       {portfolioProjects.map((project, projectIndex) => (
         <Card
           key={project.title}
-          className='sticky px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16'
+          className='group sticky cursor-pointer px-8 pt-8 pb-0 md:px-10 md:pt-12 lg:px-20 lg:pt-16'
           style={{ top: `calc(64px + ${projectIndex * 25}px)` }}
         >
+          {/* The cards overlap in this view and hide the button, so the whole
+              card surface is the link instead. */}
+          <a
+            href={project.link}
+            target='_blank'
+            rel='noreferrer'
+            aria-label={`Open ${project.title}`}
+            className='absolute inset-0 z-20 rounded-3xl'
+          />
           <div
             className='absolute inset-0 -z-10 opacity-5'
             style={{ backgroundImage: `url(${grainImage.src})` }}
@@ -784,16 +793,9 @@ const StackView = () => {
                   </span>
                 ))}
               </div>
-              <a
-                href={project.link}
-                target='_blank'
-                rel='noreferrer'
-                className='mt-12 block'
-              >
-                <button className='flex h-12 w-full items-center justify-center gap-3 rounded-xl bg-white px-8 text-[10px] font-black tracking-widest text-gray-950 uppercase transition-all hover:bg-emerald-50 active:scale-95'>
-                  Initialize System <ArrowUpRight className='size-4' />
-                </button>
-              </a>
+              <div className='mt-12 flex h-12 w-full items-center justify-center gap-3 rounded-xl bg-white px-8 text-[10px] font-black tracking-widest text-gray-950 uppercase transition-all group-hover:bg-emerald-50'>
+                Initialize System <ArrowUpRight className='size-4' />
+              </div>
             </div>
             <div className='relative mt-12 lg:mt-0'>
               <Image
