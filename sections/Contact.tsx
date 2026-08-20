@@ -45,82 +45,95 @@
 'use client'
 import React from 'react'
 import { Send, Mail, MapPin, ArrowUpRight } from 'lucide-react'
+import SectionHeader from '@/components/SectionHeader'
+import Card from '@/components/Card'
+
+const EMAIL = 'nischal.dev@gmail.com'
+
+const inputStyles =
+  'rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white placeholder:text-gray-500 transition-all outline-none focus:border-emerald-500/50'
 
 export const ContactSection = () => {
   return (
-    <section id='contact' className='mx-auto max-w-7xl px-6 py-24 md:py-40'>
-      <div className='relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-8 backdrop-blur-md md:p-16'>
-        {/* Decorative elements */}
-        <div className='absolute top-0 right-0 p-8 opacity-20'>
-          <Send className='h-24 w-24 text-emerald-500' />
-        </div>
+    <section id='contact' className='px-6 py-24 lg:py-40'>
+      <div className='mx-auto max-w-7xl'>
+        <SectionHeader
+          eyebrow='Terminal // Request'
+          title='Initiate a Project'
+          description='Ready to scale your next system? Whether you have a specific technical challenge or just want to discuss architectural logic, my transmission lines are open.'
+        />
 
-        <div className='grid grid-cols-1 gap-16 lg:grid-cols-2'>
-          {/* Left Side: Copy */}
-          <div>
-            <div className='mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-[10px] font-black tracking-[0.4em] text-emerald-400 uppercase'>
-              Terminal // Request
-            </div>
-            <h2 className='font-space-grotesk mb-6 text-4xl font-bold tracking-tighter text-white md:text-6xl'>
-              Initiate a{' '}
-              <span className='text-emerald-500 italic'>Project</span>
-            </h2>
-            <p className='mb-10 text-lg leading-relaxed font-light text-gray-400'>
-              Ready to scale your next system? Whether you have a specific
-              technical challenge or just want to discuss architectural logic,
-              my transmission lines are open.
-            </p>
-
-            <div className='space-y-6'>
-              <div className='flex items-center gap-4 text-gray-300'>
-                <div className='flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5'>
-                  <Mail className='h-4 w-4 text-emerald-500' />
-                </div>
-                <span className='text-sm font-medium'>
-                  nischal@yourdomain.com
-                </span>
-              </div>
-              <div className='flex items-center gap-4 text-gray-300'>
-                <div className='flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5'>
-                  <MapPin className='h-4 w-4 text-emerald-500' />
-                </div>
-                <span className='text-sm font-medium'>
-                  Kathmandu, Nepal (GMT +5:45)
-                </span>
-              </div>
-            </div>
+        <Card className='mt-20 px-8 py-8 md:px-10 md:py-12 lg:px-20 lg:py-16'>
+          {/* Decorative element */}
+          <div className='pointer-events-none absolute top-0 right-0 p-8 opacity-20'>
+            <Send className='h-24 w-24 text-emerald-500' />
           </div>
 
-          {/* Right Side: Form (Industrial Style) */}
-          <form className='flex flex-col gap-4'>
-            <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+          <div className='grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16'>
+            {/* Left Side: Direct channels */}
+            <div>
+              <div className='inline-flex items-center gap-3'>
+                <div className='rounded bg-emerald-400/10 px-2 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-emerald-400 uppercase'>
+                  Available
+                </div>
+                <span className='font-mono text-[10px] text-gray-500'>
+                  Direct Channels
+                </span>
+              </div>
+
+              <hr className='mt-6 border-white/10' />
+
+              <div className='mt-6 flex flex-col gap-4'>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className='group flex items-center gap-4 text-gray-300 transition-colors hover:text-emerald-400'
+                >
+                  <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-colors group-hover:border-emerald-500/40'>
+                    <Mail className='h-4 w-4 text-emerald-500' />
+                  </div>
+                  <span className='text-sm font-medium'>{EMAIL}</span>
+                </a>
+                <div className='flex items-center gap-4 text-gray-300'>
+                  <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5'>
+                    <MapPin className='h-4 w-4 text-emerald-500' />
+                  </div>
+                  <span className='text-sm font-medium'>
+                    Kathmandu, Nepal (GMT +5:45)
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Form */}
+            <form className='flex flex-col gap-4'>
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                <input
+                  type='text'
+                  placeholder='Identification (Name)'
+                  className={inputStyles}
+                />
+                <input
+                  type='email'
+                  placeholder='Protocol Address (Email)'
+                  className={inputStyles}
+                />
+              </div>
               <input
                 type='text'
-                placeholder='Identification (Name)'
-                className='rounded-2xl border border-white/10 bg-black/40 px-6 py-4 text-white transition-all outline-none focus:border-emerald-500/50'
+                placeholder='Subject'
+                className={inputStyles}
               />
-              <input
-                type='email'
-                placeholder='Protocol Address (Email)'
-                className='rounded-2xl border border-white/10 bg-black/40 px-6 py-4 text-white transition-all outline-none focus:border-emerald-500/50'
+              <textarea
+                placeholder='System requirements or message...'
+                rows={5}
+                className={`${inputStyles} resize-none`}
               />
-            </div>
-            <input
-              type='text'
-              placeholder='Subject'
-              className='rounded-2xl border border-white/10 bg-black/40 px-6 py-4 text-white transition-all outline-none focus:border-emerald-500/50'
-            />
-            <textarea
-              placeholder='System requirements or message...'
-              rows={5}
-              className='resize-none rounded-2xl border border-white/10 bg-black/40 px-6 py-4 text-white transition-all outline-none focus:border-emerald-500/50'
-            />
-            <button className='group flex items-center justify-center gap-3 rounded-2xl bg-white py-5 text-[11px] font-black tracking-widest text-gray-950 uppercase shadow-xl transition-all hover:scale-[1.02] hover:bg-emerald-50 active:scale-95'>
-              Transmit Message
-              <ArrowUpRight className='h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1' />
-            </button>
-          </form>
-        </div>
+              <button className='mt-2 flex h-12 w-full items-center justify-center gap-3 rounded-xl bg-white px-8 text-[10px] font-black tracking-widest text-gray-950 uppercase transition-all hover:bg-emerald-50 active:scale-95'>
+                Transmit Message <ArrowUpRight className='size-4' />
+              </button>
+            </form>
+          </div>
+        </Card>
       </div>
     </section>
   )

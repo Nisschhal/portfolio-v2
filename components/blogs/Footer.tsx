@@ -52,7 +52,11 @@ const Footer = () => {
                 { icon: Github, href: '#', label: 'GitHub' },
                 { icon: Linkedin, href: '#', label: 'LinkedIn' },
                 { icon: Twitter, href: '#', label: 'Twitter' },
-                { icon: Mail, href: 'mailto:your@email.com', label: 'Email' },
+                {
+                  icon: Mail,
+                  href: 'mailto:nischal.dev@gmail.com',
+                  label: 'Email',
+                },
               ].map((social, i) => (
                 <a
                   key={i}
