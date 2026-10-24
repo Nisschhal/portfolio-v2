@@ -105,6 +105,37 @@ export const AboutMe = () => {
               </div>
             </div>
 
+            <div className='mt-6 mb-2 flex items-baseline gap-2'>
+              <span className='text-white font-semibold text-sm'>Gravita</span>
+              <span className='text-[10px] font-mono text-neutral-500 uppercase tracking-widest'>2026 · Contract · Eyewear Retail</span>
+            </div>
+            <p className="mb-3">
+              Built the <span className='text-white font-medium'>online store</span> for a Nepali eyewear brand with three outlets, and carried its brand book through every surface of the site.
+            </p>
+
+            <div className="space-y-3 border-l border-emerald-500/20 pl-4">
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Brand System Applied End To End</span>
+                <p>
+                  Held the storefront to the brand guideline—the <span className='text-white font-medium'>navy, beige and white palette</span> in its 60/30/10 proportion, Montserrat throughout, wordmark minimum sizes, and the &quot;Comfortably Bold&quot; tagline written the way the guideline specifies.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Landing Page As One Narrative</span>
+                <p>
+                  Structured the homepage as a single story—hero, <span className='text-sky-300'>shape-led browsing</span>, best sellers, trust points, store locations and an animated FAQ—and checked each section at desktop, tablet and phone widths.
+                </p>
+              </div>
+
+              <div>
+                <span className='text-emerald-300 font-mono text-[10px] uppercase tracking-widest block mb-1'>Catalogue Data Behind The Filters</span>
+                <p>
+                  Audited the live catalogue and its nine collections, then wrote the <span className='text-white font-medium'>data standard</span> that decides how rich the filters feel: one type and one shape per product, <span className='text-sky-300'>Colour/Size variants</span>, and a four-photo shot list.
+                </p>
+              </div>
+            </div>
+
             <div className="mt-6">
               <span className='text-neutral-500 font-mono text-[10px] uppercase tracking-widest block mb-2'>Stack</span>
               <div className="flex flex-wrap gap-2">

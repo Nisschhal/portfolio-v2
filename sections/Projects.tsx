@@ -43,6 +43,7 @@ import Gharedi from '@/public/assets/images/projects/gharedi.png'
 import RepoPortfolio from '@/public/assets/images/projects/repo-portfolio.png'
 import DevFlow from '@/public/assets/images/projects/devflow.png'
 import MultiAi from '@/public/assets/images/projects/multi-ai.png'
+import Gravita from '@/public/assets/images/projects/gravita.png'
 import { useRef } from 'react'
 
 type ViewMode = 'grid' | 'list' | 'stack'
@@ -167,6 +168,42 @@ const portfolioProjects = [
   ],
   link: 'https://rbsunisexsalon.vercel.app/',
   image: RbsSalon,
+},
+  {
+  company: 'Gravita',
+  status: 'Live',
+  tag: 'Client',
+  year: '2026',
+  title: 'Gravita — Eyewear Storefront',
+  subtitle: 'Brand-Led Online Store for a Nepali Eyewear Brand with Three Outlets',
+  results: [
+    {
+      title: 'Built the online store for a Nepali eyewear brand with outlets in Pepsicola, Gwarko and Butwal, on the Blanxer commerce platform — catalogue, cart and checkout with cash on delivery across Nepal, order tracking, and a free eye check-up offer carried through the whole site.',
+    },
+    {
+      title: 'Applied the brand book end to end: the navy, beige and white palette in the 60/30/10 proportion it prescribes, Montserrat throughout, the wordmark held to its minimum sizes, and the "Comfortably Bold" tagline written the way the guideline specifies it, across the announcement bar, header, footer and landing sections.',
+    },
+    {
+      title: 'Reworked the landing page into one narrative — hero, shape-led browsing (square, round, cat-eye, double bridge, rectangle, aviator), best sellers, trust points, store locations and an animated FAQ — and checked every section at desktop, tablet and phone widths for overflow, orphaned tiles and tap targets.',
+    },
+    {
+      title: 'Audited the live catalogue and its nine collections and wrote the data standard that decides how rich the filters feel — one type and one shape per product, Colour/Size variant naming that feeds the colour and size filters, and a four-photo shot list — delivered as a fill-in workbook the client can complete.',
+    },
+    {
+      title: 'Kept every store-wide change reviewable: drafts and preview pages for the client to approve before anything replaced the live homepage, with the previous settings recorded so each change can be reversed.',
+    },
+  ],
+  tech: [
+    'Blanxer',
+    'Next.js',
+    'Cloudflare',
+    'Brand Design System',
+    'Landing Page Design',
+    'Catalogue Data Design',
+    'Responsive QA',
+  ],
+  link: 'https://gravita.com.np',
+  image: Gravita,
 },
   {
   company: 'Nischal Puri',
