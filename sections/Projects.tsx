@@ -140,36 +140,6 @@ const portfolioProjects = [
   image: WellnessGym,
 },
   {
-  company: 'RBS Unisex Salon',
-  status: 'WIP',
-  tag: 'Client',
-  year: '2026',
-  title: 'RBS Unisex Salon & Academy',
-  subtitle: 'Modern, Premium Booking Site for a Nepali Unisex Salon and Beauty Training Center',
-  results: [
-    {
-      title: 'Building a premium salon site for a Devdaha and Khaireni based business that runs two sides of one brand — ladies and gents salon services, and a professional beauty academy — with parallel Book Appointment and Join Classes paths from the hero.',
-    },
-    {
-      title: 'Designed a clean, modern, premium aesthetic — dark gold-accented palette, elegant serif display type, generous spacing and a light/dark theme toggle — giving a local salon the visual quality of a high-end brand.',
-    },
-    {
-      title: 'Wrote the interface in mixed Nepali and English so the copy reads the way customers actually speak, and structured services into clear entry points: gents haircut, ladies services, bridal makeup, and beauty courses.',
-    },
-    {
-      title: 'Built on Next.js with server-rendered, SEO-rich pages so the salon surfaces in local search — the primary discovery channel for appointment-driven businesses.',
-    },
-  ],
-  tech: [
-    'Next.js',
-    'SSR / SEO',
-    'Tailwind CSS',
-    'Dark / Light Theme',
-  ],
-  link: 'https://rbsunisexsalon.vercel.app/',
-  image: RbsSalon,
-},
-  {
   company: 'Gravita',
   status: 'Live',
   tag: 'Client',
@@ -204,6 +174,36 @@ const portfolioProjects = [
   ],
   link: 'https://gravita.com.np',
   image: Gravita,
+},
+  {
+  company: 'RBS Unisex Salon',
+  status: 'WIP',
+  tag: 'Client',
+  year: '2026',
+  title: 'RBS Unisex Salon & Academy',
+  subtitle: 'Modern, Premium Booking Site for a Nepali Unisex Salon and Beauty Training Center',
+  results: [
+    {
+      title: 'Building a premium salon site for a Devdaha and Khaireni based business that runs two sides of one brand — ladies and gents salon services, and a professional beauty academy — with parallel Book Appointment and Join Classes paths from the hero.',
+    },
+    {
+      title: 'Designed a clean, modern, premium aesthetic — dark gold-accented palette, elegant serif display type, generous spacing and a light/dark theme toggle — giving a local salon the visual quality of a high-end brand.',
+    },
+    {
+      title: 'Wrote the interface in mixed Nepali and English so the copy reads the way customers actually speak, and structured services into clear entry points: gents haircut, ladies services, bridal makeup, and beauty courses.',
+    },
+    {
+      title: 'Built on Next.js with server-rendered, SEO-rich pages so the salon surfaces in local search — the primary discovery channel for appointment-driven businesses.',
+    },
+  ],
+  tech: [
+    'Next.js',
+    'SSR / SEO',
+    'Tailwind CSS',
+    'Dark / Light Theme',
+  ],
+  link: 'https://rbsunisexsalon.vercel.app/',
+  image: RbsSalon,
 },
   {
   company: 'Nischal Puri',
